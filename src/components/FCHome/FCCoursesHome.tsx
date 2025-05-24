@@ -72,7 +72,7 @@ const FCCoursesHome = () => {
                                         <div className="popular-thumb">
                                             <div className="post-box">
                                                 <Link href="/courses-details" className="post-cat-white" style={{color: 'white'}}>
-                                                    零基础入门
+                                                    基础课程
                                                 </Link>
                                             </div>
                                             <div className="thumb">
@@ -82,13 +82,13 @@ const FCCoursesHome = () => {
                                         <div className="content">
                                             <h4>
                                                 <Link href="/courses-details" style={{color: 'white'}}>
-                                                    0-A1基础课程
-                                                    零基础快速入门
+                                                    基础课 预科-A1 <br />
+                                                    基础语法及口语入门
                                                 </Link>
                                             </h4>
                                             <div className="course-details">
-                                                <p>适用于：0基础学员</p>
-                                                <p>课时：80课时</p>
+                                                <p>适用于：学完预科</p>
+                                                <p>课时：40课时</p>
                                             </div>
                                             <div className="star">
                                                 <i className="fas fa-star"></i>
@@ -118,12 +118,12 @@ const FCCoursesHome = () => {
                                         <div className="content">
                                             <h4>
                                                 <Link href="/courses-details" style={{color: 'white'}}>
-                                                    A2-B1进阶课程
-                                                    稳步提升法语水平
+                                                    基础课 A2-B1 <br />
+                                                    写作技巧、语法进阶以及口语训练
                                                 </Link>
                                             </h4>
                                             <div className="course-details">
-                                                <p>适用于：A1-A2基础学员</p>
+                                                <p>适用于：学完A2</p>
                                                 <p>课时：160课时</p>
                                             </div>
                                             <div className="star">
@@ -144,7 +144,7 @@ const FCCoursesHome = () => {
                                         <div className="popular-thumb">
                                             <div className="post-box">
                                                 <Link href="/courses-details" className="post-cat-white" style={{color: 'white'}}>
-                                                    全程系统
+                                                    COMBO套餐
                                                 </Link>
                                             </div>
                                             <div className="thumb">
@@ -154,13 +154,13 @@ const FCCoursesHome = () => {
                                         <div className="content">
                                             <h4>
                                                 <Link href="/courses-details" style={{color: 'white'}}>
-                                                    0-B2全程系统课程
-                                                    零基础到B2水平
+                                                    COMBO 0基础CLB7刷题套餐 <br />
+                                                    零基础直达高分
                                                 </Link>
                                             </h4>
                                             <div className="course-details">
                                                 <p>适用于：0基础学员</p>
-                                                <p>课时：480课时（含四个级别）</p>
+                                                <p>课时：612课时</p>
                                             </div>
                                             <div className="star">
                                                 <i className="fas fa-star"></i>
