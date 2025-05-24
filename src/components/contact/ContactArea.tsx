@@ -18,46 +18,79 @@ const ContactArea = () => {
                                     <i className="flaticon-map"></i>
                                 </div>
                                 <h5>
-                                    蒙特利尔校区
+                                    Montreal Downtown 校区
                                 </h5>
                                 <div className="image">
                                     <img src="assets/img/small-line.png" alt="img"/>
                                 </div>
                                 <h4>
-                                    1440 Saint-Catherine St W Unit 500
+                                    1440 Saint-Catherine St W Unit 501, Montreal
                                 </h4>
                             </div>
                         </div>
                         <div className="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".5s">
                             <div className="contact-box-items">
                                 <div className="icon">
-                                    <i className="flaticon-send-data"></i>
+                                    <i className="flaticon-map"></i>
                                 </div>
                                 <h5>
-                                    联系邮箱
+                                    南岸校区
                                 </h5>
                                 <div className="image">
                                     <img src="assets/img/small-line.png" alt="img"/>
                                 </div>
                                 <h4>
-                                    <a href="mailto:info@gfec.ca">info@gfec.ca</a> <br/>
+                                    Room 201, 141 Bd Saint-Luc, <br/>
+                                    Saint-Jean-sur-Richelieu, QC J2W 2G7
                                 </h4>
                             </div>
                         </div>
                         <div className="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".7s">
                             <div className="contact-box-items">
                                 <div className="icon">
-                                    <img src="assets/img/call.png" alt="img"/>
+                                    <i className="flaticon-map"></i>
                                 </div>
                                 <h5>
-                                    圣让校区
+                                    老港校区
                                 </h5>
                                 <div className="image">
                                     <img src="assets/img/small-line.png" alt="img"/>
                                 </div>
                                 <h4>
-                                    141 Bd Saint-Luc, <br/>
-                                    Saint-Jean-sur-Richelieu
+                                    266 Notre-Dame St W Level 5, <br/>
+                                    Montreal, Quebec H2Y 1T6
+                                </h4>
+                            </div>
+                        </div>
+                        <div className="col-xl-6 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".3s">
+                            <div className="contact-box-items">
+                                <div className="icon">
+                                    <i className="flaticon-send-data"></i>
+                                </div>
+                                <h5>
+                                    报名邮箱
+                                </h5>
+                                <div className="image">
+                                    <img src="assets/img/small-line.png" alt="img"/>
+                                </div>
+                                <h4>
+                                    <a href="mailto:apply@qfec.ca">apply@qfec.ca</a>
+                                </h4>
+                            </div>
+                        </div>
+                        <div className="col-xl-6 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".5s">
+                            <div className="contact-box-items">
+                                <div className="icon">
+                                    <i className="flaticon-send-data"></i>
+                                </div>
+                                <h5>
+                                    咨询邮箱
+                                </h5>
+                                <div className="image">
+                                    <img src="assets/img/small-line.png" alt="img"/>
+                                </div>
+                                <h4>
+                                    <a href="mailto:info@qfec.ca">info@qfec.ca</a>
                                 </h4>
                             </div>
                         </div>
