@@ -1,7 +1,12 @@
+"use client";
+
 import Link from 'next/link';
 import React from 'react';
+import {useLanguage} from '@/contexts/LanguageContext';
 
 const FooterMain = () => {
+    const {t} = useLanguage();
+
     return (
         <>
             <footer className="footer-section-3 fix">
@@ -23,12 +28,12 @@ const FooterMain = () => {
                                     </div>
                                     <div className="footer-content">
                                         <p>
-                                            魁北克法语教育中心致力于为学生提供优质的法语教育服务，帮助学生掌握法语技能。
+                                            {t('footer.description', 'Quebec Francophone Education Centre is committed to providing students with quality French education services to help students master French skills.')}
                                         </p>
                                         <div className="footer-content pt-2">
                                             <ul className="contact-info">
                                                 <li>
-                                                    Montreal Downtown 校区:<br/>
+                                                    Montreal Downtown Campus:<br/>
                                                     1440 Saint-Catherine St W Unit 501, Montreal
                                                 </li>
                                             </ul>
@@ -39,40 +44,40 @@ const FooterMain = () => {
                             <div className="col-xl-3 col-lg-4 col-md-6 ps-lg-5 wow fadeInUp" data-wow-delay=".4s">
                                 <div className="single-footer-widget">
                                     <div className="widget-head">
-                                        <h3>快速链接</h3>
+                                        <h3>{t('footer.quick_links', 'Quick Links')}</h3>
                                     </div>
                                     <ul className="list-area">
-                                        <li><Link href="/">主页</Link></li>
-                                        <li><Link href="/about">关于我们</Link></li>
-                                        <li><Link href="/courses">课程</Link></li>
-                                        <li><Link href="/event">活动</Link></li>
-                                        <li><Link href="/news">新闻</Link></li>
+                                        <li><Link href="/">{t('navigation.home', 'Home')}</Link></li>
+                                        <li><Link href="/about">{t('navigation.about', 'About Us')}</Link></li>
+                                        <li><Link href="/courses">{t('navigation.courses', 'Courses')}</Link></li>
+                                        <li><Link href="/event">{t('navigation.events', 'Events')}</Link></li>
+                                        <li><Link href="/news">{t('navigation.news', 'News')}</Link></li>
                                     </ul>
                                 </div>
                             </div>
                             <div className="col-xl-2 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".8s">
                                 <div className="single-footer-widget style-left">
                                     <div className="widget-head">
-                                        <h3>联系我们</h3>
+                                        <h3>{t('footer.contact_us', 'Contact Us')}</h3>
                                     </div>
                                     <div className="footer-content">
                                         <ul className="contact-info">
                                             <li>
-                                                报名邮箱: <a href="mailto:apply@qfec.ca" className="link">apply@qfec.ca</a>
+                                                Registration Email: <a href="mailto:apply@qfec.ca"
+                                                                       className="link">apply@qfec.ca</a>
                                             </li>
-
                                             <li>
-                                                咨询邮箱: <a href="mailto:info@gfec.ca" className="link">info@gfec.ca</a>
+                                                Inquiry Email: <a href="mailto:info@qfec.ca"
+                                                                  className="link">info@qfec.ca</a>
                                             </li>
-
                                             <li>
-                                                南岸校区:<br/>
+                                                South Shore Campus:<br/>
                                                 Room 201, 141 Bd Saint-Luc,
                                                 Saint-Jean-sur-Richelieu, QC J2W 2G7
                                             </li>
                                             <li>
-                                                老港校区：<br/>
-                                                266 Notre-Dame St W 500,
+                                                Old Port Campus:<br/>
+                                                266 Notre-Dame St W Level 5,
                                                 Montreal, Quebec H2Y 1T6
                                             </li>
                                         </ul>
@@ -82,17 +87,18 @@ const FooterMain = () => {
                             <div className="col-xl-4 col-lg-4 col-md-6 ps-xl-5 wow fadeInUp" data-wow-delay=".8s">
                                 <div className="single-footer-widget">
                                     <div className="widget-head">
-                                        <h3>通讯订阅</h3>
+                                        <h3>{t('footer.newsletter', 'Newsletter Subscription')}</h3>
                                     </div>
                                     <div className="footer-content">
-                                        <p>订阅我们的通讯，获取最新课程和活动信息</p>
+                                        <p>{t('footer.newsletter_text', 'Subscribe to our newsletter for the latest course and event information')}</p>
                                         <div className="footer-input">
                                             <div className="icon">
                                                 <i className="far fa-envelope"></i>
                                             </div>
-                                            <input type="email" id="email2" placeholder="邮箱地址"/>
+                                            <input type="email" id="email2"
+                                                   placeholder={t('footer.email_placeholder', 'Email Address')}/>
                                             <button className="newsletter-btn" type="submit">
-                                                订阅
+                                                {t('footer.newsletter_button', 'Subscribe')}
                                             </button>
                                         </div>
                                     </div>
@@ -104,26 +110,29 @@ const FooterMain = () => {
                 <div className="footer-bottom style-3">
                     <div className="container">
                         <div className="footer-bottom-wrapper">
-                            <p>版权所有 © <Link href="/">魁北克法语教育中心</Link>，保留所有权利。</p>
+                            <p>
+                                {t('footer.copyright', 'Copyright ©')} <Link href="/">Quebec Francophone Education
+                                Centre</Link>, {t('footer.rights_reserved', 'All rights reserved')}.
+                            </p>
                             <ul className="footer-menu wow fadeInUp" data-wow-delay=".5s">
                                 <li>
                                     <Link href="/about">
-                                        关于我们
+                                        {t('navigation.about', 'About Us')}
                                     </Link>
                                 </li>
                                 <li>
                                     <Link href="/faq">
-                                        常见问题
+                                        {t('navigation.faq', 'FAQ')}
                                     </Link>
                                 </li>
                                 <li>
                                     <Link href="/contact">
-                                        联系我们
+                                        {t('navigation.contact', 'Contact Us')}
                                     </Link>
                                 </li>
                                 <li>
                                     <Link href="/event">
-                                        活动
+                                        {t('navigation.events', 'Events')}
                                     </Link>
                                 </li>
                             </ul>
