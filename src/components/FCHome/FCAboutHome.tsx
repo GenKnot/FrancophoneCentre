@@ -26,7 +26,23 @@ const FCAboutHome = () => {
         );
     }
 
-    const siteConfig = data?.site_config;
+    const aboutContent = data?.about_content;
+    const siteConfig = data?.site_config; 
+
+    const sectionTitle = aboutContent?.section_title || t('about.section_title', 'About QFEC');
+    const mainTitle = aboutContent?.main_title || siteConfig?.site_name || t('about.title', 'Quebec Francophone Education Centre');
+    const description = aboutContent?.description || siteConfig?.site_description || t('about.description', 'Quebec Francophone Education Centre (QFEC) was established in 1991, is a professional French teaching institution under the guidance of the Canadian government.');
+    const buttonText = aboutContent?.button_text || t('about.button_text', 'Learn More Details');
+    
+    const counter1Number = aboutContent?.counter1_number || 33;
+    const counter1Text = aboutContent?.counter1_text || t('about.counter1_text', 'Years of Teaching Experience');
+    const counter2Number = aboutContent?.counter2_number || 98;
+    const counter2Text = aboutContent?.counter2_text || t('about.counter2_text', 'TEF Exam Pass Rate');
+    const counter3Number = aboutContent?.counter3_number || 2000;
+    const counter3Text = aboutContent?.counter3_text || t('about.counter3_text', 'Hours of Examiner Research Results');
+    
+    const mainImageUrl = aboutContent?.main_image_url || 'assets/img/FCAbout/FCAbout-2.png';
+    const backgroundImageUrl = aboutContent?.background_image_url || 'assets/img/FCAbout/bg-shape.png';
 
     return (
         <>
@@ -38,48 +54,48 @@ const FCAboutHome = () => {
                                 <div className="about-content">
                                     <div className="section-title">
                                         <h6 className="text-white wow fadeInUp">
-                                            {t('about.section_title', 'About QFEC')}
+                                            {sectionTitle}
                                         </h6>
                                         <h2 className="text-white wow fadeInUp" data-wow-delay=".3s">
-                                            {t('about.title', 'Quebec Francophone Education Centre Canada')}
+                                            {mainTitle}
                                         </h2>
                                     </div>
                                     <p className="mt-3 mt-md-0 wow fadeInUp" data-wow-delay=".5s">
-                                        {siteConfig?.site_description || t('about.description', 'Quebec Francophone Education Centre (QFEC) was established in 1991, is a professional French teaching institution under the guidance of the Canadian government. Headquartered in Montreal, taught directly by current TEF examiners, committed to providing students with the highest quality French education to help realize immigration dreams.')}
+                                        {description}
                                     </p>
                                     <Link href="/about" className="theme-btn red-btn wow fadeInUp" data-wow-delay=".3s">
-                                        {t('about.button_text', 'Learn More Details')}
+                                        {buttonText}
                                     </Link>
                                     <div className="about-counter-items">
                                         <div className="counter-content wow fadeInUp" data-wow-delay=".3s">
-                                            <h3><span className="odometer" data-count="13">
-                        <Count number={13} text='+'/>
-                        </span></h3>
-                                            <p>{t('about.counter1_text', 'Years of Teaching Experience')}</p>
+                                            <h3><span className="odometer" data-count={counter1Number}>
+                                                <Count number={counter1Number} text='+'/>
+                                            </span></h3>
+                                            <p>{counter1Text}</p>
                                         </div>
                                         <div className="counter-content wow fadeInUp" data-wow-delay=".5s">
-                                            <h3><span className="odometer" data-count="99">
-                        <Count number={99} text='%'/>
-                        </span></h3>
-                                            <p>{t('about.counter2_text', 'TEF Exam Pass Rate')}</p>
+                                            <h3><span className="odometer" data-count={counter2Number}>
+                                                <Count number={counter2Number} text='%'/>
+                                            </span></h3>
+                                            <p>{counter2Text}</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div className="col-xl-5 col-lg-6">
                                 <div className="about-image">
-                                    <img src="assets/img/FCAbout/FCAbout-2.png" alt="img"
+                                    <img src={mainImageUrl} alt="About QFEC"
                                          className="wow img-custom-anim-left"/>
                                     <div className="bg-shape">
-                                        <img src="assets/img/FCAbout/bg-shape.png" alt="img"/>
+                                        <img src={backgroundImageUrl} alt="Background Shape"/>
                                     </div>
                                     <div className="counter-box">
                                         <h2>
-                                            <span className="odometer" data-count="2800">
-                                                 <Count number={2000} text='+'/>
+                                            <span className="odometer" data-count={counter3Number}>
+                                                 <Count number={counter3Number} text='+'/>
                                             </span>
                                         </h2>
-                                        <p>{t('about.counter3_text', 'Hours of Examiner Research Results')}</p>
+                                        <p>{counter3Text}</p>
                                     </div>
                                 </div>
                             </div>
