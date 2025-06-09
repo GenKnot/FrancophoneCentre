@@ -26,8 +26,29 @@ const FCCoursesHome = () => {
     }
 
     const courses = data?.courses || [];
-    const featuredCourses = courses.filter((course: any) => course.is_featured_homepage)
-        .sort((a: any, b: any) => a.homepage_order - b.homepage_order);
+    const courseContent = data?.course_content;
+    const courseTypes = data?.course_types || [];
+    
+    // Group courses by type
+    const coursesByType = courseTypes.reduce((acc: any, type: any) => {
+        acc[type.key] = courses.filter((course: any) => course.course_type === type.key);
+        return acc;
+    }, {});
+
+    // Get fallback translations for course types
+    const getTypeDisplayName = (typeKey: string) => {
+        const type = courseTypes.find((t: any) => t.key === typeKey);
+        if (type) return type.name;
+        
+        // Fallback translations
+        switch(typeKey) {
+            case 'basic': return t('courses.tabs.basic', 'Basic Courses');
+            case 'exam_prep': return t('courses.tabs.exam_prep', 'Exam Preparation');
+            case 'combo': return t('courses.tabs.combo', 'Combo Package');
+            case 'vip': return t('courses.tabs.vip', 'VIP Course');
+            default: return typeKey;
+        }
+    };
 
     const renderCourseCard = (course: any, index: number) => (
         <div key={course.id} className="col-xl-4 col-lg-6 col-md-6">
@@ -35,18 +56,11 @@ const FCCoursesHome = () => {
                 <div className="popular-thumb">
                     <div className="post-box">
                         <Link href="/courses-details" className="post-cat-white" style={{color: 'white'}}>
-                            {course.course_type === 'basic' && t('courses.tabs.basic', 'Basic Courses')}
-                            {course.course_type === 'exam_prep' && t('courses.tabs.exam_prep', 'Exam Preparation')}
-                            {course.course_type === 'combo' && t('courses.tabs.combo', 'Combo Package')}
-                            {course.course_type === 'vip' && 'VIP Course'}
+                            {getTypeDisplayName(course.course_type)}
                         </Link>
                     </div>
                     <div className="thumb">
-<<<<<<< Updated upstream
-                        <img src={course.image_homepage || `/FCImage/Course-${index + 1}.png`} alt="img"/>
-=======
                         <img src={course.image_homepage || `FCImage/Course-${index + 1}.png`} alt="img"/>
->>>>>>> Stashed changes
                     </div>
                 </div>
                 <div className="content">
@@ -56,10 +70,9 @@ const FCCoursesHome = () => {
                         </Link>
                     </h4>
                     <div className="course-details">
-                        {course.short_description && <p>{course.short_description}</p>}
+                        {course.subtitle && <p>{course.subtitle}</p>}
                         {course.hours && <p>{course.hours} {t('common.hours', 'hours')}</p>}
-                        {course.level_required &&
-                            <p>{t('common.level_required', 'Level required')}: {course.level_required}</p>}
+                        {course.level_required && <p>{t('common.level_required', 'Level required')}: {course.level_required}</p>}
                     </div>
                     <div className="star">
                         <i className="fas fa-star"></i>
@@ -78,19 +91,10 @@ const FCCoursesHome = () => {
         </div>
     );
 
-    const renderTabContent = () => {
-        return (
-            <div className="row">
-                {featuredCourses.length > 0 ? (
-                    featuredCourses.slice(0, 3).map((course: any, index: number) => renderCourseCard(course, index))
-                ) : (
-                    <div className="col-12 text-center text-muted">
-                        <p>{t('common.no_data', 'No featured courses available')}</p>
-                    </div>
-                )}
-            </div>
-        );
-    };
+    // Use course content from API if available, otherwise fallback to translations
+    const sectionTitle = courseContent?.section_title || t('courses.section_title', 'Popular Courses');
+    const mainTitle = courseContent?.main_title || t('courses.title', 'QFEC Course System');
+    const subtitle = courseContent?.subtitle || t('courses.subtitle', 'Current examiner direct teaching 98% pass rate help you quickly reach immigration requirements');
 
     return (
         <>
@@ -130,144 +134,96 @@ const FCCoursesHome = () => {
                 <div className="container">
                     <div className="section-title color-red text-center">
                         <h6 className="wow fadeInUp">
-                            {t('courses.section_title', 'Popular Courses')}
+                            {sectionTitle}
                         </h6>
                         <h2 className="wow fadeInUp" data-wow-delay=".3s">
-                            {t('courses.title', 'QFEC Course System')}
+                            {mainTitle}
                         </h2>
                         <p className="courses-sub-text mt-3 wow fadeInUp" data-wow-delay=".5s">
-                            {t('courses.subtitle', 'Current examiner direct teaching 98% pass rate help you quickly reach immigration requirements')}
+                            {subtitle}
                         </p>
                     </div>
-
+                    <ul className="nav mt-3 mt-md-0">
+                        {courseTypes.map((type: any, index: number) => (
+                            <li key={type.key} className="nav-item wow fadeInUp" data-wow-delay={`.${2 + index * 2}s`}>
+                                <a href={`#${type.key}Courses`} data-bs-toggle="tab" 
+                                   className={`nav-link ${index === 0 ? 'active' : ''}`}>
+                                    {type.name}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
                     <div className="tab-content">
-<<<<<<< Updated upstream
-                        {renderTabContent()}
-=======
-                        <div id="BasicCourses" className="tab-pane fade show active">
-                            <div className="row">
-                                {basicCourses.length > 0 ? (
-                                    basicCourses.slice(0, 3).map((course: any, index: number) => renderCourseCard(course, index))
-                                ) : (
-                                    <div className="col-xl-4 col-lg-6 col-md-6">
-                                        <div className="popular-courses-items"
-                                             style={{backgroundColor: '#AD0119', color: 'white'}}>
-                                            <div className="popular-thumb">
-                                                <div className="post-box">
-                                                    <Link href="/courses-details" className="post-cat-white"
-                                                          style={{color: 'white'}}>
-                                                        {t('courses.tabs.basic', 'Basic Courses')}
-                                                    </Link>
+                        {courseTypes.map((type: any, typeIndex: number) => (
+                            <div key={type.key} id={`${type.key}Courses`} 
+                                 className={`tab-pane fade ${typeIndex === 0 ? 'show active' : ''}`}>
+                                <div className="row">
+                                    {coursesByType[type.key]?.length > 0 ? (
+                                        coursesByType[type.key].slice(0, type.key === 'combo' ? 2 : 3).map((course: any, index: number) => (
+                                            type.key === 'combo' ? (
+                                                <div key={course.id} className="col-xl-6 col-lg-6 col-md-6">
+                                                    <div className="popular-courses-items"
+                                                         style={{backgroundColor: '#AD0119', color: 'white'}}>
+                                                        <div className="popular-thumb">
+                                                            <div className="post-box">
+                                                                <Link href="/courses-details" className="post-cat-white"
+                                                                      style={{color: 'white'}}>
+                                                                    {type.name}
+                                                                </Link>
+                                                            </div>
+                                                            <div className="thumb">
+                                                                <img src={course.image_homepage || `FCImage/Course-${index + 7}.png`}
+                                                                     alt="img"/>
+                                                            </div>
+                                                        </div>
+                                                        <div className="content">
+                                                            <h4>
+                                                                <Link href="/courses-details" style={{color: 'white'}}>
+                                                                    {course.name}
+                                                                </Link>
+                                                            </h4>
+                                                            <div className="course-details">
+                                                                {course.subtitle && <p>{course.subtitle}</p>}
+                                                                {course.hours && <p>{course.hours} {t('common.hours', 'hours')}</p>}
+                                                                {course.price && <p>${course.price}</p>}
+                                                                {course.price_text && !course.price && <p>{course.price_text}</p>}
+                                                            </div>
+                                                            <div className="star">
+                                                                <i className="fas fa-star"></i>
+                                                                <i className="fas fa-star"></i>
+                                                                <i className="fas fa-star"></i>
+                                                                <i className="fas fa-star"></i>
+                                                                <i className="fas fa-star"></i>
+                                                                <span style={{color: 'white'}}>({course.rating}/5 Reviews)</span>
+                                                            </div>
+                                                            <Link href="/courses-details" className="link-btn link-btn-white"
+                                                                  style={{color: 'white'}}>
+                                                                {t('common.view_details', 'View Details')} <i
+                                                                className="far fa-chevron-double-right"
+                                                                style={{color: 'white'}}></i>
+                                                            </Link>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div className="thumb">
-                                                    <img src="FCImage/Course-1.png" alt="img"/>
-                                                </div>
-                                            </div>
-                                            <div className="content">
-                                                <h4>
-                                                    <Link href="/courses-details" style={{color: 'white'}}>
-                                                        Basic Course Pre-A1 <br/>
-                                                        Basic Grammar and Speaking Introduction
-                                                    </Link>
-                                                </h4>
-                                                <div className="course-details">
-                                                    <p>Suitable for: After completing preparatory course</p>
-                                                    <p>Duration: 40 hours</p>
-                                                </div>
-                                                <div className="star">
-                                                    <i className="fas fa-star"></i>
-                                                    <i className="fas fa-star"></i>
-                                                    <i className="fas fa-star"></i>
-                                                    <i className="fas fa-star"></i>
-                                                    <i className="fas fa-star"></i>
-                                                    <span style={{color: 'white'}}>(4.9/5 Reviews)</span>
-                                                </div>
-                                                <Link href="/courses-details" className="link-btn link-btn-white"
-                                                      style={{color: 'white'}}>
-                                                    {t('common.view_details', 'View Details')} <i
-                                                    className="far fa-chevron-double-right"
-                                                    style={{color: 'white'}}></i>
-                                                </Link>
-                                            </div>
+                                            ) : renderCourseCard(course, index)
+                                        ))
+                                    ) : (
+                                        <div className="col-12 text-center text-muted">
+                                            <p>{t('common.no_data', 'No data available')}</p>
                                         </div>
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-                        <div id="ExamPrep" className="tab-pane fade">
-                            <div className="row">
-                                {examPrepCourses.length > 0 ? (
-                                    examPrepCourses.slice(0, 3).map((course: any, index: number) => renderCourseCard(course, index))
-                                ) : (
-                                    <div className="col-12 text-center text-muted">
-                                        <p>{t('common.no_data', 'No data available')}</p>
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-                        <div id="ComboPackage" className="tab-pane fade">
-                            <div className="row">
-                                {comboCourses.length > 0 ? (
-                                    comboCourses.slice(0, 2).map((course: any, index: number) => (
-                                        <div key={course.id} className="col-xl-6 col-lg-6 col-md-6">
-                                            <div className="popular-courses-items"
-                                                 style={{backgroundColor: '#AD0119', color: 'white'}}>
-                                                <div className="popular-thumb">
-                                                    <div className="post-box">
-                                                        <Link href="/courses-details" className="post-cat-white"
-                                                              style={{color: 'white'}}>
-                                                            {t('courses.tabs.combo', 'Combo Package')}
-                                                        </Link>
-                                                    </div>
-                                                    <div className="thumb">
-                                                        <img src={course.image_homepage || `FCImage/Course-${index + 7}.png`}
-                                                             alt="img"/>
-                                                    </div>
-                                                </div>
-                                                <div className="content">
-                                                    <h4>
-                                                        <Link href="/courses-details" style={{color: 'white'}}>
-                                                            {course.name}
-                                                        </Link>
-                                                    </h4>
-                                                    <div className="course-details">
-                                                        <p>{course.subtitle}</p>
-                                                        <p>{course.hours} {t('common.hours', 'hours')}</p>
-                                                        <p>${course.price}</p>
-                                                    </div>
-                                                    <div className="star">
-                                                        <i className="fas fa-star"></i>
-                                                        <i className="fas fa-star"></i>
-                                                        <i className="fas fa-star"></i>
-                                                        <i className="fas fa-star"></i>
-                                                        <i className="fas fa-star"></i>
-                                                        <span style={{color: 'white'}}>(4.8/5 Reviews)</span>
-                                                    </div>
-                                                    <Link href="/courses-details" className="link-btn link-btn-white"
-                                                          style={{color: 'white'}}>
-                                                        {t('common.view_details', 'View Details')} <i
-                                                        className="far fa-chevron-double-right"
-                                                        style={{color: 'white'}}></i>
-                                                    </Link>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    ))
-                                ) : (
-                                    <div className="col-12 text-center text-muted">
-                                        <p>{t('common.no_data', 'No data available')}</p>
-                                    </div>
-                                )}
-                            </div>
-                            <div className="row mt-4">
-                                <div className="col-12 text-center">
-                                    <p className="course-note">
-                                        <strong>{t('common.note', 'Note')}:</strong> {t('courses.pricing_note', '1-on-1 and 2-3 person small class prices, please contact customer service for detailed quotes')}
-                                    </p>
+                                    )}
                                 </div>
+                                {type.key === 'combo' && (
+                                    <div className="row mt-4">
+                                        <div className="col-12 text-center">
+                                            <p className="course-note">
+                                                <strong>{t('common.note', 'Note')}:</strong> {t('courses.pricing_note', '1-on-1 and 2-3 person small class prices, please contact customer service for detailed quotes')}
+                                            </p>
+                                        </div>
+                                    </div>
+                                )}
                             </div>
-                        </div>
->>>>>>> Stashed changes
+                        ))}
                     </div>
                 </div>
             </section>

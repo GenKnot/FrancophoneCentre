@@ -1,17 +1,4 @@
 "use client";
-<<<<<<< Updated upstream
-
-import React from 'react';
-import { useHomepageData } from '../hooks/useApiData';
-
-const FCMarquee = () => {
-    const { data, loading, error } = useHomepageData();
-    
-    if (loading) return <div>Loading...</div>;
-    if (error) return <div>Error loading data</div>;
-    
-    const marqueeItems = data?.marquee_items || [];
-=======
 import React from 'react';
 import { useHomepageData } from '@/hooks/useApiData';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -53,7 +40,6 @@ const FCMarquee = () => {
     // Ensure we have at least 3 items by repeating if necessary
     const repeatedItems = itemsToShow.length > 0 ? itemsToShow : defaultItems;
     const itemsForDisplay = [...repeatedItems, ...repeatedItems, ...repeatedItems]; // Triple to ensure smooth scrolling
->>>>>>> Stashed changes
 
     return (
         <>
@@ -61,41 +47,23 @@ const FCMarquee = () => {
                 <div className="mycustom-marque style-3">
                     <div className="scrolling-wrap">
                         <div className="comm">
-<<<<<<< Updated upstream
-                            {marqueeItems.map((item: any, index: number) => (
-                                <div key={index} className="cmn-textslide">
-                                    <i className={item.icon || "flaticon-medal"}></i> {item.text || ''}
-=======
                             {itemsForDisplay.map((item: any, index: number) => (
                                 <div key={`${item.id}-${index}`} className="cmn-textslide">
                                     <i className={item.icon || 'flaticon-medal'}></i> {item.text}
->>>>>>> Stashed changes
                                 </div>
                             ))}
                         </div>
                         <div className="comm">
-<<<<<<< Updated upstream
-                            {marqueeItems.map((item: any, index: number) => (
-                                <div key={index} className="cmn-textslide">
-                                    <i className={item.icon || "flaticon-medal"}></i> {item.text || ''}
-=======
                             {itemsForDisplay.map((item: any, index: number) => (
                                 <div key={`${item.id}-${index}-2`} className="cmn-textslide">
                                     <i className={item.icon || 'flaticon-medal'}></i> {item.text}
->>>>>>> Stashed changes
                                 </div>
                             ))}
                         </div>
                         <div className="comm">
-<<<<<<< Updated upstream
-                            {marqueeItems.map((item: any, index: number) => (
-                                <div key={index} className="cmn-textslide">
-                                    <i className={item.icon || "flaticon-medal"}></i> {item.text || ''}
-=======
                             {itemsForDisplay.map((item: any, index: number) => (
                                 <div key={`${item.id}-${index}-3`} className="cmn-textslide">
                                     <i className={item.icon || 'flaticon-medal'}></i> {item.text}
->>>>>>> Stashed changes
                                 </div>
                             ))}
                         </div>

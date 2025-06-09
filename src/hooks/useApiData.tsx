@@ -33,10 +33,12 @@ export const useHomepageData = (): UseApiDataReturn => {
                 setData(result);
             } else {
                 setError('Failed to fetch homepage data');
+
                 setData(getDefaultHomepageData());
             }
         } catch (err) {
             setError('Network error occurred');
+
             setData(getDefaultHomepageData());
         } finally {
             setLoading(false);
@@ -50,21 +52,6 @@ export const useHomepageData = (): UseApiDataReturn => {
                 site_description: 'Professional French education institution committed to providing students with the highest quality French education.',
                 primary_color: '#AD0119',
                 secondary_color: '#000000'
-            },
-            about_content: {
-                section_title: 'About QFEC',
-                main_title: 'Quebec Francophone Education Centre',
-                description: 'Quebec Francophone Education Centre (QFEC) was established in 1991, is a professional French teaching institution under the guidance of the Canadian government. Headquartered in Montreal, taught directly by current TEF examiners, committed to providing students with the highest quality French education to help realize immigration dreams.',
-                button_text: 'Learn More Details',
-                counter1_number: 33,
-                counter1_text: 'Years of Teaching Experience',
-                counter2_number: 98,
-                counter2_text: 'TEF Exam Pass Rate',
-                counter3_number: 2000,
-                counter3_text: 'Hours of Examiner Research Results',
-                main_image_url: null,
-                background_image_url: null,
-                is_active: true
             },
             hero_slides: [
                 {
@@ -189,7 +176,7 @@ export const useEventsData = (): UseApiDataReturn => {
         try {
             setLoading(true);
             setError(null);
-            const response = await fetch(`${API_BASE_URL}/api/events-page/?lang=${currentLanguage}`);
+            const response = await fetch(`${API_BASE_URL}/api/events-data/?lang=${currentLanguage}`);
             if (response.ok) {
                 const result = await response.json();
                 setData(result);
@@ -222,7 +209,7 @@ export const useNewsData = (): UseApiDataReturn => {
         try {
             setLoading(true);
             setError(null);
-            const response = await fetch(`${API_BASE_URL}/api/news-page/?lang=${currentLanguage}`);
+            const response = await fetch(`${API_BASE_URL}/api/news-data/?lang=${currentLanguage}`);
             if (response.ok) {
                 const result = await response.json();
                 setData(result);
@@ -255,27 +242,17 @@ export const useAboutData = (): UseApiDataReturn => {
         try {
             setLoading(true);
             setError(null);
-            const response = await fetch(`${API_BASE_URL}/api/about-page/?lang=${currentLanguage}`);
+            const response = await fetch(`${API_BASE_URL}/api/about-data/?lang=${currentLanguage}`);
             if (response.ok) {
                 const result = await response.json();
                 setData(result);
             } else {
                 setError('Failed to fetch about data');
-                setData({
-                    site_config: null, 
-                    about_content: null,
-                    teachers: [], 
-                    translations: {}
-                });
+                setData({site_config: null, teachers: [], translations: {}});
             }
         } catch (err) {
             setError('Network error occurred');
-            setData({
-                site_config: null,
-                about_content: null, 
-                teachers: [], 
-                translations: {}
-            });
+            setData({site_config: null, teachers: [], translations: {}});
         } finally {
             setLoading(false);
         }
@@ -298,7 +275,7 @@ export const useContactData = (): UseApiDataReturn => {
         try {
             setLoading(true);
             setError(null);
-            const response = await fetch(`${API_BASE_URL}/api/contact-page/?lang=${currentLanguage}`);
+            const response = await fetch(`${API_BASE_URL}/api/contact-data/?lang=${currentLanguage}`);
             if (response.ok) {
                 const result = await response.json();
                 setData(result);

@@ -1,8 +1,11 @@
 
 import Link from 'next/link';
 import React from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const BreadcrumbCourses = ({title, subtitle} : any) => {
+  const { t } = useLanguage();
+  
   return (
     <>
         <section className="breadcrumb-wrapper courses-page-banner">

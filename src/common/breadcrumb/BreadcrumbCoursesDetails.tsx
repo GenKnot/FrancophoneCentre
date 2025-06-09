@@ -1,7 +1,45 @@
 import Link from 'next/link';
 import React from 'react';
 
-const BreadcrumbCoursesDetails = () => {
+interface CourseDetailData {
+    id: number;
+    name: string;
+    course_type: string;
+    subtitle: string;
+    description: string;
+    short_description: string;
+    slug: string;
+    price: number | null;
+    price_text: string;
+    hours: number | null;
+    duration_weeks: string;
+    target_level: string;
+    required_level: string;
+    language_of_instruction: string;
+    pass_rate: string;
+    special_features: string;
+    image_homepage: string;
+    image_listing: string;
+    image_detail_large: string;
+    image_detail_small: string;
+    image_instagram: string;
+    rating: number;
+    rating_count: number;
+    video_url: string;
+    course_introduction: string;
+    course_benefits: string;
+    course_advantages: string;
+    teachers: any[];
+    sections: any[];
+    featured_reviews: any[];
+    related_courses: any[];
+}
+
+interface BreadcrumbCoursesDetailsProps {
+    courseData: CourseDetailData;
+}
+
+const BreadcrumbCoursesDetails: React.FC<BreadcrumbCoursesDetailsProps> = ({ courseData }) => {
     return (
         <>
             <section className="breadcrumb-wrapper style-2">
@@ -20,41 +58,39 @@ const BreadcrumbCoursesDetails = () => {
                 <div className="container">
                     <div className="page-heading">
                         <ul className="breadcrumb-items mt-5">
-                            <li><Link href="/">主页</Link></li>
-                            <li><Link href="/courses">课程</Link></li>
-                            <li className="style-2">课程详情</li>
+                            <li><Link href="/">Home</Link></li>
+                            <li><Link href="/courses">Courses</Link></li>
+                            <li className="style-2">Course Details</li>
                         </ul>
                         <div className="breadcrumb-content">
-                            <h1>CLB7刷题冲刺班</h1>
+                            <h1>{courseData.name}</h1>
                             <div className="courses-breadcrumb-items">
                                 <div className="client-image-items">
                                     <div className="client-content">
-                                        <span>授课教师</span>
-                                        <h5>考官 ABLE</h5>
+                                        <span>Instructors</span>
+                                        <h5>{courseData.teachers.map(t => t.name).join(', ') || 'ABLE Examiner'}</h5>
                                     </div>
                                 </div>
                                 <div className="client-image-items">
                                     <div className="client-content">
-                                        <span>课程类型</span>
-                                        <h5>TEF考试冲刺</h5>
+                                        <span>Course Type</span>
+                                        <h5>{courseData.course_type.replace('_', ' ').toUpperCase()}</h5>
                                     </div>
                                 </div>
                                 <div className="client-image-items">
                                     <div className="client-content">
-                                        <span>课程咨询</span>
-                                        <h5>联系客服</h5>
+                                        <span>Course Inquiry</span>
+                                        <h5>Contact Us</h5>
                                     </div>
                                 </div>
                                 <div className="client-image-items">
                                     <div className="client-content">
-                                        <span>学员评价</span>
+                                        <span>Student Reviews</span>
                                         <div className="star">
-                                            <i className="fas fa-star"></i>
-                                            <i className="fas fa-star"></i>
-                                            <i className="fas fa-star"></i>
-                                            <i className="fas fa-star"></i>
-                                            <i className="fas fa-star"></i>
-                                            <b>(4.9/5分 143条评价)</b>
+                                            {[...Array(5)].map((_, i) => (
+                                                <i key={i} className={`fas fa-star ${i < Math.floor(courseData.rating) ? '' : 'color-2'}`}></i>
+                                            ))}
+                                            <b>({courseData.rating}/5 {courseData.rating_count} reviews)</b>
                                         </div>
                                     </div>
                                 </div>

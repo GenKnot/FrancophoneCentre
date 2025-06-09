@@ -26,25 +26,6 @@ const FCAboutHome = () => {
         );
     }
 
-<<<<<<< Updated upstream
-    const aboutContent = data?.about_content;
-    const siteConfig = data?.site_config; 
-
-    const sectionTitle = aboutContent?.section_title || t('about.section_title', 'About QFEC');
-    const mainTitle = aboutContent?.main_title || siteConfig?.site_name || t('about.title', 'Quebec Francophone Education Centre');
-    const description = aboutContent?.description || siteConfig?.site_description || t('about.description', 'Quebec Francophone Education Centre (QFEC) was established in 1991, is a professional French teaching institution under the guidance of the Canadian government.');
-    const buttonText = aboutContent?.button_text || t('about.button_text', 'Learn More Details');
-    
-    const counter1Number = aboutContent?.counter1_number || 33;
-    const counter1Text = aboutContent?.counter1_text || t('about.counter1_text', 'Years of Teaching Experience');
-    const counter2Number = aboutContent?.counter2_number || 98;
-    const counter2Text = aboutContent?.counter2_text || t('about.counter2_text', 'TEF Exam Pass Rate');
-    const counter3Number = aboutContent?.counter3_number || 2000;
-    const counter3Text = aboutContent?.counter3_text || t('about.counter3_text', 'Hours of Examiner Research Results');
-    
-    const mainImageUrl = aboutContent?.main_image_url || 'assets/img/FCAbout/FCAbout-2.png';
-    const backgroundImageUrl = aboutContent?.background_image_url || 'assets/img/FCAbout/bg-shape.png';
-=======
     const siteConfig = data?.site_config;
     const aboutContent = data?.about_content;
 
@@ -61,7 +42,6 @@ const FCAboutHome = () => {
     const counter2Text = aboutContent?.counter2_text || t('about.counter2_text', 'TEF Exam Pass Rate');
     const counter3Number = aboutContent?.counter3_number || 2000;
     const counter3Text = aboutContent?.counter3_text || t('about.counter3_text', 'Hours of Examiner Research Results');
->>>>>>> Stashed changes
 
     return (
         <>
@@ -103,12 +83,6 @@ const FCAboutHome = () => {
                             </div>
                             <div className="col-xl-5 col-lg-6">
                                 <div className="about-image">
-<<<<<<< Updated upstream
-                                    <img src={mainImageUrl} alt="About QFEC"
-                                         className="wow img-custom-anim-left"/>
-                                    <div className="bg-shape">
-                                        <img src={backgroundImageUrl} alt="Background Shape"/>
-=======
                                     {aboutContent?.main_image_url ? (
                                         <img src={aboutContent.main_image_url} alt="img"
                                              className="wow img-custom-anim-left"/>
@@ -122,7 +96,6 @@ const FCAboutHome = () => {
                                         ) : (
                                             <img src="assets/img/FCAbout/bg-shape.png" alt="img"/>
                                         )}
->>>>>>> Stashed changes
                                     </div>
                                     <div className="counter-box">
                                         <h2>
