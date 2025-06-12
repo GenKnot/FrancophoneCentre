@@ -47,15 +47,15 @@ const CourseDetailsPage = () => {
     useEffect(() => {
         const fetchCourseData = async () => {
             try {
-                const slug = params.slug as string;
-                const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/courses/${slug}/`);
+                const courseId = params.id as string;
+                const response = await fetch(`http://127.0.0.1:8000/api/course/${courseId}/`);
                 
                 if (!response.ok) {
                     throw new Error('Course not found');
                 }
                 
                 const data = await response.json();
-                setCourseData(data);
+                setCourseData(data.course);
             } catch (err) {
                 setError(err instanceof Error ? err.message : 'Failed to load course');
             } finally {
@@ -63,10 +63,10 @@ const CourseDetailsPage = () => {
             }
         };
 
-        if (params.slug) {
+        if (params.id) {
             fetchCourseData();
         }
-    }, [params.slug]);
+    }, [params.id]);
 
     if (loading) {
         return (

@@ -55,7 +55,7 @@ const FCCoursesHome = () => {
             <div className="popular-courses-items" style={{backgroundColor: '#AD0119', color: 'white'}}>
                 <div className="popular-thumb">
                     <div className="post-box">
-                        <Link href="/courses-details" className="post-cat-white" style={{color: 'white'}}>
+                        <Link href={`/courses-details/${course.id}`} className="post-cat-white" style={{color: 'white'}}>
                             {getTypeDisplayName(course.course_type)}
                         </Link>
                     </div>
@@ -65,7 +65,7 @@ const FCCoursesHome = () => {
                 </div>
                 <div className="content">
                     <h4>
-                        <Link href="/courses-details" style={{color: 'white'}}>
+                        <Link href={`/courses-details/${course.id}`} style={{color: 'white'}}>
                             {course.name}
                         </Link>
                     </h4>
@@ -82,7 +82,7 @@ const FCCoursesHome = () => {
                         <i className="fas fa-star"></i>
                         <span style={{color: 'white'}}>({course.rating}/5 Reviews)</span>
                     </div>
-                    <Link href="/courses-details" className="link-btn link-btn-white" style={{color: 'white'}}>
+                    <Link href={`/courses-details/${course.id}`} className="link-btn link-btn-white" style={{color: 'white'}}>
                         {t('common.view_details', 'View Details')} <i className="far fa-chevron-double-right"
                                                                       style={{color: 'white'}}></i>
                     </Link>
@@ -166,7 +166,7 @@ const FCCoursesHome = () => {
                                                          style={{backgroundColor: '#AD0119', color: 'white'}}>
                                                         <div className="popular-thumb">
                                                             <div className="post-box">
-                                                                <Link href="/courses-details" className="post-cat-white"
+                                                                <Link href={`/courses-details/${course.id}`} className="post-cat-white"
                                                                       style={{color: 'white'}}>
                                                                     {type.name}
                                                                 </Link>
@@ -178,7 +178,7 @@ const FCCoursesHome = () => {
                                                         </div>
                                                         <div className="content">
                                                             <h4>
-                                                                <Link href="/courses-details" style={{color: 'white'}}>
+                                                                <Link href={`/courses-details/${course.id}`} style={{color: 'white'}}>
                                                                     {course.name}
                                                                 </Link>
                                                             </h4>
@@ -196,7 +196,7 @@ const FCCoursesHome = () => {
                                                                 <i className="fas fa-star"></i>
                                                                 <span style={{color: 'white'}}>({course.rating}/5 Reviews)</span>
                                                             </div>
-                                                            <Link href="/courses-details" className="link-btn link-btn-white"
+                                                            <Link href={`/courses-details/${course.id}`} className="link-btn link-btn-white"
                                                                   style={{color: 'white'}}>
                                                                 {t('common.view_details', 'View Details')} <i
                                                                 className="far fa-chevron-double-right"

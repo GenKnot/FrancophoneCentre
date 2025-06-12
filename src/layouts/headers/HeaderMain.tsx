@@ -22,10 +22,10 @@ const HeaderMain = () => {
                         <div className="mega-menu-wrapper">
                             <div className="header-main">
                                 <Link href="/" className="header-logo">
-                                    <img src="assets/img/logo/white-logo-3.svg" alt="logo-img"/>
+                                    <img src="/assets/img/logo/white-logo-3.svg" alt="logo-img"/>
                                 </Link>
                                 <Link href="/" className="header-logo-2">
-                                    <img src="assets/img/logo/black-logo-3.svg" alt="logo-img"/>
+                                    <img src="/assets/img/logo/black-logo-3.svg" alt="logo-img"/>
                                 </Link>
                                 <div className="header-left">
                                     <div className="mean__menu-wrapper">

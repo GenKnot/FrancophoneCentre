@@ -241,22 +241,22 @@ const CoursesArea = () => {
                         <h4 className="topic-title">{course.subtitle}</h4>
                         <div className="arrow-items">
                             <div className="GlidingArrow">
-                                <img src="assets/img/courses/a1.png" alt="img" />
+                                <img src="/assets/img/courses/a1.png" alt="img" />
                             </div>
                             <div className="GlidingArrow delay1">
-                                <img src="assets/img/courses/a2.png" alt="img" />
+                                <img src="/assets/img/courses/a2.png" alt="img" />
                             </div>
                             <div className="GlidingArrow delay2">
-                                <img src="assets/img/courses/a3.png" alt="img" />
+                                <img src="/assets/img/courses/a3.png" alt="img" />
                             </div>
                             <div className="GlidingArrow delay3">
-                                <img src="assets/img/courses/a4.png" alt="img" />
+                                <img src="/assets/img/courses/a4.png" alt="img" />
                             </div>
                             <div className="GlidingArrow delay4">
-                                <img src="assets/img/courses/a5.png" alt="img" />
+                                <img src="/assets/img/courses/a5.png" alt="img" />
                             </div>
                             <div className="GlidingArrow delay5">
-                                <img src="assets/img/courses/a6.png" alt="img" />
+                                <img src="/assets/img/courses/a6.png" alt="img" />
                             </div>
                         </div>
                     </div>
@@ -272,7 +272,7 @@ const CoursesArea = () => {
                             </li>
                         </ul>
                         <h3>
-                            <Link href="/courses-details">
+                            <Link href={`/courses-details/${course.id}`}>
                                 {course.name}
                             </Link>
                         </h3>
@@ -289,7 +289,7 @@ const CoursesArea = () => {
                                 {course.level_required}
                             </li>
                             <li>
-                                <Link href="/courses-details" className="theme-btn">
+                                <Link href={`/courses-details/${course.id}`} className="theme-btn">
                                     {course.price_text}
                                 </Link>
                             </li>

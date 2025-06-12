@@ -50,7 +50,7 @@ const CoursesDetails: React.FC<CoursesDetailsProps> = ({ courseData }) => {
     <HeaderMain />
     <BreadcrumbCoursesDetails courseData={courseData} />
     <CoursesDetailsArea courseData={courseData} />
-    {courseData.related_courses && courseData.related_courses.length > 0 && (
+    {courseData?.related_courses && courseData.related_courses.length > 0 && (
       <RelatedCourses relatedCourses={courseData.related_courses} />
     )}
     <MarqueeOne style_2={true} />

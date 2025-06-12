@@ -30,6 +30,7 @@ interface CourseDetailData {
     course_benefits: string;
     course_advantages: string;
     teachers: any[];
+    teacher_data: any[];
     sections: any[];
     featured_reviews: any[];
     related_courses: any[];
@@ -40,20 +41,34 @@ interface BreadcrumbCoursesDetailsProps {
 }
 
 const BreadcrumbCoursesDetails: React.FC<BreadcrumbCoursesDetailsProps> = ({ courseData }) => {
+    if (!courseData) {
+        return (
+            <section className="breadcrumb-wrapper style-2">
+                <div className="container">
+                    <div className="page-heading">
+                        <div className="breadcrumb-content">
+                            <h1>Loading...</h1>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+    }
+
     return (
         <>
             <section className="breadcrumb-wrapper style-2">
                 <div className="shape-1">
-                    <img src="assets/img/breadcrumb/shape-1.png" alt="img" />
+                    <img src="/assets/img/breadcrumb/shape-1.png" alt="img" />
                 </div>
                 <div className="shape-2">
-                    <img src="assets/img/breadcrumb/shape-2.png" alt="img" />
+                    <img src="/assets/img/breadcrumb/shape-2.png" alt="img" />
                 </div>
                 <div className="dot-shape">
-                    <img src="assets/img/breadcrumb/dot-shape.png" alt="img" />
+                    <img src="/assets/img/breadcrumb/dot-shape.png" alt="img" />
                 </div>
                 <div className="vector-shape">
-                    <img src="assets/img/breadcrumb/Vector.png" alt="img" />
+                    <img src="/assets/img/breadcrumb/Vector.png" alt="img" />
                 </div>
                 <div className="container">
                     <div className="page-heading">
@@ -68,7 +83,7 @@ const BreadcrumbCoursesDetails: React.FC<BreadcrumbCoursesDetailsProps> = ({ cou
                                 <div className="client-image-items">
                                     <div className="client-content">
                                         <span>Instructors</span>
-                                        <h5>{courseData.teachers.map(t => t.name).join(', ') || 'ABLE Examiner'}</h5>
+                                        <h5>{(courseData.teacher_data && courseData.teacher_data.length > 0) ? courseData.teacher_data.map(t => t.name).join(', ') : 'ABLE Examiner'}</h5>
                                     </div>
                                 </div>
                                 <div className="client-image-items">
