@@ -21,6 +21,10 @@ interface CourseDetailData {
     language_of_instruction: string;
     pass_rate: string;
     special_features: string;
+    difficulty_level: number;
+    consultation_text: string;
+    button_contact_text: string;
+    button_secondary_text: string;
     image_homepage: string;
     image_listing: string;
     image_detail_large: string;
@@ -33,9 +37,10 @@ interface CourseDetailData {
     course_benefits: string;
     course_advantages: string;
     teachers: any[];
+    teacher_data: any[];
     sections: any[];
     featured_reviews: any[];
-    related_courses?: any[];
+    related_courses: any[];
 }
 
 const CourseDetailsPage = () => {
