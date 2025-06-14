@@ -1,9 +1,7 @@
 "use client";
 
 import React, {createContext, useContext, useState, useEffect, ReactNode} from 'react';
-
-// Dev
-const API_BASE_URL = 'http://127.0.0.1:8000';
+import { API_BASE_URL } from '../../constants/api';
 
 interface Translation {
     [key: string]: any;
@@ -30,7 +28,7 @@ interface LanguageProviderProps {
 }
 
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({children}) => {
-    const [currentLanguage, setCurrentLanguage] = useState<string>('zh-hans');
+    const [currentLanguage, setCurrentLanguage] = useState<string>('en');
     const [translations, setTranslations] = useState<Translation>({});
     const [availableLanguages, setAvailableLanguages] = useState<Language[]>([
         {code: 'zh-hans', name: '简体中文'},
@@ -133,9 +131,9 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({children}) =>
     };
 
     useEffect(() => {
-        let savedLanguage = 'zh-hans';
+        let savedLanguage = 'en';
         if (typeof window !== 'undefined') {
-            savedLanguage = localStorage.getItem('preferred-language') || 'zh-hans';
+            savedLanguage = localStorage.getItem('preferred-language') || 'en';
         }
         setCurrentLanguage(savedLanguage);
         fetchTranslations(savedLanguage);

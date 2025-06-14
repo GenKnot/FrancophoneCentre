@@ -29,7 +29,7 @@ const FCHome = () => {
       <FCChooseHome2 />
       <FCBlogHome />
       <FCFaqHome />
-      <FCInstagramHome />
+      {/* <FCInstagramHome /> */}
       <FCCtaHome />
       <FCMarquee />
       <FooterMain />

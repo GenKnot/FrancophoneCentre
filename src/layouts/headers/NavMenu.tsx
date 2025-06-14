@@ -25,12 +25,7 @@ const NavMenu = () => {
             link: "/courses",
             icon: "fas fa-book",
         },
-        {
-            id: 4,
-            title: t('navigation.events', 'Events'),
-            link: "/event",
-            icon: "fas fa-gift",
-        },
+
         {
             id: 5,
             title: t('navigation.news', 'News'),

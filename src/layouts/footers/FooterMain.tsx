@@ -111,8 +111,7 @@ const FooterMain = () => {
                     <div className="container">
                         <div className="footer-bottom-wrapper">
                             <p>
-                                {t('footer.copyright', 'Copyright ©')} <Link href="/">Quebec Francophone Education
-                                Centre</Link>, {t('footer.rights_reserved', 'All rights reserved')}.
+                                {t('footer.copyright', 'Copyright ©')}, {t('footer.rights_reserved', 'All rights reserved')}.
                             </p>
                             <ul className="footer-menu wow fadeInUp" data-wow-delay=".5s">
                                 <li>

@@ -2,28 +2,68 @@
 import VideoPopup from '@/modals/VideoPopup';
 import Link from 'next/link';
 import React, {useState} from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface CourseDetailData {
     id: number;
     name: string;
+    name_zh_hans?: string;
+    name_zh_hant?: string;
+    name_fr?: string;
     course_type: string;
     subtitle: string;
+    subtitle_zh_hans?: string;
+    subtitle_zh_hant?: string;
+    subtitle_fr?: string;
     description: string;
+    description_zh_hans?: string;
+    description_zh_hant?: string;
+    description_fr?: string;
     short_description: string;
+    short_description_zh_hans?: string;
+    short_description_zh_hant?: string;
+    short_description_fr?: string;
     slug: string;
     price: number | null;
     price_text: string;
+    price_text_zh_hans?: string;
+    price_text_zh_hant?: string;
+    price_text_fr?: string;
     hours: number | null;
     duration_weeks: string;
+    duration_weeks_zh_hans?: string;
+    duration_weeks_zh_hant?: string;
+    duration_weeks_fr?: string;
     target_level: string;
+    target_level_zh_hans?: string;
+    target_level_zh_hant?: string;
+    target_level_fr?: string;
     required_level: string;
+    required_level_zh_hans?: string;
+    required_level_zh_hant?: string;
+    required_level_fr?: string;
     language_of_instruction: string;
+    language_of_instruction_zh_hans?: string;
+    language_of_instruction_zh_hant?: string;
+    language_of_instruction_fr?: string;
     pass_rate: string;
     special_features: string;
+    special_features_zh_hans?: string;
+    special_features_zh_hant?: string;
+    special_features_fr?: string;
     difficulty_level: number;
     consultation_text: string;
+    consultation_text_zh_hans?: string;
+    consultation_text_zh_hant?: string;
+    consultation_text_fr?: string;
     button_contact_text: string;
+    button_contact_text_zh_hans?: string;
+    button_contact_text_zh_hant?: string;
+    button_contact_text_fr?: string;
     button_secondary_text: string;
+    button_secondary_text_zh_hans?: string;
+    button_secondary_text_zh_hant?: string;
+    button_secondary_text_fr?: string;
     image_homepage: string;
     image_listing: string;
     image_detail_large: string;
@@ -33,8 +73,17 @@ interface CourseDetailData {
     rating_count: number;
     video_url: string;
     course_introduction: string;
+    course_introduction_zh_hans?: string;
+    course_introduction_zh_hant?: string;
+    course_introduction_fr?: string;
     course_benefits: string;
+    course_benefits_zh_hans?: string;
+    course_benefits_zh_hant?: string;
+    course_benefits_fr?: string;
     course_advantages: string;
+    course_advantages_zh_hans?: string;
+    course_advantages_zh_hant?: string;
+    course_advantages_fr?: string;
     teacher_data: any[];
     sections: any[];
     featured_reviews: any[];
@@ -46,11 +95,50 @@ interface CoursesDetailsAreaProps {
 
 const CoursesDetailsArea: React.FC<CoursesDetailsAreaProps> = ({ courseData }) => {
     const [isVideoOpen, setIsVideoOpen] = useState(false);
+    const [activeTab, setActiveTab] = useState('Course');
+    const [activeAccordion, setActiveAccordion] = useState(0);
+    const { currentLanguage, t } = useLanguage();
+
+    const getTranslatedField = (fieldName: string, fallback: string = '') => {
+        if (!courseData) return fallback;
+        
+        const baseField = (courseData as any)[fieldName];
+        
+        // 如果是英文或默认语言，直接返回基础字段
+        if (currentLanguage === 'en' || currentLanguage === 'en-US') {
+            return baseField || fallback;
+        }
+        
+        // 其他语言查找翻译字段
+        const langCode = currentLanguage.replace('-', '_');
+        const translatedField = (courseData as any)[`${fieldName}_${langCode}`];
+        
+        // 如果有翻译字段就用翻译，否则用基础字段
+        return translatedField || baseField || fallback;
+    };
+
+    const getFixedText = (key: string, zhText: string, enText: string = zhText, frText: string = zhText, zhHantText: string = zhText) => {
+        switch (currentLanguage) {
+            case 'zh-hans':
+            case 'zh-CN':
+            case 'zh-Hans':
+                return zhText;
+            case 'zh-hant':
+            case 'zh-TW':
+            case 'zh-Hant':
+                return zhHantText;
+            case 'fr':
+                return frText;
+            case 'en':
+            default:
+                return enText;
+        }
+    };
 
     const copyToClipboard = () => {
         const url = window.location.href;
         navigator.clipboard.writeText(url).then(() => {
-            alert('URL copied to clipboard!');
+            alert(getFixedText('url_copied', 'URL已复制到剪贴板！', 'URL copied to clipboard!', 'URL copiée dans le presse-papiers !'));
         });
     };
 
@@ -81,53 +169,60 @@ const CoursesDetailsArea: React.FC<CoursesDetailsAreaProps> = ({ courseData }) =
                                     <div className="courses-details-content">
                                         <ul className="nav">
                                             <li className="nav-item wow fadeInUp" data-wow-delay=".3s">
-                                                <a href="#Course" data-bs-toggle="tab" className="nav-link active">
-                                                    课程信息
+                                                <a 
+                                                    href="#Course" 
+                                                    onClick={(e) => { e.preventDefault(); setActiveTab('Course'); }}
+                                                    className={`nav-link ${activeTab === 'Course' ? 'active' : ''}`}>
+                                                    {getFixedText('course_info', '课程信息', 'Course Info', 'Informations du cours', '課程信息')}
                                                 </a>
                                             </li>
                                             <li className="nav-item wow fadeInUp" data-wow-delay=".5s">
-                                                <a href="#Curriculum" data-bs-toggle="tab" className="nav-link">
-                                                    课程大纲
+                                                <a 
+                                                    href="#Curriculum" 
+                                                    onClick={(e) => { e.preventDefault(); setActiveTab('Curriculum'); }}
+                                                    className={`nav-link ${activeTab === 'Curriculum' ? 'active' : ''}`}>
+                                                    {getFixedText('curriculum', '课程大纲', 'Curriculum', 'Programme du cours', '課程大綱')}
                                                 </a>
                                             </li>
                                             <li className="nav-item wow fadeInUp" data-wow-delay=".5s">
-                                                <a href="#Instructors" data-bs-toggle="tab" className="nav-link">
-                                                    授课教师
+                                                <a 
+                                                    href="#Instructors" 
+                                                    onClick={(e) => { e.preventDefault(); setActiveTab('Instructors'); }}
+                                                    className={`nav-link ${activeTab === 'Instructors' ? 'active' : ''}`}>
+                                                    {getFixedText('instructors', '授课教师', 'Instructors', 'Instructeurs', '授課教師')}
                                                 </a>
                                             </li>
                                             <li className="nav-item wow fadeInUp" data-wow-delay=".5s">
-                                                <a href="#Reviews" data-bs-toggle="tab" className="nav-link bb-none">
-                                                    学员评价
+                                                <a 
+                                                    href="#Reviews" 
+                                                    onClick={(e) => { e.preventDefault(); setActiveTab('Reviews'); }}
+                                                    className={`nav-link bb-none ${activeTab === 'Reviews' ? 'active' : ''}`}>
+                                                    {getFixedText('reviews', '学员评价', 'Reviews', 'Avis des étudiants', '學員評價')}
                                                 </a>
                                             </li>
                                         </ul>
                                         <div className="tab-content">
-                                            <div id="Course" className="tab-pane fade show active">
+                                            <div id="Course" className={`tab-pane fade ${activeTab === 'Course' ? 'show active' : ''}`}>
                                                 <div className="description-content">
-                                                    <h3>课程介绍</h3>
-                                                    {courseData?.course_introduction ? (
-                                                        <div dangerouslySetInnerHTML={{ __html: courseData.course_introduction }} />
+                                                    <h3>{getFixedText('course_introduction', '课程介绍', 'Course Introduction', 'Présentation du cours', '課程介紹')}</h3>
+                                                    {getTranslatedField('course_introduction') ? (
+                                                        <div dangerouslySetInnerHTML={{ __html: getTranslatedField('course_introduction') }} />
                                                     ) : (
                                                         <>
                                                             <p className="mb-3">
-                                                                CLB7刷题冲刺班是QFEC为已具备B2水平学员精心设计的考试专项训练课程。本课程由现任TEF考官直接授课，
-                                                                采用100%真题训练模式，确保学员在考试中能够遇到80%以上的原题，从而大幅提升通过率。
-                                                            </p>
-                                                            <p>
-                                                                课程特色在于"精准覆盖听力阅读题目+口语写作高分指导"，通过原题背诵+原题解析的教学方式，
-                                                                帮助学员在最短时间内掌握考试技巧，达到CLB7移民要求分数。
+                                                                {getTranslatedField('description', 'CLB7刷题冲刺班是QFEC为已具备B2水平学员精心设计的考试专项训练课程。本课程由现任TEF考官直接授课，采用100%真题训练模式，确保学员在考试中能够遇到80%以上的原题，从而大幅提升通过率。')}
                                                             </p>
                                                         </>
                                                     )}
                                                     
-                                                    {courseData?.course_benefits ? (
+                                                    {getTranslatedField('course_benefits') ? (
                                                         <>
-                                                            <h3 className="mt-5">课程学习收获</h3>
-                                                            <div dangerouslySetInnerHTML={{ __html: courseData.course_benefits }} />
+                                                            <h3 className="mt-5">{getFixedText('course_benefits', '课程学习收获', 'Course Benefits', 'Avantages du cours')}</h3>
+                                                            <div dangerouslySetInnerHTML={{ __html: getTranslatedField('course_benefits') }} />
                                                         </>
                                                     ) : (
                                                         <>
-                                                            <h3 className="mt-5">课程学习收获</h3>
+                                                            <h3 className="mt-5">{getFixedText('course_benefits', '课程学习收获', 'Course Benefits', 'Avantages du cours')}</h3>
                                                             <p className="mb-4">
                                                                 完成本课程后，学员将具备强大的TEF应试能力，通过率高达98%，远超行业平均水平。
                                                                 同时掌握约1500个TEF常考词汇，能够熟练运用高分语法结构。
@@ -185,14 +280,14 @@ const CoursesDetailsArea: React.FC<CoursesDetailsAreaProps> = ({ courseData }) =
                                                         </>
                                                     )}
 
-                                                    {courseData?.course_advantages ? (
+                                                    {getTranslatedField('course_advantages') ? (
                                                         <>
-                                                            <h3>课程优势</h3>
-                                                            <div dangerouslySetInnerHTML={{ __html: courseData.course_advantages }} />
+                                                            <h3>{getFixedText('course_advantages', '课程优势', 'Course Advantages', 'Avantages du cours')}</h3>
+                                                            <div dangerouslySetInnerHTML={{ __html: getTranslatedField('course_advantages') }} />
                                                         </>
                                                     ) : (
                                                         <>
-                                                            <h3>课程优势</h3>
+                                                            <h3>{getFixedText('course_advantages', '课程优势', 'Course Advantages', 'Avantages du cours')}</h3>
                                                             <p>
                                                                 现任考官直授是本课程最大优势，考官深知TEF评分标准和出题规律，能够精准指导学员避开失分陷阱，
                                                                 掌握得分要点。结合2000小时教研成果，确保每位学员都能在短时间内实现分数突破。
@@ -201,9 +296,10 @@ const CoursesDetailsArea: React.FC<CoursesDetailsAreaProps> = ({ courseData }) =
                                                     )}
                                                 </div>
                                             </div>
-                                            <div id="Curriculum" className="tab-pane fade">
+                                            <div id="Curriculum" className={`tab-pane fade ${activeTab === 'Curriculum' ? 'show active' : ''}`}>
                                                 <div className="course-curriculum-items">
-                                                    <h3>课程大纲</h3>
+                                                    <h3>{getFixedText('curriculum', '课程大纲', 'Curriculum', 'Programme du cours', '課程大綱')}</h3>
+
                                                     {(courseData?.sections && courseData.sections.length > 0) ? (
                                                         <div className="courses-faq-items">
                                                             <div className="accordion" id="accordionExample">
@@ -211,31 +307,32 @@ const CoursesDetailsArea: React.FC<CoursesDetailsAreaProps> = ({ courseData }) =
                                                                     <div key={section.id} className="accordion-item">
                                                                         <h2 className="accordion-header" id={`heading${index}`}>
                                                                             <button 
-                                                                                className={`accordion-button ${index !== 0 ? 'collapsed' : ''}`} 
+                                                                                className={`accordion-button ${activeAccordion !== index ? 'collapsed' : ''}`} 
                                                                                 type="button"
-                                                                                data-bs-toggle="collapse"
-                                                                                data-bs-target={`#collapse${index}`}
-                                                                                aria-expanded={index === 0 ? "true" : "false"}
+                                                                                onClick={() => setActiveAccordion(activeAccordion === index ? -1 : index)}
+                                                                                aria-expanded={activeAccordion === index ? "true" : "false"}
                                                                                 aria-controls={`collapse${index}`}>
-                                                                                {section.title}
+                                                                                {section.title_zh_hans && currentLanguage === 'zh-hans' ? section.title_zh_hans : 
+                                                                                 section.title_zh_hant && currentLanguage === 'zh-hant' ? section.title_zh_hant :
+                                                                                 section.title_fr && currentLanguage === 'fr' ? section.title_fr : section.title}
                                                                             </button>
                                                                         </h2>
                                                                         <div 
                                                                             id={`collapse${index}`}
-                                                                            className={`accordion-collapse collapse ${index === 0 ? 'show' : ''}`}
-                                                                            aria-labelledby={`heading${index}`}
-                                                                            data-bs-parent="#accordionExample">
+                                                                            className={`accordion-collapse collapse ${activeAccordion === index ? 'show' : ''}`}
+                                                                            aria-labelledby={`heading${index}`}>
                                                                             <div className="accordion-body">
-                                                                                {section.description && <p>{section.description}</p>}
                                                                                 <ul>
                                                                                     {(section.lessons || []).map((lesson: any) => (
                                                                                         <li key={lesson.id}>
                                                                                             <span>
                                                                                                 <i className="fas fa-file-alt"></i>
-                                                                                                {lesson.title}
+                                                                                                {lesson.title_zh_hans && currentLanguage === 'zh-hans' ? lesson.title_zh_hans : 
+                                                                                                 lesson.title_zh_hant && currentLanguage === 'zh-hant' ? lesson.title_zh_hant :
+                                                                                                 lesson.title_fr && currentLanguage === 'fr' ? lesson.title_fr : lesson.title}
                                                                                             </span>
                                                                                             <span>
-                                                                                                <i className="far fa-clock"></i> ({lesson.duration_minutes} 分钟)
+                                                                                                <i className="far fa-clock"></i> ({lesson.duration_minutes} {getFixedText('minutes', '分钟', 'minutes', 'minutes')})
                                                                                             </span>
                                                                                         </li>
                                                                                     ))}
@@ -422,9 +519,9 @@ const CoursesDetailsArea: React.FC<CoursesDetailsAreaProps> = ({ courseData }) =
                                                     )}
                                                 </div>
                                             </div>
-                                            <div id="Instructors" className="tab-pane fade">
+                                            <div id="Instructors" className={`tab-pane fade ${activeTab === 'Instructors' ? 'show active' : ''}`}>
                                                 <div className="instructors-items">
-                                                    <h3>授课教师</h3>
+                                                    <h3>{getFixedText('instructors', '授课教师', 'Instructors', 'Instructeurs', '授課教師')}</h3>
                                                     {(courseData?.teacher_data && courseData.teacher_data.length > 0) ? (
                                                         courseData.teacher_data.map((teacher) => (
                                                             <div key={teacher.id} className="instructors-box-items">
@@ -438,13 +535,6 @@ const CoursesDetailsArea: React.FC<CoursesDetailsAreaProps> = ({ courseData }) =
                                                                     {teacher.detailed_bio && (
                                                                         <div dangerouslySetInnerHTML={{ __html: teacher.detailed_bio }} />
                                                                     )}
-                                                                    <div className="social-icon">
-                                                                        <a href="#"><i className="fab fa-facebook-f"></i></a>
-                                                                        <a href="#"><i className="fab fa-instagram"></i></a>
-                                                                        <a href="#"><i className="fab fa-dribbble"></i></a>
-                                                                        <a href="#"><i className="fab fa-behance"></i></a>
-                                                                        <a href="#"><i className="fab fa-linkedin-in"></i></a>
-                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         ))
@@ -461,13 +551,6 @@ const CoursesDetailsArea: React.FC<CoursesDetailsAreaProps> = ({ courseData }) =
                                                                         累计审核1000+份试卷，备课极其仔细，深受学员好评。擅长针对英语薄弱、法语基础较弱的学员进行专项辅导，
                                                                         教学方法灵活多样，能够快速帮助学员找到适合的学习方法。
                                                                     </p>
-                                                                    <div className="social-icon">
-                                                                        <a href="#"><i className="fab fa-facebook-f"></i></a>
-                                                                        <a href="#"><i className="fab fa-instagram"></i></a>
-                                                                        <a href="#"><i className="fab fa-dribbble"></i></a>
-                                                                        <a href="#"><i className="fab fa-behance"></i></a>
-                                                                        <a href="#"><i className="fab fa-linkedin-in"></i></a>
-                                                                    </div>
                                                                 </div>
                                                             </div>
                                                             <div className="instructors-box-items style-2">
@@ -481,22 +564,15 @@ const CoursesDetailsArea: React.FC<CoursesDetailsAreaProps> = ({ courseData }) =
                                                                         曾在法国担任记者，具有丰富的法语实际应用经验和跨文化交际能力。教学经验丰富，善于因材施教，
                                                                         特别擅长帮助中国学员理解法语思维模式。
                                                                     </p>
-                                                                    <div className="social-icon">
-                                                                        <a href="#"><i className="fab fa-facebook-f"></i></a>
-                                                                        <a href="#"><i className="fab fa-instagram"></i></a>
-                                                                        <a href="#"><i className="fab fa-dribbble"></i></a>
-                                                                        <a href="#"><i className="fab fa-behance"></i></a>
-                                                                        <a href="#"><i className="fab fa-linkedin-in"></i></a>
-                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </>
                                                     )}
                                                 </div>
                                             </div>
-                                            <div id="Reviews" className="tab-pane fade">
+                                            <div id="Reviews" className={`tab-pane fade ${activeTab === 'Reviews' ? 'show active' : ''}`}>
                                                 <div className="courses-reviews-items">
-                                                    <h3>学员评价</h3>
+                                                    <h3>{getFixedText('reviews', '学员评价', 'Student Reviews', 'Avis des étudiants', '學員評價')}</h3>
                                                     {(courseData?.featured_reviews && courseData.featured_reviews.length > 0) ? (
                                                         <div className="courses-reviews-box-items">
                                                             <div className="courses-reviews-box">
@@ -507,7 +583,7 @@ const CoursesDetailsArea: React.FC<CoursesDetailsAreaProps> = ({ courseData }) =
                                                                             <i key={i} className={`fas fa-star ${i < (courseData.rating || 5) ? '' : 'color-2'}`}></i>
                                                                         ))}
                                                                     </div>
-                                                                    <p>{courseData.rating_count || 143}+ 学员评价</p>
+                                                                    <p>{courseData.rating_count || 143}+ {getFixedText('reviews_count', '学员评价', 'Reviews', 'Avis', '學員評價')}</p>
                                                                 </div>
                                                             </div>
                                                             {courseData.featured_reviews.map((review) => (
@@ -540,7 +616,7 @@ const CoursesDetailsArea: React.FC<CoursesDetailsAreaProps> = ({ courseData }) =
                                                                         <i className="fas fa-star"></i>
                                                                         <i className="fas fa-star"></i>
                                                                     </div>
-                                                                    <p>143+ 学员评价</p>
+                                                                    <p>143+ {getFixedText('reviews_count', '学员评价', 'Reviews', 'Avis', '學員評價')}</p>
                                                                 </div>
                                                                 <div className="reviews-ratting-right">
                                                                     <div className="reviews-ratting-item">
@@ -565,8 +641,7 @@ const CoursesDetailsArea: React.FC<CoursesDetailsAreaProps> = ({ courseData }) =
                                                                             <i className="fas fa-star color-2"></i>
                                                                         </div>
                                                                         <div className="progress">
-                                                                            <div
-                                                                                className="progress-value style-three"></div>
+                                                                            <div className="progress-value style-three"></div>
                                                                         </div>
                                                                         <span>(15)</span>
                                                                     </div>
@@ -579,8 +654,7 @@ const CoursesDetailsArea: React.FC<CoursesDetailsAreaProps> = ({ courseData }) =
                                                                             <i className="fas fa-star color-2"></i>
                                                                         </div>
                                                                         <div className="progress">
-                                                                            <div
-                                                                                className="progress-value style-three"></div>
+                                                                            <div className="progress-value style-three"></div>
                                                                         </div>
                                                                         <span>(2)</span>
                                                                     </div>
@@ -593,8 +667,7 @@ const CoursesDetailsArea: React.FC<CoursesDetailsAreaProps> = ({ courseData }) =
                                                                             <i className="fas fa-star color-2"></i>
                                                                         </div>
                                                                         <div className="progress">
-                                                                            <div
-                                                                                className="progress-value style-four"></div>
+                                                                            <div className="progress-value style-four"></div>
                                                                         </div>
                                                                         <span>(0)</span>
                                                                     </div>
@@ -607,8 +680,7 @@ const CoursesDetailsArea: React.FC<CoursesDetailsAreaProps> = ({ courseData }) =
                                                                             <i className="fas fa-star color-2"></i>
                                                                         </div>
                                                                         <div className="progress">
-                                                                            <div
-                                                                                className="progress-value style-five"></div>
+                                                                            <div className="progress-value style-five"></div>
                                                                         </div>
                                                                         <span>(0)</span>
                                                                     </div>
@@ -616,7 +688,7 @@ const CoursesDetailsArea: React.FC<CoursesDetailsAreaProps> = ({ courseData }) =
                                                             </div>
                                                             <div className="instructors-box-items">
                                                                 <div className="thumb">
-                                                                    <img src="FCImage/Testimonial-1.png" alt="img"/>
+                                                                    <img src="/FCImage/Testimonial-1.png" alt="img"/>
                                                                 </div>
                                                                 <div className="content">
                                                                     <h4>张同学</h4>
@@ -646,8 +718,8 @@ const CoursesDetailsArea: React.FC<CoursesDetailsAreaProps> = ({ courseData }) =
                                     <div className="courses-items">
                                         <div className="courses-image">
                                             <img src={courseData?.image_detail_large || "/FCImage/Coures-10.png"} alt="img" />
-                                            <h3 className="courses-title">{courseData?.name || "CLB7冲刺"}</h3>
-                                            <h4 className="topic-title">{courseData?.subtitle || "高分冲刺保障"}</h4>
+                                            <h3 className="courses-title">{getTranslatedField('name', 'CLB7冲刺')}</h3>
+                                            <h4 className="topic-title">{getTranslatedField('subtitle', '高分冲刺保障')}</h4>
                                             <div className="arrow-items">
                                                 <div className="GlidingArrow">
                                                     <img src="/assets/img/courses/a1.png" alt="img"/>
@@ -670,23 +742,43 @@ const CoursesDetailsArea: React.FC<CoursesDetailsAreaProps> = ({ courseData }) =
                                             </div>
                                         </div>
                                         <div className="courses-content">
-                                            <h3>咨询价格</h3>
-                                            <p>
-                                                {courseData?.price_text || "现任考官直授的CLB7冲刺班，98%通过率保障，助您快速达到移民要求分数。"}
-                                            </p>
+                                            {courseData?.price && courseData.price > 0 ? (
+                                                <>
+                                                    <div className="price-section mb-3">
+                                                        <h2 className="price-display text-center mb-2" style={{color: '#AD0119', fontSize: '2rem', fontWeight: 'bold'}}>
+                                                            {getTranslatedField('price_text', `$${courseData.price} CAD`)}
+                                                        </h2>
+                                                    </div>
+                                                    <p className="mb-3">
+                                                        {getTranslatedField('short_description', getTranslatedField('description', '专业法语课程，助您快速提升法语水平。'))}
+                                                    </p>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <h3>{getFixedText('consultation_price', '咨询价格', 'Contact for Price', 'Prix sur demande')}</h3>
+                                                    <p className="mb-3">
+                                                        {getTranslatedField('consultation_text', '现任考官直授的专业法语课程，98%通过率保障，助您快速达到移民要求分数。')}
+                                                    </p>
+                                                </>
+                                            )}
+                                            
                                             <div className="courses-btn">
-                                                <Link href="/contact" className="theme-btn">{courseData?.button_contact_text || "立即咨询"}</Link>
-                                                <Link href="/contact" className="theme-btn style-2">{courseData?.button_secondary_text || "预约试听"}</Link>
+                                                <Link href="/contact" className="theme-btn">
+                                                    {getTranslatedField('button_contact_text', getFixedText('contact_now', '立即咨询', 'Contact Now', 'Contactez-nous'))}
+                                                </Link>
+                                                <Link href="/contact" className="theme-btn style-2">
+                                                    {getTranslatedField('button_secondary_text', getFixedText('book_trial', '预约试听', 'Book Trial', 'Réserver un essai'))}
+                                                </Link>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="courses-category-items">
-                                        <h5>课程包含：</h5>
+                                        <h5>{getFixedText('course_includes', '课程包含：', 'Course Includes:', 'Le cours comprend :')}</h5>
                                         <ul>
                                             <li>
                                             <span>
                                                 <i className="far fa-chalkboard-teacher"></i>
-                                                授课教师
+                                                {getFixedText('instructor', '授课教师', 'Instructor', 'Instructeur')}
                                             </span>
                                                 <span className="text">
                                                     {courseData?.teacher_data && courseData.teacher_data.length > 0 
@@ -697,55 +789,55 @@ const CoursesDetailsArea: React.FC<CoursesDetailsAreaProps> = ({ courseData }) =
                                             <li>
                                             <span>
                                                 <i className="far fa-clock"></i>
-                                                课程时长
+                                                {getFixedText('duration', '课程时长', 'Duration', 'Durée')}
                                             </span>
-                                                <span className="text">{courseData?.hours ? `${courseData.hours}课时` : "120课时"}</span>
+                                                <span className="text">{courseData?.hours ? `${courseData.hours}${getFixedText('hours', '课时', ' hours', ' heures')}` : getFixedText('unlimited_hours', '120课时', '120 hours', '120 heures')}</span>
                                             </li>
                                             <li>
                                             <span>
                                                 <i className="far fa-calendar-alt"></i>
-                                                课程周期
+                                                {getFixedText('period', '课程周期', 'Period', 'Période')}
                                             </span>
-                                                <span className="text">{courseData?.duration_weeks || "8-12周"}</span>
+                                                <span className="text">{getTranslatedField('duration_weeks', '8-12周')}</span>
                                             </li>
                                             <li>
                                             <span>
                                                 <i className="far fa-user"></i>
-                                                适合学员
+                                                {getFixedText('suitable_for', '适合学员', 'Suitable For', 'Convient pour')}
                                             </span>
-                                                <span className="text">{courseData?.required_level || "B2水平"}</span>
+                                                <span className="text">{getTranslatedField('required_level', 'B2水平')}</span>
                                             </li>
                                             <li>
                                             <span>
                                                 <i className="far fa-globe"></i>
-                                                授课语言
+                                                {getFixedText('language', '授课语言', 'Language', 'Langue')}
                                             </span>
-                                                <span className="text">{courseData?.language_of_instruction || "法语+中文"}</span>
+                                                <span className="text">{getTranslatedField('language_of_instruction', '法语+中文')}</span>
                                             </li>
                                             <li>
                                             <span>
                                                 <i className="far fa-target"></i>
-                                                目标分数
+                                                {getFixedText('target_level', '目标分数', 'Target Level', 'Niveau cible')}
                                             </span>
-                                                <span className="text">{courseData?.target_level || "CLB7 (移民达标)"}</span>
+                                                <span className="text">{getTranslatedField('target_level', 'CLB7 (移民达标)')}</span>
                                             </li>
                                             <li>
                                             <span>
                                                 <i className="far fa-signal-alt"></i>
-                                                通过率
+                                                {getFixedText('pass_rate', '通过率', 'Pass Rate', 'Taux de réussite')}
                                             </span>
-                                                <span className="text">{courseData?.pass_rate || "98%"}</span>
+                                                <span className="text">{courseData?.pass_rate || '98%'}</span>
                                             </li>
                                             <li>
                                             <span>
                                                 <i className="fal fa-medal"></i>
-                                                课程特色
+                                                {getFixedText('features', '课程特色', 'Features', 'Caractéristiques')}
                                             </span>
-                                                <span className="text">{courseData?.special_features || "100%真题训练"}</span>
+                                                <span className="text">{getTranslatedField('special_features', '100%真题训练')}</span>
                                             </li>
                                         </ul>
                                         <a className="share-btn" href="#" onClick={(e) => { e.preventDefault(); copyToClipboard(); }}>
-                                            <i className="fas fa-share"></i> 分享此课程
+                                            <i className="fas fa-share"></i> {getFixedText('share_course', '分享此课程', 'Share Course', 'Partager le cours')}
                                         </a>
                                     </div>
                                 </div>

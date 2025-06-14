@@ -38,11 +38,6 @@ const HeaderMain = () => {
                                 </div>
                                 <div className="header-right d-flex justify-content-end align-items-center">
                                     <LanguageSwitcher className="me-3"/>
-                                    <div className="header-button">
-                                        <Link href="/courses" className="theme-btn">
-                                            {t('navigation.courses', 'View Courses')}
-                                        </Link>
-                                    </div>
                                     <div className="header__hamburger d-xl-none my-auto">
                                         <div className="sidebar__toggle" onClick={() => setOpenCanvas(!openCanvas)}>
                                             <i className="fas fa-bars"></i>

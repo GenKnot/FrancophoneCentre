@@ -48,13 +48,7 @@ const menu_data:DataType[] = [
     icon: "fas fa-book",
 		has_dropdown: false,
 	},
-	{
-		id: 4,
-		title: "活动",
-		link: "/event",
-    icon: "fas fa-gift",
-		has_dropdown: false,
-	},
+
 	{
 		id: 5,
 		title: "新闻",

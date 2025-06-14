@@ -19,6 +19,7 @@ export const ENDPOINTS = {
     COURSES: {
         LIST: `${API_BASE_URL}/api/courses/`,
         DETAIL: (id: number) => `${API_BASE_URL}/api/courses/${id}/`,
+        COURSE_DETAIL: (id: string) => `${API_BASE_URL}/api/course/${id}/`,
         DATA: `${API_BASE_URL}/api/courses-data/`,
     },
     TEACHERS: {

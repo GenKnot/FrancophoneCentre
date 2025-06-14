@@ -1,30 +1,58 @@
-
 "use client"
-import menu_data from "@/data/menu_data";
 import Link from "next/link";
-import React, { useState } from "react";
+import React from "react";
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const MobileMenu = () => {
+  const { currentLanguage } = useLanguage();
 
-  const [navTitle, setNavTitle] = useState("");
-  //openMobileMenu
-  const openMobileMenu = (menu: string) => {
-    if (navTitle === menu) {
-      setNavTitle("");
-    } else {
-      setNavTitle(menu);
+  const getTranslatedText = (zhText: string, enText: string, frText: string = enText, zhHantText: string = zhText) => {
+    switch (currentLanguage) {
+      case 'zh-hans':
+        return zhText;
+      case 'zh-hant':
+        return zhHantText;
+      case 'fr':
+        return frText;
+      case 'en':
+      default:
+        return enText;
     }
   };
 
-  const [navTitle2, setNavTitle2] = useState("");
-  //openMobileMenu
-  const openMobileMenu2 = (menu: string) => {
-    if (navTitle2 === menu) {
-      setNavTitle2("");
-    } else {
-      setNavTitle2(menu);
-    }
-  };
+  const menuItems = [
+    {
+      id: 1,
+      title: getTranslatedText('主页', 'Home', 'Accueil', '主頁'),
+      link: "/",
+      icon: "fas fa-home-lg",
+    },
+    {
+      id: 2,
+      title: getTranslatedText('关于', 'About', 'À propos', '關於'),
+      link: "/about",
+      icon: "fas fa-user",
+    },
+    {
+      id: 3,
+      title: getTranslatedText('课程', 'Courses', 'Cours', '課程'),
+      link: "/courses",
+      icon: "fas fa-book",
+    },
+    {
+      id: 5,
+      title: getTranslatedText('新闻', 'News', 'Nouvelles', '新聞'),
+      link: "/news",
+      icon: "fas fa-newspaper",
+    },
+    {
+      id: 6,
+      title: getTranslatedText('联系我们', 'Contact Us', 'Contactez-nous', '聯繫我們'),
+      link: "/contact",
+      icon: "fas fa-phone-rotary",
+    },
+  ];
+
 	return (
 		<>
 			<div className="mean-bar">
@@ -37,50 +65,12 @@ const MobileMenu = () => {
 				</a>
 				<nav className="mean-nav">
 					<ul>
-            {menu_data.map((item, i) => (
-              <li key={i} className={item.has_dropdown ? "has-dropdown" : ""}>								
+            {menuItems.map((item, i) => (
+              <li key={i}>								
 							<Link href={item.link}>  
 								{item.title} 
 							</Link>
-							<ul className="submenu" style={{ display: navTitle === item.title ? "block" : "none", }}>
-                {item?.sub_menus?.map((inner_item, index) => (
-                 <React.Fragment key={index}>
-									{inner_item.title && 
-									<>
-									
-									<li>
-								 <Link href={inner_item.link ?? ""}>{inner_item.title}</Link>
-								 {inner_item.inner_menu ? 
-									<a className={`mean-expand ${inner_item?.title === navTitle2 ? "mean-clicked" : ""}`} href="#" onClick={() => openMobileMenu2(inner_item?.title ?? "")}>
-										<i className="far fa-plus"></i>
-									</a>
-									: null              
-								}
-							 </li>
-							 {index === 5 &&  item.has_dropdown_inner &&  
-							 <li> 
-								 <ul className="submenu" style={{ display: navTitle2 === inner_item.title ? "block" : "none", }}>
-								 <li><Link href="/news">Blog</Link></li>
-								 <li><Link href="/news-details">Blog Details</Link></li>
-								 </ul> 
-							 </li>
-							 }
-									
-									</>
-								
-							}
-                              
-                 </React.Fragment>
-                )) } 
-							</ul>
-              {item.has_dropdown || item.img_dropdown ? 
-							<a className={`mean-expand ${item?.title === navTitle ? "mean-clicked" : ""}`} href="#" onClick={() => openMobileMenu(item?.title ?? "")}>
-								<i className="far fa-plus"></i>
-							</a>
-              : null              
-            }
 						</li>
-
             ))} 
 					</ul>
 				</nav>

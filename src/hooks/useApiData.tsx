@@ -2,9 +2,7 @@
 
 import {useState, useEffect} from 'react';
 import {useLanguage} from '@/contexts/LanguageContext';
-
-// Dev
-const API_BASE_URL = 'http://127.0.0.1:8000';
+import { API_BASE_URL } from '../../constants/api';
 
 interface ApiData {
     [key: string]: any;
