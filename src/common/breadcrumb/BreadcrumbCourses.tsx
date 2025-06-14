@@ -1,10 +1,25 @@
 
+"use client";
 import Link from 'next/link';
 import React from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const BreadcrumbCourses = ({title, subtitle} : any) => {
-  const { t } = useLanguage();
+  const { currentLanguage } = useLanguage();
+
+  const getTranslatedText = (zhText: string, enText: string, frText: string = enText, zhHantText: string = zhText) => {
+    switch (currentLanguage) {
+      case 'zh-hans':
+        return zhText;
+      case 'zh-hant':
+        return zhHantText;
+      case 'fr':
+        return frText;
+      case 'en':
+      default:
+        return enText;
+    }
+  };
   
   return (
     <>
@@ -29,7 +44,7 @@ const BreadcrumbCourses = ({title, subtitle} : any) => {
                     <div className="page-heading">
                         <h1>{title}</h1>
                         <ul className="breadcrumb-items">
-                            <li><Link href="/">主页</Link></li>
+                            <li><Link href="/">{getTranslatedText('主页', 'Home', 'Accueil', '主頁')}</Link></li>
                             <li className="style-2">{subtitle}</li>
                         </ul>
                     </div>
