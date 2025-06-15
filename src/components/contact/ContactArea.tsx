@@ -1,14 +1,18 @@
+"use client";
 import React from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const ContactArea = () => {
+    const { t } = useLanguage();
+    
     return (
         <>
             <section className="contact-section section-padding pt-0 fix">
                 <div className="container">
                     <div className="section-title text-center">
-                        <h6 className="wow fadeInUp">联系我们</h6>
+                        <h6 className="wow fadeInUp">{t('contact.section_title', '联系我们')}</h6>
                         <h2 className="wow fadeInUp" data-wow-delay=".3s">
-                            需要更多信息？
+                            {t('contact.title', '需要更多信息？')}
                         </h2>
                     </div>
                     <div className="row">
@@ -18,7 +22,7 @@ const ContactArea = () => {
                                     <i className="flaticon-map"></i>
                                 </div>
                                 <h5>
-                                    Montreal Downtown 校区
+                                    {t('contact.locations.downtown', 'Montreal Downtown 校区')}
                                 </h5>
                                 <div className="image">
                                     <img src="assets/img/small-line.png" alt="img"/>
@@ -34,7 +38,7 @@ const ContactArea = () => {
                                     <i className="flaticon-map"></i>
                                 </div>
                                 <h5>
-                                    南岸校区
+                                    {t('contact.locations.south_shore', '南岸校区')}
                                 </h5>
                                 <div className="image">
                                     <img src="assets/img/small-line.png" alt="img"/>
@@ -51,7 +55,7 @@ const ContactArea = () => {
                                     <i className="flaticon-map"></i>
                                 </div>
                                 <h5>
-                                    老港校区
+                                    {t('contact.locations.old_port', '老港校区')}
                                 </h5>
                                 <div className="image">
                                     <img src="assets/img/small-line.png" alt="img"/>
@@ -68,7 +72,7 @@ const ContactArea = () => {
                                     <i className="flaticon-send-data"></i>
                                 </div>
                                 <h5>
-                                    报名邮箱
+                                    {t('contact.email_types.registration', '报名邮箱')}
                                 </h5>
                                 <div className="image">
                                     <img src="assets/img/small-line.png" alt="img"/>
@@ -84,7 +88,7 @@ const ContactArea = () => {
                                     <i className="flaticon-send-data"></i>
                                 </div>
                                 <h5>
-                                    咨询邮箱
+                                    {t('contact.email_types.consultation', '咨询邮箱')}
                                 </h5>
                                 <div className="image">
                                     <img src="assets/img/small-line.png" alt="img"/>

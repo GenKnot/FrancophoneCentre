@@ -1,3 +1,5 @@
+"use client"
+
 import BreadcrumbEvent from "@/common/breadcrumb/BreadcrumbEvent";
 import MarqueeOne from "@/common/MarqueeOne";
 import React from "react";
@@ -6,12 +8,18 @@ import MapArea from "./MapArea";
 import ContactForm from "./ContactForm";
 import HeaderMain from "@/layouts/headers/HeaderMain";
 import FooterMain from "@/layouts/footers/FooterMain";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Contact = () => {
+    const { t } = useLanguage();
+    
     return (
         <>
             <HeaderMain/>
-            <BreadcrumbEvent title="联系我们" subtitle="联系"/>
+            <BreadcrumbEvent 
+                title={t('contact.section_title', '联系我们')} 
+                subtitle={t('navigation.contact', '联系')}
+            />
             <ContactArea/>
             <MapArea/>
             <ContactForm/>

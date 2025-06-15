@@ -54,7 +54,10 @@ export const ENDPOINTS = {
         DATA: `${API_BASE_URL}/api/about-data/`,
     },
     CONTACT: {
-        DATA: `${API_BASE_URL}/api/contact-data/`,
-        SUBMIT: `${API_BASE_URL}/api/contact/submit/`,
+        DATA: `${API_BASE_URL}/api/contact-page/`,
+        SUBMIT: `${API_BASE_URL}/api/contact/`,
+    },
+    NEWSLETTER: {
+        SUBSCRIBE: `${API_BASE_URL}/api/newsletter/subscribe/`,
     },
 };

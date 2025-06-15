@@ -1,11 +1,61 @@
 "use client";
 
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 import {useLanguage} from '@/contexts/LanguageContext';
+import { ENDPOINTS } from '../../../constants/api';
 
 const FooterMain = () => {
     const {t} = useLanguage();
+    const [email, setEmail] = useState('');
+    const [isSubscribing, setIsSubscribing] = useState(false);
+    const [message, setMessage] = useState('');
+    const [messageType, setMessageType] = useState<'success' | 'error' | ''>('');
+
+    const handleNewsletterSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        
+        if (!email.trim()) {
+            setMessage('Please enter your email address');
+            setMessageType('error');
+            return;
+        }
+
+        setIsSubscribing(true);
+        setMessage('');
+        setMessageType('');
+
+        try {
+            const response = await fetch(ENDPOINTS.NEWSLETTER.SUBSCRIBE, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email: email.trim() }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                setMessage('Successfully subscribed! Thank you for subscribing.');
+                setMessageType('success');
+                setEmail('');
+            } else {
+                setMessage(data.error || 'Subscription failed, please try again later.');
+                setMessageType('error');
+            }
+        } catch (error) {
+            setMessage('Network error, please try again later.');
+            setMessageType('error');
+        } finally {
+            setIsSubscribing(false);
+            // Clear message after 5 seconds
+            setTimeout(() => {
+                setMessage('');
+                setMessageType('');
+            }, 5000);
+        }
+    };
 
     return (
         <>
@@ -91,16 +141,41 @@ const FooterMain = () => {
                                     </div>
                                     <div className="footer-content">
                                         <p>{t('footer.newsletter_text', 'Subscribe to our newsletter for the latest course and event information')}</p>
-                                        <div className="footer-input">
-                                            <div className="icon">
-                                                <i className="far fa-envelope"></i>
+                                        <form onSubmit={handleNewsletterSubmit}>
+                                            <div className="footer-input">
+                                                <div className="icon">
+                                                    <i className="far fa-envelope"></i>
+                                                </div>
+                                                <input 
+                                                    type="email" 
+                                                    id="email2"
+                                                    value={email}
+                                                    onChange={(e) => setEmail(e.target.value)}
+                                                    placeholder={t('footer.email_placeholder', 'Email Address')}
+                                                    disabled={isSubscribing}
+                                                />
+                                                <button 
+                                                    className="newsletter-btn" 
+                                                    type="submit"
+                                                    disabled={isSubscribing}
+                                                >
+                                                    {isSubscribing ? 'Subscribing...' : t('footer.newsletter_button', 'Subscribe')}
+                                                </button>
                                             </div>
-                                            <input type="email" id="email2"
-                                                   placeholder={t('footer.email_placeholder', 'Email Address')}/>
-                                            <button className="newsletter-btn" type="submit">
-                                                {t('footer.newsletter_button', 'Subscribe')}
-                                            </button>
-                                        </div>
+                                        </form>
+                                        {message && (
+                                            <div className={`newsletter-message ${messageType}`} style={{
+                                                marginTop: '10px',
+                                                padding: '8px 12px',
+                                                borderRadius: '4px',
+                                                fontSize: '14px',
+                                                backgroundColor: messageType === 'success' ? '#d4edda' : '#f8d7da',
+                                                color: messageType === 'success' ? '#155724' : '#721c24',
+                                                border: `1px solid ${messageType === 'success' ? '#c3e6cb' : '#f5c6cb'}`
+                                            }}>
+                                                {message}
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             </div>
