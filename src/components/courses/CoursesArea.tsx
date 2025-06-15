@@ -185,7 +185,6 @@ const fallbackCoursesData = [
     },
 ];
 
-// 课程类型映射
 const courseTypeMap: { [key: string]: string } = {
     'basic': '基础课程',
     'exam_prep': '考试课程', 
@@ -202,35 +201,35 @@ const CoursesArea = () => {
         setSortOrder(e.value);
     };
 
-    // 使用API数据或备用数据
     const allCourses = data?.courses || fallbackCoursesData;
     
-    // 应用排序
     const sortedCourses = [...allCourses].sort((a, b) => {
         switch(sortOrder) {
-            case '02': // 按课时排序
+            case '02': 
                 return (b.hours || 0) - (a.hours || 0);
-            case '03': // 按难度排序 (这里用order字段代表)
+            case '03': 
                 return a.order - b.order;
-            case '04': // 按价格排序
+            case '04': 
                 return (b.price || 0) - (a.price || 0);
-            default: // 默认排序
+            default: 
                 return a.order - b.order;
         }
     });
 
-    // 显示所有课程，最多30个
     const totalCourses = sortedCourses.length;
     const displayCourses = sortedCourses.slice(0, 30);
 
 
 
-    // 获取课程类型显示名称
     const getCourseTypeLabel = (courseType: string) => {
+        const courseTypeFromApi = data?.course_types?.find((type: any) => type.key === courseType);
+        if (courseTypeFromApi) {
+            return courseTypeFromApi.name;
+        }
+        
         return courseTypeMap[courseType] || courseType;
     };
 
-    // 渲染课程卡片
     const renderCourseCard = (course: any) => (
         <div key={course.id} className="col-xl-4 col-lg-6 col-md-6">
             <div className="courses-card-main-items">
@@ -318,9 +317,8 @@ const CoursesArea = () => {
         );
     }
 
-    // 错误状态（显示备用数据）
     if (error) {
-        console.warn('API连接失败，显示备用数据:', error);
+        console.warn('API error:', error);
     }
 
     return (
