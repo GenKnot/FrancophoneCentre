@@ -104,16 +104,13 @@ const CoursesDetailsArea: React.FC<CoursesDetailsAreaProps> = ({ courseData }) =
         
         const baseField = (courseData as any)[fieldName];
         
-        // 如果是英文或默认语言，直接返回基础字段
         if (currentLanguage === 'en' || currentLanguage === 'en-US') {
             return baseField || fallback;
         }
         
-        // 其他语言查找翻译字段
         const langCode = currentLanguage.replace('-', '_');
         const translatedField = (courseData as any)[`${fieldName}_${langCode}`];
         
-        // 如果有翻译字段就用翻译，否则用基础字段
         return translatedField || baseField || fallback;
     };
 
@@ -133,6 +130,21 @@ const CoursesDetailsArea: React.FC<CoursesDetailsAreaProps> = ({ courseData }) =
             default:
                 return enText;
         }
+    };
+
+    const getReviewTranslatedField = (review: any, fieldName: string, fallback: string = '') => {
+        if (!review) return fallback;
+        
+        const baseField = review[fieldName];
+        
+        if (currentLanguage === 'en' || currentLanguage === 'en-US') {
+            return baseField || fallback;
+        }
+        
+        const langCode = currentLanguage.replace('-', '_');
+        const translatedField = review[`${fieldName}_${langCode}`];
+        
+        return translatedField || baseField || fallback;
     };
 
     const copyToClipboard = () => {
@@ -332,7 +344,7 @@ const CoursesDetailsArea: React.FC<CoursesDetailsAreaProps> = ({ courseData }) =
                                                                                                  lesson.title_fr && currentLanguage === 'fr' ? lesson.title_fr : lesson.title}
                                                                                             </span>
                                                                                             <span>
-                                                                                                <i className="far fa-clock"></i> ({lesson.duration_minutes} {getFixedText('minutes', '分钟', 'minutes', 'minutes')})
+                                                                                                <i className="far fa-clock"></i> {lesson.duration_minutes ? `(${lesson.duration_minutes} ${getFixedText('minutes', '分钟', 'minutes', 'minutes')})` : ''}
                                                                                             </span>
                                                                                         </li>
                                                                                     ))}
@@ -348,18 +360,18 @@ const CoursesDetailsArea: React.FC<CoursesDetailsAreaProps> = ({ courseData }) =
                                                             <div className="accordion" id="accordionExample">
                                                                 <div className="accordion-item">
                                                                     <h2 className="accordion-header" id="headingOne">
-                                                                        <button className="accordion-button" type="button"
-                                                                                data-bs-toggle="collapse"
-                                                                                data-bs-target="#collapseOne"
-                                                                                aria-expanded="true"
+                                                                        <button 
+                                                                                className={`accordion-button ${activeAccordion !== 0 ? 'collapsed' : ''}`}
+                                                                                type="button"
+                                                                                onClick={() => setActiveAccordion(activeAccordion === 0 ? -1 : 0)}
+                                                                                aria-expanded={activeAccordion === 0 ? "true" : "false"}
                                                                                 aria-controls="collapseOne">
                                                                             第一阶段：听力阅读专项训练
                                                                         </button>
                                                                     </h2>
                                                                     <div id="collapseOne"
-                                                                         className="accordion-collapse collapse show"
-                                                                         aria-labelledby="headingOne"
-                                                                         data-bs-parent="#accordionExample">
+                                                                         className={`accordion-collapse collapse ${activeAccordion === 0 ? 'show' : ''}`}
+                                                                         aria-labelledby="headingOne">
                                                                         <div className="accordion-body">
                                                                             <ul>
                                                                                 <li>
@@ -404,18 +416,18 @@ const CoursesDetailsArea: React.FC<CoursesDetailsAreaProps> = ({ courseData }) =
                                                                 </div>
                                                                 <div className="accordion-item">
                                                                     <h2 className="accordion-header" id="headingTwo">
-                                                                        <button className="accordion-button collapsed"
-                                                                                type="button" data-bs-toggle="collapse"
-                                                                                data-bs-target="#collapseTwo"
-                                                                                aria-expanded="false"
+                                                                        <button 
+                                                                                className={`accordion-button ${activeAccordion !== 1 ? 'collapsed' : ''}`}
+                                                                                type="button"
+                                                                                onClick={() => setActiveAccordion(activeAccordion === 1 ? -1 : 1)}
+                                                                                aria-expanded={activeAccordion === 1 ? "true" : "false"}
                                                                                 aria-controls="collapseTwo">
                                                                             第二阶段：口语写作高分冲刺
                                                                         </button>
                                                                     </h2>
                                                                     <div id="collapseTwo"
-                                                                         className="accordion-collapse collapse"
-                                                                         aria-labelledby="headingTwo"
-                                                                         data-bs-parent="#accordionExample">
+                                                                         className={`accordion-collapse collapse ${activeAccordion === 1 ? 'show' : ''}`}
+                                                                         aria-labelledby="headingTwo">
                                                                         <div className="accordion-body">
                                                                             <ul>
                                                                                 <li>
@@ -460,18 +472,18 @@ const CoursesDetailsArea: React.FC<CoursesDetailsAreaProps> = ({ courseData }) =
                                                                 </div>
                                                                 <div className="accordion-item mb-0">
                                                                     <h2 className="accordion-header" id="headingthree">
-                                                                        <button className="accordion-button collapsed"
-                                                                                type="button" data-bs-toggle="collapse"
-                                                                                data-bs-target="#collapsethree"
-                                                                                aria-expanded="false"
+                                                                        <button 
+                                                                                className={`accordion-button ${activeAccordion !== 2 ? 'collapsed' : ''}`}
+                                                                                type="button"
+                                                                                onClick={() => setActiveAccordion(activeAccordion === 2 ? -1 : 2)}
+                                                                                aria-expanded={activeAccordion === 2 ? "true" : "false"}
                                                                                 aria-controls="collapsethree">
                                                                             第三阶段：考前冲刺强化
                                                                         </button>
                                                                     </h2>
                                                                     <div id="collapsethree"
-                                                                         className="accordion-collapse collapse"
-                                                                         aria-labelledby="headingthree"
-                                                                         data-bs-parent="#accordionExample">
+                                                                         className={`accordion-collapse collapse ${activeAccordion === 2 ? 'show' : ''}`}
+                                                                         aria-labelledby="headingthree">
                                                                         <div className="accordion-body">
                                                                             <ul>
                                                                                 <li>
@@ -526,7 +538,7 @@ const CoursesDetailsArea: React.FC<CoursesDetailsAreaProps> = ({ courseData }) =
                                                         courseData.teacher_data.map((teacher) => (
                                                             <div key={teacher.id} className="instructors-box-items">
                                                                 <div className="thumb">
-                                                                    <img src={teacher.photo || "/assets/img/courses/instructors-1.png"} alt="img"/>
+                                                                    <img src={teacher.photo || "/FCImage/Testimonial-1.png"} alt="img"/>
                                                                 </div>
                                                                 <div className="content">
                                                                     <h4>{teacher.name}</h4>
@@ -542,7 +554,7 @@ const CoursesDetailsArea: React.FC<CoursesDetailsAreaProps> = ({ courseData }) =
                                                         <>
                                                             <div className="instructors-box-items">
                                                                 <div className="thumb">
-                                                                    <img src="/assets/img/courses/instructors-1.png" alt="img"/>
+                                                                    <img src="/FCImage/Testimonial-1.png" alt="img"/>
                                                                 </div>
                                                                 <div className="content">
                                                                     <h4>考官 ABLE</h4>
@@ -555,7 +567,7 @@ const CoursesDetailsArea: React.FC<CoursesDetailsAreaProps> = ({ courseData }) =
                                                             </div>
                                                             <div className="instructors-box-items style-2">
                                                                 <div className="thumb">
-                                                                    <img src="/assets/img/courses/instructors-2.png" alt="img"/>
+                                                                    <img src="/FCImage/Testimonial-1.png" alt="img"/>
                                                                 </div>
                                                                 <div className="content">
                                                                     <h4>前任考官 Selene LI</h4>
@@ -575,115 +587,31 @@ const CoursesDetailsArea: React.FC<CoursesDetailsAreaProps> = ({ courseData }) =
                                                     <h3>{getFixedText('reviews', '学员评价', 'Student Reviews', 'Avis des étudiants', '學員評價')}</h3>
                                                     {(courseData?.featured_reviews && courseData.featured_reviews.length > 0) ? (
                                                         <div className="courses-reviews-box-items">
-                                                            <div className="courses-reviews-box">
-                                                                <div className="reviews-box">
-                                                                    <h2><span className="count">{courseData.rating || 4.9}</span></h2>
-                                                                    <div className="star">
-                                                                        {[...Array(5)].map((_, i) => (
-                                                                            <i key={i} className={`fas fa-star ${i < (courseData.rating || 5) ? '' : 'color-2'}`}></i>
-                                                                        ))}
-                                                                    </div>
-                                                                    <p>{courseData.rating_count || 143}+ {getFixedText('reviews_count', '学员评价', 'Reviews', 'Avis', '學員評價')}</p>
-                                                                </div>
-                                                            </div>
                                                             {courseData.featured_reviews.map((review) => (
                                                                 <div key={review.id} className="instructors-box-items">
                                                                     <div className="thumb">
-                                                                        <img src={review.student_photo || "FCImage/Testimonial-1.png"} alt="img"/>
+                                                                        <img src={review.student_photo || "/FCImage/Testimonial-1.png"} alt="img"/>
                                                                     </div>
                                                                     <div className="content">
-                                                                        <h4>{review.student_name}</h4>
-                                                                        <span>{review.student_profession}</span>
-                                                                        <div className="star">
-                                                                            {[...Array(5)].map((_, i) => (
-                                                                                <i key={i} className={`fas fa-star ${i < review.rating ? '' : 'color-2'}`}></i>
-                                                                            ))}
-                                                                        </div>
-                                                                        <p>"{review.content}"</p>
+                                                                        <h4>{getReviewTranslatedField(review, 'student_name', review.student_name)}</h4>
+                                                                        <span>{getReviewTranslatedField(review, 'student_profession', review.student_profession)}</span>
+                                                                        <p>"{getReviewTranslatedField(review, 'content', review.content)}"</p>
                                                                     </div>
                                                                 </div>
                                                             ))}
                                                         </div>
                                                     ) : (
                                                         <div className="courses-reviews-box-items">
-                                                            <div className="courses-reviews-box">
-                                                                <div className="reviews-box">
-                                                                    <h2><span className="count">4.9</span></h2>
-                                                                    <div className="star">
-                                                                        <i className="fas fa-star"></i>
-                                                                        <i className="fas fa-star"></i>
-                                                                        <i className="fas fa-star"></i>
-                                                                        <i className="fas fa-star"></i>
-                                                                        <i className="fas fa-star"></i>
-                                                                    </div>
-                                                                    <p>143+ {getFixedText('reviews_count', '学员评价', 'Reviews', 'Avis', '學員評價')}</p>
+                                                            <div className="instructors-box-items">
+                                                                <div className="thumb">
+                                                                    <img src="/FCImage/Testimonial-1.png" alt="img"/>
                                                                 </div>
-                                                                <div className="reviews-ratting-right">
-                                                                    <div className="reviews-ratting-item">
-                                                                        <div className="star">
-                                                                            <i className="fas fa-star"></i>
-                                                                            <i className="fas fa-star"></i>
-                                                                            <i className="fas fa-star"></i>
-                                                                            <i className="fas fa-star"></i>
-                                                                            <i className="fas fa-star"></i>
-                                                                        </div>
-                                                                        <div className="progress">
-                                                                            <div className="progress-value style-two"></div>
-                                                                        </div>
-                                                                        <span>(126)</span>
-                                                                    </div>
-                                                                    <div className="reviews-ratting-item">
-                                                                        <div className="star">
-                                                                            <i className="fas fa-star"></i>
-                                                                            <i className="fas fa-star"></i>
-                                                                            <i className="fas fa-star"></i>
-                                                                            <i className="fas fa-star"></i>
-                                                                            <i className="fas fa-star color-2"></i>
-                                                                        </div>
-                                                                        <div className="progress">
-                                                                            <div className="progress-value style-three"></div>
-                                                                        </div>
-                                                                        <span>(15)</span>
-                                                                    </div>
-                                                                    <div className="reviews-ratting-item">
-                                                                        <div className="star">
-                                                                            <i className="fas fa-star"></i>
-                                                                            <i className="fas fa-star"></i>
-                                                                            <i className="fas fa-star"></i>
-                                                                            <i className="fas fa-star color-2"></i>
-                                                                            <i className="fas fa-star color-2"></i>
-                                                                        </div>
-                                                                        <div className="progress">
-                                                                            <div className="progress-value style-three"></div>
-                                                                        </div>
-                                                                        <span>(2)</span>
-                                                                    </div>
-                                                                    <div className="reviews-ratting-item">
-                                                                        <div className="star">
-                                                                            <i className="fas fa-star"></i>
-                                                                            <i className="fas fa-star"></i>
-                                                                            <i className="fas fa-star color-2"></i>
-                                                                            <i className="fas fa-star color-2"></i>
-                                                                            <i className="fas fa-star color-2"></i>
-                                                                        </div>
-                                                                        <div className="progress">
-                                                                            <div className="progress-value style-four"></div>
-                                                                        </div>
-                                                                        <span>(0)</span>
-                                                                    </div>
-                                                                    <div className="reviews-ratting-item">
-                                                                        <div className="star">
-                                                                            <i className="fas fa-star"></i>
-                                                                            <i className="fas fa-star color-2"></i>
-                                                                            <i className="fas fa-star color-2"></i>
-                                                                            <i className="fas fa-star color-2"></i>
-                                                                            <i className="fas fa-star color-2"></i>
-                                                                        </div>
-                                                                        <div className="progress">
-                                                                            <div className="progress-value style-five"></div>
-                                                                        </div>
-                                                                        <span>(0)</span>
-                                                                    </div>
+                                                                <div className="content">
+                                                                    <h4>{getFixedText('student_name_1', '张同学', 'Student Zhang', 'Étudiant Zhang', '張同學')}</h4>
+                                                                    <span>{getFixedText('student_profession_1', '软件工程师', 'Software Engineer', 'Ingénieur logiciel', '軟件工程師')}</span>
+                                                                    <p>
+                                                                        "{getFixedText('review_content_1', '报名CLB7刷题班后，考官ABLE的教学让我受益匪浅。真题训练真的很有效，考试的时候遇到了很多原题，最终顺利拿到CLB7分数！', 'After enrolling in the CLB7 intensive course, Teacher ABLE\'s instruction was extremely beneficial. The practice tests were very effective, and I encountered many similar questions during the actual exam, ultimately achieving my CLB7 score!', 'Après m\'être inscrit au cours intensif CLB7, l\'enseignement du professeur ABLE m\'a été extrêmement bénéfique. Les tests pratiques étaient très efficaces, et j\'ai rencontré de nombreuses questions similaires lors de l\'examen réel, atteignant finalement mon score CLB7!', '報名CLB7刷題班後，考官ABLE的教學讓我受益匪淺。真題訓練真的很有效，考試的時候遇到了很多原題，最終順利拿到CLB7分數！')}"
+                                                                    </p>
                                                                 </div>
                                                             </div>
                                                             <div className="instructors-box-items">
@@ -691,17 +619,10 @@ const CoursesDetailsArea: React.FC<CoursesDetailsAreaProps> = ({ courseData }) =
                                                                     <img src="/FCImage/Testimonial-1.png" alt="img"/>
                                                                 </div>
                                                                 <div className="content">
-                                                                    <h4>张同学</h4>
-                                                                    <span>软件工程师</span>
-                                                                    <div className="star">
-                                                                        <i className="fas fa-star"></i>
-                                                                        <i className="fas fa-star"></i>
-                                                                        <i className="fas fa-star"></i>
-                                                                        <i className="fas fa-star"></i>
-                                                                        <i className="fas fa-star"></i>
-                                                                    </div>
+                                                                    <h4>{getFixedText('student_name_2', '李女士', 'Ms. Li', 'Mme Li', '李女士')}</h4>
+                                                                    <span>{getFixedText('student_profession_2', '会计师', 'Accountant', 'Comptable', '會計師')}</span>
                                                                     <p>
-                                                                        "报名CLB7刷题班后，考官ABLE的教学让我受益匪浅。真题训练真的很有效，考试的时候遇到了很多原题，最终顺利拿到CLB7分数！"
+                                                                        "{getFixedText('review_content_2', '老师的教学方法很实用，特别是口语部分的训练让我进步很快。课程安排合理，每次课都有收获。', 'The teacher\'s teaching methods are very practical, especially the speaking training helped me improve quickly. The course schedule is reasonable, and I gained something from every class.', 'Les méthodes d\'enseignement du professeur sont très pratiques, en particulier l\'entraînement à l\'expression orale m\'a aidé à progresser rapidement. L\'horaire du cours est raisonnable, et j\'ai appris quelque chose à chaque cours.', '老師的教學方法很實用，特別是口語部分的訓練讓我進步很快。課程安排合理，每次課都有收穫。')}"
                                                                     </p>
                                                                 </div>
                                                             </div>

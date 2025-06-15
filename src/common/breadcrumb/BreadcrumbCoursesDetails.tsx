@@ -145,12 +145,12 @@ const BreadcrumbCoursesDetails: React.FC<BreadcrumbCoursesDetailsProps> = ({ cou
                                 </div>
                                 <div className="client-image-items">
                                     <div className="client-content">
-                                        <span>{getFixedText('student_reviews', '学员评价', 'Student Reviews', 'Avis des étudiants', '學員評價')}</span>
+                                        <span>{getFixedText('difficulty_level', '课程难度', 'Difficulty Level', 'Niveau de difficulté', '課程難度')}</span>
                                         <div className="star">
-                                            {[...Array(5)].map((_, i) => (
-                                                <i key={i} className={`fas fa-star ${i < Math.floor(courseData.rating || 4.9) ? '' : 'color-2'}`}></i>
+                                            {[...Array(courseData.difficulty_level || 1)].map((_, i) => (
+                                                <i key={i} className="fas fa-star"></i>
                                             ))}
-                                            <b>({courseData.rating || 4.9}/5 {courseData.rating_count || 0} {getFixedText('reviews', '评价', 'reviews', 'avis', '評價')})</b>
+                                            <b>({courseData.difficulty_level || 1}/5 {getFixedText('difficulty', '难度', 'difficulty', 'difficulté', '難度')})</b>
                                         </div>
                                     </div>
                                 </div>
