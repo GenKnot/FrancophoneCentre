@@ -218,7 +218,7 @@ const CoursesDetailsArea: React.FC<CoursesDetailsAreaProps> = ({ courseData }) =
                                                 <div className="description-content">
                                                     <h3>{getFixedText('course_introduction', '课程介绍', 'Course Introduction', 'Présentation du cours', '課程介紹')}</h3>
                                                     {getTranslatedField('course_introduction') ? (
-                                                        <div dangerouslySetInnerHTML={{ __html: getTranslatedField('course_introduction') }} />
+                                                        <div  dangerouslySetInnerHTML={{ __html: getTranslatedField('course_introduction') }} />
                                                     ) : (
                                                         <>
                                                             <p className="mb-3">
@@ -230,7 +230,7 @@ const CoursesDetailsArea: React.FC<CoursesDetailsAreaProps> = ({ courseData }) =
                                                     {getTranslatedField('course_benefits') ? (
                                                         <>
                                                             <h3 className="mt-5">{getFixedText('course_benefits', '课程学习收获', 'Course Benefits', 'Avantages du cours')}</h3>
-                                                            <div dangerouslySetInnerHTML={{ __html: getTranslatedField('course_benefits') }} />
+                                                            <div  dangerouslySetInnerHTML={{ __html: getTranslatedField('course_benefits') }} />
                                                         </>
                                                     ) : (
                                                         <>
@@ -294,7 +294,7 @@ const CoursesDetailsArea: React.FC<CoursesDetailsAreaProps> = ({ courseData }) =
 
                                                     {getTranslatedField('course_advantages') ? (
                                                         <>
-                                                            <h3>{getFixedText('course_advantages', '课程优势', 'Course Advantages', 'Avantages du cours')}</h3>
+                                                            <h3 className="mt-5">{getFixedText('course_advantages', '课程优势', 'Course Advantages', 'Avantages du cours')}</h3>
                                                             <div dangerouslySetInnerHTML={{ __html: getTranslatedField('course_advantages') }} />
                                                         </>
                                                     ) : (
