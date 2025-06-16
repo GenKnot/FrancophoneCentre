@@ -1,16 +1,10 @@
 "use client"
 import Link from "next/link";
-import React, { useState } from "react";
+import React from "react";
 import { useTranslation } from '@/hooks/useTranslation';
 
-interface IMobileMenuProps {
-	sidebar: boolean;
-	setSidebar: (open: boolean) => void;
-}
-
-const MobileMenu: React.FC<IMobileMenuProps> = ({ sidebar, setSidebar }) => {
+const MobileMenu = () => {
 	const { t } = useTranslation();
-	const [navTitle, setNavTitle] = useState("");
 
 	const menuItems = [
 		{
@@ -47,26 +41,26 @@ const MobileMenu: React.FC<IMobileMenuProps> = ({ sidebar, setSidebar }) => {
 
 	return (
 		<>
-			<div className="fix">
-				<div className={sidebar ? "side-info info-open" : "side-info"}>
-					<button className="side-info-close" onClick={() => setSidebar(false)}>
-						<i className="fal fa-times"></i>
-					</button>
-					<div className="side-info-content">
-						<div className="mobile-menu">
-							<nav id="mobile-menu">
-								{menuItems.map((item) => (
-									<Link href={item.link} key={item.id} onClick={() => setSidebar(false)}>
-										<span suppressHydrationWarning>{item.title}</span>
-									</Link>
-								))}
-							</nav>
-						</div>
-					</div>
-				</div>
+			<div className="mean-bar">
+				<a href="#nav" className="meanmenu-reveal">
+					<span>
+						<span>
+							<span></span>
+						</span>
+					</span>
+				</a>
+				<nav className="mean-nav">
+					<ul>
+						{menuItems.map((item) => (
+							<li key={item.id}>								
+								<Link href={item.link}>  
+									<span suppressHydrationWarning>{item.title}</span>
+								</Link>
+							</li>
+						))}
+					</ul>
+				</nav>
 			</div>
-			<div className={sidebar ? "offcanvas-overlay overlay-open" : "offcanvas-overlay"}
-				 onClick={() => setSidebar(false)}></div>
 		</>
 	);
 };
