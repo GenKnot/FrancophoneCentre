@@ -19,6 +19,7 @@ interface LanguageContextType {
     changeLanguage: (language: string) => void;
     t: (key: string, defaultValue?: string) => string;
     loading: boolean;
+    isHydrated: boolean;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -27,8 +28,59 @@ interface LanguageProviderProps {
     children: ReactNode;
 }
 
+const getBrowserLanguage = (): string => {
+    if (typeof window === 'undefined') return 'en';
+    
+    const browserLang = navigator.language || navigator.languages?.[0] || 'en';
+    const langCode = browserLang.toLowerCase();
+    
+    if (langCode.startsWith('zh-hans') || langCode === 'zh-cn' || langCode === 'zh') {
+        return 'zh-hans';
+    }
+    if (langCode.startsWith('zh-hant') || langCode === 'zh-tw' || langCode === 'zh-hk') {
+        return 'zh-hant';
+    }
+    if (langCode.startsWith('fr')) {
+        return 'fr';
+    }
+    return 'en';
+};
+
+const getLanguageFromURL = (): string | null => {
+    if (typeof window === 'undefined') return null;
+    
+    const urlParams = new URLSearchParams(window.location.search);
+    const langParam = urlParams.get('lang');
+    
+    const validLanguages = ['en', 'fr', 'zh-hans', 'zh-hant'];
+    if (langParam && validLanguages.includes(langParam)) {
+        return langParam;
+    }
+    return null;
+};
+
+const getClientLanguage = (): string => {
+    if (typeof window === 'undefined') return 'en';
+    
+    const urlLang = getLanguageFromURL();
+    if (urlLang) return urlLang;
+    
+    const savedLang = localStorage.getItem('preferred-language');
+    if (savedLang) return savedLang;
+    
+    return getBrowserLanguage();
+};
+
+const getInitialLanguage = (): string => {
+    if (typeof window === 'undefined') {
+        return 'en';
+    }
+    
+    return getClientLanguage();
+};
+
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({children}) => {
-    const [currentLanguage, setCurrentLanguage] = useState<string>('en');
+    const [currentLanguage, setCurrentLanguage] = useState<string>(getInitialLanguage);
     const [translations, setTranslations] = useState<Translation>({});
     const [availableLanguages, setAvailableLanguages] = useState<Language[]>([
         {code: 'zh-hans', name: '简体中文'},
@@ -37,6 +89,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({children}) =>
         {code: 'fr', name: 'Français'}
     ]);
     const [loading, setLoading] = useState<boolean>(false);
+    const [isHydrated, setIsHydrated] = useState<boolean>(false);
 
     const fetchTranslations = async (language: string) => {
         try {
@@ -111,6 +164,10 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({children}) =>
         setCurrentLanguage(language);
         if (typeof window !== 'undefined') {
             localStorage.setItem('preferred-language', language);
+            
+            const url = new URL(window.location.href);
+            url.searchParams.set('lang', language);
+            window.history.replaceState({}, '', url.toString());
         }
         fetchTranslations(language);
     };
@@ -131,13 +188,35 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({children}) =>
     };
 
     useEffect(() => {
-        let savedLanguage = 'en';
         if (typeof window !== 'undefined') {
-            savedLanguage = localStorage.getItem('preferred-language') || 'en';
+            const detectedLang = getClientLanguage();
+            if (detectedLang !== currentLanguage) {
+                setCurrentLanguage(detectedLang);
+            }
+            
+            fetchTranslations(detectedLang);
+            setIsHydrated(true);
         }
-        setCurrentLanguage(savedLanguage);
-        fetchTranslations(savedLanguage);
     }, []);
+
+    useEffect(() => {
+        if (!isHydrated) return;
+
+        const handleUrlChange = () => {
+            const urlLang = getLanguageFromURL();
+            if (urlLang && urlLang !== currentLanguage) {
+                setCurrentLanguage(urlLang);
+                localStorage.setItem('preferred-language', urlLang);
+                fetchTranslations(urlLang);
+            }
+        };
+
+        window.addEventListener('popstate', handleUrlChange);
+        
+        return () => {
+            window.removeEventListener('popstate', handleUrlChange);
+        };
+    }, [currentLanguage, isHydrated]);
 
     const value: LanguageContextType = {
         currentLanguage,
@@ -146,6 +225,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({children}) =>
         changeLanguage,
         t,
         loading,
+        isHydrated,
     };
 
     return (

@@ -35,7 +35,7 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({className = ''}) => 
                     }}
                 >
                     <i className="fas fa-globe me-1"></i>
-                    {currentLang?.name || 'Language'}
+                    <span suppressHydrationWarning>{currentLang?.name || 'Language'}</span>
                 </button>
                 {isOpen && (
                     <ul
@@ -72,7 +72,7 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({className = ''}) => 
                                         cursor: 'pointer'
                                     }}
                                 >
-                                    {language.name}
+                                    <span suppressHydrationWarning>{language.name}</span>
                                 </button>
                             </li>
                         ))}

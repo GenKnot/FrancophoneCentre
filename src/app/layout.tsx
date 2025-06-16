@@ -1,5 +1,6 @@
 import "../styles/index.scss";
 import {LanguageProvider} from "@/contexts/LanguageContext";
+import DynamicLanguageHead from "@/components/common/DynamicLanguageHead";
 import { Metadata, Viewport } from 'next';
 
 export const metadata: Metadata = {
@@ -21,13 +22,14 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
+        <html lang="en" suppressHydrationWarning>
         <head>
             <link rel="icon" href="/favicon.svg"/>
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap"/>
         </head>
         <body>
         <LanguageProvider>
+            <DynamicLanguageHead />
             {children}
         </LanguageProvider>
         </body>

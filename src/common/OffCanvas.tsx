@@ -5,9 +5,10 @@ import React from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const OffCanvas = ({setOpenCanvas, openCanvas} : any) => {
-  const { currentLanguage } = useLanguage();
+  const [sidebarOpen, setSidebarOpen] = React.useState(false);
 
   const getTranslatedText = (zhText: string, enText: string, frText: string = enText, zhHantText: string = zhText) => {
+    const { currentLanguage } = useLanguage();
     switch (currentLanguage) {
       case 'zh-hans':
         return zhText;
@@ -43,7 +44,7 @@ const OffCanvas = ({setOpenCanvas, openCanvas} : any) => {
                         <p className='pb-3'>{getTranslatedText('加拿大魁北克法语教育中心', 'Quebec French Education Centre of Canada', 'Centre d\'Éducation Français du Québec', '加拿大魁北克法語教育中心')} <br /> Centre d'Éducation Français du Québec</p>
 
                         <div className="mobile-menu fix mb-3 mean-container">
-                          <MobileMenu />
+                          <MobileMenu sidebar={sidebarOpen} setSidebar={setSidebarOpen} />
                         </div>
                         <div className="offcanvas__contact">
                             <h3>{getTranslatedText('联系信息', 'Contact Information', 'Informations de contact', '聯繫信息')}</h3>

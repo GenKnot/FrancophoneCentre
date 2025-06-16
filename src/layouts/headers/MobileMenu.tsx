@@ -1,80 +1,72 @@
 "use client"
 import Link from "next/link";
-import React from "react";
-import { useLanguage } from '@/contexts/LanguageContext';
+import React, { useState } from "react";
+import { useTranslation } from '@/hooks/useTranslation';
 
-const MobileMenu = () => {
-  const { currentLanguage } = useLanguage();
+interface IMobileMenuProps {
+	sidebar: boolean;
+	setSidebar: (open: boolean) => void;
+}
 
-  const getTranslatedText = (zhText: string, enText: string, frText: string = enText, zhHantText: string = zhText) => {
-    switch (currentLanguage) {
-      case 'zh-hans':
-        return zhText;
-      case 'zh-hant':
-        return zhHantText;
-      case 'fr':
-        return frText;
-      case 'en':
-      default:
-        return enText;
-    }
-  };
+const MobileMenu: React.FC<IMobileMenuProps> = ({ sidebar, setSidebar }) => {
+	const { t } = useTranslation();
+	const [navTitle, setNavTitle] = useState("");
 
-  const menuItems = [
-    {
-      id: 1,
-      title: getTranslatedText('主页', 'Home', 'Accueil', '主頁'),
-      link: "/",
-      icon: "fas fa-home-lg",
-    },
-    {
-      id: 2,
-      title: getTranslatedText('关于', 'About', 'À propos', '關於'),
-      link: "/about",
-      icon: "fas fa-user",
-    },
-    {
-      id: 3,
-      title: getTranslatedText('课程', 'Courses', 'Cours', '課程'),
-      link: "/courses",
-      icon: "fas fa-book",
-    },
-    {
-      id: 5,
-      title: getTranslatedText('新闻', 'News', 'Nouvelles', '新聞'),
-      link: "/news",
-      icon: "fas fa-newspaper",
-    },
-    {
-      id: 6,
-      title: getTranslatedText('联系我们', 'Contact Us', 'Contactez-nous', '聯繫我們'),
-      link: "/contact",
-      icon: "fas fa-phone-rotary",
-    },
-  ];
+	const menuItems = [
+		{
+			id: 1,
+			title: t('nav.home', 'Home'),
+			link: "/",
+			icon: "fas fa-home-lg",
+		},
+		{
+			id: 2,
+			title: t('nav.about', 'About'),
+			link: "/about",
+			icon: "fas fa-user",
+		},
+		{
+			id: 3,
+			title: t('nav.courses', 'Courses'),
+			link: "/courses",
+			icon: "fas fa-book",
+		},
+		{
+			id: 5,
+			title: t('nav.news', 'News'),
+			link: "/news",
+			icon: "fas fa-newspaper",
+		},
+		{
+			id: 6,
+			title: t('nav.contact', 'Contact'),
+			link: "/contact",
+			icon: "fas fa-phone-rotary",
+		},
+	];
 
 	return (
 		<>
-			<div className="mean-bar">
-				<a href="#nav" className="meanmenu-reveal">
-					<span>
-						<span>
-							<span></span>
-						</span>
-					</span>
-				</a>
-				<nav className="mean-nav">
-					<ul>
-            {menuItems.map((item, i) => (
-              <li key={i}>								
-							<Link href={item.link}>  
-								{item.title} 
-							</Link>
-						</li>
-            ))} 
-					</ul>
-				</nav>
+			<div className="fix">
+				<div className={sidebar ? "side-info info-open" : "side-info"}>
+					<button className="side-info-close" onClick={() => setSidebar(false)}>
+						<i className="fal fa-times"></i>
+					</button>
+					<div className="side-info-content">
+						<div className="mobile-menu">
+							<nav id="mobile-menu">
+								{menuItems.map((item) => (
+									<Link href={item.link} key={item.id} onClick={() => setSidebar(false)}>
+										<span suppressHydrationWarning>{item.title}</span>
+									</Link>
+								))}
+							</nav>
+						</div>
+					</div>
+				</div>
 			</div>
+			<div className={sidebar ? "offcanvas-overlay overlay-open" : "offcanvas-overlay"}
+				 onClick={() => setSidebar(false)}></div>
 		</>
 	);
 };

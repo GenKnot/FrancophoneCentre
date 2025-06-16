@@ -1,40 +1,40 @@
 "use client"
 import Link from 'next/link';
 import React from 'react';
-import {useLanguage} from '@/contexts/LanguageContext';
+import { useTranslation } from '@/hooks/useTranslation';
 
 const NavMenu = () => {
-    const {t} = useLanguage();
+    const { t } = useTranslation();
 
     const menuItems = [
         {
             id: 1,
-            title: t('navigation.home', 'Home'),
+            title: t('nav.home', 'Home'),
             link: "/",
             icon: "fas fa-home-lg",
         },
         {
             id: 2,
-            title: t('navigation.about', 'About'),
+            title: t('nav.about', 'About'),
             link: "/about",
             icon: "fas fa-user",
         },
         {
             id: 3,
-            title: t('navigation.courses', 'Courses'),
+            title: t('nav.courses', 'Courses'),
             link: "/courses",
             icon: "fas fa-book",
         },
 
         {
             id: 5,
-            title: t('navigation.news', 'News'),
+            title: t('nav.news', 'News'),
             link: "/news",
             icon: "fas fa-newspaper",
         },
         {
             id: 6,
-            title: t('navigation.contact', 'Contact Us'),
+            title: t('nav.contact', 'Contact Us'),
             link: "/contact",
             icon: "fas fa-phone-rotary",
         },
@@ -49,7 +49,7 @@ const NavMenu = () => {
               <span className="head-icon">
                 <i className={item.icon}></i>
               </span>
-                            {item.title}
+                            <span suppressHydrationWarning>{item.title}</span>
                         </Link>
                     </li>
                 ))}
