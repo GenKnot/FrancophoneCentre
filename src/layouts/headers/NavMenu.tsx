@@ -11,35 +11,53 @@ const NavMenu = () => {
         setIsMounted(true);
     }, []);
 
+    // Fixed translations for SSR
+    const getFixedTranslation = (key: string, zhText: string, enText: string, frText: string = enText, zhHantText: string = zhText) => {
+        if (!isMounted) {
+            // During SSR, use current language from context
+            switch (currentLanguage) {
+                case 'zh-hans':
+                    return zhText;
+                case 'zh-hant':
+                    return zhHantText;
+                case 'fr':
+                    return frText;
+                default:
+                    return enText;
+            }
+        }
+        return t(key, enText);
+    };
+
     // Generate menu items with proper translations
     const getMenuItems = () => [
         {
             id: 1,
-            title: t('navigation.home', 'Home'),
+            title: getFixedTranslation('navigation.home', '主页', 'Home', 'Accueil', '主頁'),
             link: "/",
             icon: "fas fa-home-lg",
         },
         {
             id: 2,
-            title: t('navigation.about', 'About'),
+            title: getFixedTranslation('navigation.about', '关于我们', 'About', 'À propos', '關於我們'),
             link: "/about",
             icon: "fas fa-user",
         },
         {
             id: 3,
-            title: t('navigation.courses', 'Courses'),
+            title: getFixedTranslation('navigation.courses', '课程', 'Courses', 'Cours', '課程'),
             link: "/courses",
             icon: "fas fa-book",
         },
         {
             id: 5,
-            title: t('navigation.news', 'News'),
+            title: getFixedTranslation('navigation.news', '新闻', 'News', 'Nouvelles', '新聞'),
             link: "/news",
             icon: "fas fa-newspaper",
         },
         {
             id: 6,
-            title: t('navigation.contact', 'Contact Us'),
+            title: getFixedTranslation('navigation.contact', '联系我们', 'Contact Us', 'Contact', '聯繫我們'),
             link: "/contact",
             icon: "fas fa-phone-rotary",
         },

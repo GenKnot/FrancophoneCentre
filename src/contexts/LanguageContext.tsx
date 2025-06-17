@@ -30,6 +30,8 @@ interface LanguageProviderProps {
 
 const getClientLanguage = (): string => {
     if (typeof window === 'undefined') {
+        // For SSR, try to get language from URL if available
+        // This is a fallback, actual detection happens on client side
         return 'en';
     }
     
@@ -218,8 +220,18 @@ const getDefaultTranslations = (language: string): Translation => {
 };
 
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({children}) => {
-    const [currentLanguage, setCurrentLanguage] = useState<string>('en');
-    const [translations, setTranslations] = useState<Translation>(getDefaultTranslations('en'));
+    // Initialize with client language detection for better SSR support
+    const getInitialLanguage = () => {
+        if (typeof window === 'undefined') {
+            // On server side, default to 'en' but will be corrected on client side
+            return 'en';
+        }
+        return getClientLanguage();
+    };
+
+    const initialLanguage = getInitialLanguage();
+    const [currentLanguage, setCurrentLanguage] = useState<string>(initialLanguage);
+    const [translations, setTranslations] = useState<Translation>(getDefaultTranslations(initialLanguage));
     
     const [availableLanguages, setAvailableLanguages] = useState<Language[]>([
         {code: 'en', name: 'English'},
@@ -293,7 +305,13 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({children}) =>
 
     const t = (key: string, defaultValue?: string): string => {
         if (!isHydrated) {
-            const currentTranslations = getDefaultTranslations(currentLanguage);
+            // During SSR, try to detect language from current URL
+            let ssrLanguage = currentLanguage;
+            if (typeof window !== 'undefined') {
+                ssrLanguage = getClientLanguage();
+            }
+            
+            const currentTranslations = getDefaultTranslations(ssrLanguage);
             const keys = key.split('.');
             let result: any = currentTranslations;
             

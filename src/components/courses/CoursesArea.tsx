@@ -189,7 +189,25 @@ const CoursesArea = () => {
     const [sortOrder, setSortOrder] = useState<string>('01');
     const [isMounted, setIsMounted] = useState<boolean>(false);
     const { data, loading, error } = useCoursesData();
-    const { t } = useLanguage();
+    const { t, currentLanguage } = useLanguage();
+
+    // Fixed translations for SSR
+    const getFixedTranslation = (key: string, zhText: string, enText: string, frText: string = enText, zhHantText: string = zhText) => {
+        if (!isMounted) {
+            // During SSR, use current language from context
+            switch (currentLanguage) {
+                case 'zh-hans':
+                    return zhText;
+                case 'zh-hant':
+                    return zhHantText;
+                case 'fr':
+                    return frText;
+                default:
+                    return enText;
+            }
+        }
+        return t(key, enText);
+    };
 
     useEffect(() => {
         setIsMounted(true);
@@ -343,18 +361,18 @@ const CoursesArea = () => {
                 <div className="container">
                     <div className="coureses-notices-wrapper">
                         <div className="courses-showing">
-                            <h5>
-                                {data?.translations?.common?.showing || t('common.showing', 'Showing')} 1-{totalCourses} {data?.translations?.common?.of || t('common.of', 'of')} {totalCourses} {data?.translations?.courses?.courses_count || t('courses.courses_count', 'courses')}
+                            <h5 suppressHydrationWarning={true}>
+                                {data?.translations?.common?.showing || getFixedTranslation('common.showing', '显示', 'Showing', 'Affichage', '顯示')} 1-{totalCourses} {data?.translations?.common?.of || getFixedTranslation('common.of', '共', 'of', 'de', '共')} {totalCourses} {data?.translations?.courses?.courses_count || getFixedTranslation('courses.courses_count', '门课程', 'courses', 'cours', '門課程')}
                             </h5>
                         </div>
                         <div className="form-clt">
                             <NiceSelect
                                 className="category"
                                 options={[
-                                    { value: "01", text: data?.translations?.courses?.sort?.default || t('courses.sort.default', 'Sort by: Default') },
-                                    { value: "02", text: data?.translations?.courses?.sort?.by_hours || t('courses.sort.by_hours', 'Sort by Hours') },
-                                    { value: "03", text: data?.translations?.courses?.sort?.by_level || t('courses.sort.by_level', 'Sort by Level') },
-                                    { value: "04", text: data?.translations?.courses?.sort?.by_price || t('courses.sort.by_price', 'Sort by Price') },
+                                    { value: "01", text: data?.translations?.courses?.sort?.default || getFixedTranslation('courses.sort.default', '排序方式：默认', 'Sort by: Default', 'Trier par : Défaut', '排序方式：默認') },
+                                    { value: "02", text: data?.translations?.courses?.sort?.by_hours || getFixedTranslation('courses.sort.by_hours', '按课时排序', 'Sort by Hours', 'Trier par heures', '按課時排序') },
+                                    { value: "03", text: data?.translations?.courses?.sort?.by_level || getFixedTranslation('courses.sort.by_level', '按难度排序', 'Sort by Level', 'Trier par niveau', '按難度排序') },
+                                    { value: "04", text: data?.translations?.courses?.sort?.by_price || getFixedTranslation('courses.sort.by_price', '按价格排序', 'Sort by Price', 'Trier par prix', '按價格排序') },
                                 ]}
                                 defaultCurrent={0}
                                 onChange={selectHandler}
