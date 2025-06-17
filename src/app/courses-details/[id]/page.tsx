@@ -1,9 +1,10 @@
 "use client"
 
-import { useParams } from 'next/navigation';
+import { useParams, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import CoursesDetails from '@/components/courses-details';
 import { ENDPOINTS } from '../../../../constants/api';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface CourseDetailData {
     id: number;
@@ -93,6 +94,8 @@ interface CourseDetailData {
 
 const CourseDetailsPage = () => {
     const params = useParams();
+    const searchParams = useSearchParams();
+    const { currentLanguage, isHydrated } = useLanguage();
     const [courseData, setCourseData] = useState<CourseDetailData | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -100,26 +103,50 @@ const CourseDetailsPage = () => {
     useEffect(() => {
         const fetchCourseData = async () => {
             try {
+                setLoading(true);
+                setError(null);
+                
                 const courseId = params.id as string;
-                const response = await fetch(ENDPOINTS.COURSES.COURSE_DETAIL(courseId));
+                
+                // Get language from URL params or current language
+                const urlLang = searchParams.get('lang');
+                const language = urlLang || currentLanguage || 'en';
+                
+                // Convert language for backend
+                const backendLanguage = language === 'zh-hans' ? 'zh-Hans' : language;
+                
+                const url = `${ENDPOINTS.COURSES.COURSE_DETAIL(courseId)}?lang=${backendLanguage}`;
+                console.log('Fetching course data from:', url);
+                
+                const response = await fetch(url);
                 
                 if (!response.ok) {
-                    throw new Error('Course not found');
+                    if (response.status === 404) {
+                        throw new Error('Course not found');
+                    }
+                    throw new Error(`Failed to load course (${response.status})`);
                 }
                 
                 const data = await response.json();
-                setCourseData(data.course);
+                console.log('Course data received:', data);
+                
+                if (data.course) {
+                    setCourseData(data.course);
+                } else {
+                    throw new Error('Course data not found in response');
+                }
             } catch (err) {
+                console.error('Error fetching course data:', err);
                 setError(err instanceof Error ? err.message : 'Failed to load course');
             } finally {
                 setLoading(false);
             }
         };
 
-        if (params.id) {
+        if (params.id && isHydrated) {
             fetchCourseData();
         }
-    }, [params.id]);
+    }, [params.id, currentLanguage, searchParams, isHydrated]);
 
     if (loading) {
         return (

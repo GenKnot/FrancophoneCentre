@@ -1,6 +1,6 @@
 "use client";
 
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useLanguage} from '@/contexts/LanguageContext';
 
 interface LanguageSwitcherProps {
@@ -8,8 +8,13 @@ interface LanguageSwitcherProps {
 }
 
 const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({className = ''}) => {
-    const {currentLanguage, availableLanguages, changeLanguage} = useLanguage();
+    const {currentLanguage, availableLanguages, changeLanguage, isHydrated} = useLanguage();
     const [isOpen, setIsOpen] = useState(false);
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
 
     const currentLang = availableLanguages.find(lang => lang.code === currentLanguage);
 
@@ -35,7 +40,9 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({className = ''}) => 
                     }}
                 >
                     <i className="fas fa-globe me-1"></i>
-                    <span suppressHydrationWarning>{currentLang?.name || 'Language'}</span>
+                    <span suppressHydrationWarning={true}>
+                        {isMounted ? (currentLang?.name || 'Language') : 'Language'}
+                    </span>
                 </button>
                 {isOpen && (
                     <ul

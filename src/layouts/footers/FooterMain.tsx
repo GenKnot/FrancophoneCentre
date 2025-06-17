@@ -1,16 +1,21 @@
 "use client";
 
 import Link from 'next/link';
-import React, { useState } from 'react';
-import {useLanguage} from '@/contexts/LanguageContext';
+import React, { useState, useEffect } from 'react';
+import { useTranslation } from '@/hooks/useTranslation';
 import { ENDPOINTS } from '../../../constants/api';
 
 const FooterMain = () => {
-    const {t} = useLanguage();
+    const { t } = useTranslation();
     const [email, setEmail] = useState('');
     const [isSubscribing, setIsSubscribing] = useState(false);
     const [message, setMessage] = useState('');
     const [messageType, setMessageType] = useState<'success' | 'error' | ''>('');
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
 
     const handleNewsletterSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -77,8 +82,8 @@ const FooterMain = () => {
                                         </Link>
                                     </div>
                                     <div className="footer-content">
-                                        <p>
-                                            {t('footer.description', 'Quebec Francophone Education Centre is committed to providing students with quality French education services to help students master French skills.')}
+                                        <p suppressHydrationWarning={true}>
+                                            {isMounted ? t('footer.description', 'Quebec Francophone Education Centre is committed to providing students with quality French education services to help students master French skills.') : '\u00A0'}
                                         </p>
                                         <div className="footer-content pt-2">
                                             <ul className="contact-info">
@@ -94,21 +99,45 @@ const FooterMain = () => {
                             <div className="col-xl-3 col-lg-4 col-md-6 ps-lg-5 wow fadeInUp" data-wow-delay=".4s">
                                 <div className="single-footer-widget">
                                     <div className="widget-head">
-                                        <h3>{t('footer.quick_links', 'Quick Links')}</h3>
+                                        <h3 suppressHydrationWarning={true}>
+                                            {isMounted ? t('footer.quick_links', 'Quick Links') : '\u00A0'}
+                                        </h3>
                                     </div>
                                     <ul className="list-area">
-                                        <li><Link href="/">{t('navigation.home', 'Home')}</Link></li>
-                                        <li><Link href="/about">{t('navigation.about', 'About Us')}</Link></li>
-                                        <li><Link href="/courses">{t('navigation.courses', 'Courses')}</Link></li>
-                                        <li><Link href="/event">{t('navigation.events', 'Events')}</Link></li>
-                                        <li><Link href="/news">{t('navigation.news', 'News')}</Link></li>
+                                        <li>
+                                            <Link href="/" suppressHydrationWarning={true}>
+                                                {isMounted ? t('navigation.home', 'Home') : '\u00A0'}
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link href="/about" suppressHydrationWarning={true}>
+                                                {isMounted ? t('navigation.about', 'About Us') : '\u00A0'}
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link href="/courses" suppressHydrationWarning={true}>
+                                                {isMounted ? t('navigation.courses', 'Courses') : '\u00A0'}
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link href="/event" suppressHydrationWarning={true}>
+                                                {isMounted ? t('navigation.events', 'Events') : '\u00A0'}
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link href="/news" suppressHydrationWarning={true}>
+                                                {isMounted ? t('navigation.news', 'News') : '\u00A0'}
+                                            </Link>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
                             <div className="col-xl-2 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".8s">
                                 <div className="single-footer-widget style-left">
                                     <div className="widget-head">
-                                        <h3>{t('footer.contact_us', 'Contact Us')}</h3>
+                                        <h3 suppressHydrationWarning={true}>
+                                            {isMounted ? t('footer.contact_us', 'Contact Us') : '\u00A0'}
+                                        </h3>
                                     </div>
                                     <div className="footer-content">
                                         <ul className="contact-info">
@@ -137,10 +166,14 @@ const FooterMain = () => {
                             <div className="col-xl-4 col-lg-4 col-md-6 ps-xl-5 wow fadeInUp" data-wow-delay=".8s">
                                 <div className="single-footer-widget">
                                     <div className="widget-head">
-                                        <h3>{t('footer.newsletter', 'Newsletter Subscription')}</h3>
+                                        <h3 suppressHydrationWarning={true}>
+                                            {isMounted ? t('footer.newsletter', 'Newsletter Subscription') : '\u00A0'}
+                                        </h3>
                                     </div>
                                     <div className="footer-content">
-                                        <p>{t('footer.newsletter_text', 'Subscribe to our newsletter for the latest course and event information')}</p>
+                                        <p suppressHydrationWarning={true}>
+                                            {isMounted ? t('footer.newsletter_text', 'Subscribe to our newsletter for the latest course and event information') : '\u00A0'}
+                                        </p>
                                         <form onSubmit={handleNewsletterSubmit}>
                                             <div className="footer-input">
                                                 <div className="icon">
@@ -151,15 +184,16 @@ const FooterMain = () => {
                                                     id="email2"
                                                     value={email}
                                                     onChange={(e) => setEmail(e.target.value)}
-                                                    placeholder={t('footer.email_placeholder', 'Email Address')}
+                                                    placeholder={isMounted ? t('footer.email_placeholder', 'Email Address') : 'Email Address'}
                                                     disabled={isSubscribing}
                                                 />
                                                 <button 
                                                     className="newsletter-btn" 
                                                     type="submit"
                                                     disabled={isSubscribing}
+                                                    suppressHydrationWarning={true}
                                                 >
-                                                    {isSubscribing ? 'Subscribing...' : t('footer.newsletter_button', 'Subscribe')}
+                                                    {isSubscribing ? 'Subscribing...' : (isMounted ? t('footer.newsletter_button', 'Subscribe') : 'Subscribe')}
                                                 </button>
                                             </div>
                                         </form>
@@ -185,28 +219,31 @@ const FooterMain = () => {
                 <div className="footer-bottom style-3">
                     <div className="container">
                         <div className="footer-bottom-wrapper">
-                            <p>
-                                {t('footer.copyright', 'Copyright ©')}, {t('footer.rights_reserved', 'All rights reserved')}.
+                            <p suppressHydrationWarning={true}>
+                                {isMounted ? 
+                                    `${t('footer.copyright', 'Copyright ©')}, ${t('footer.rights_reserved', 'All rights reserved')}.` : 
+                                    'Copyright ©, All rights reserved.'
+                                }
                             </p>
                             <ul className="footer-menu wow fadeInUp" data-wow-delay=".5s">
                                 <li>
-                                    <Link href="/about">
-                                        {t('navigation.about', 'About Us')}
+                                    <Link href="/about" suppressHydrationWarning={true}>
+                                        {isMounted ? t('navigation.about', 'About Us') : '\u00A0'}
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="/faq">
-                                        {t('navigation.faq', 'FAQ')}
+                                    <Link href="/faq" suppressHydrationWarning={true}>
+                                        {isMounted ? t('navigation.faq', 'FAQ') : '\u00A0'}
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="/contact">
-                                        {t('navigation.contact', 'Contact Us')}
+                                    <Link href="/contact" suppressHydrationWarning={true}>
+                                        {isMounted ? t('navigation.contact', 'Contact Us') : '\u00A0'}
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="/event">
-                                        {t('navigation.events', 'Events')}
+                                    <Link href="/event" suppressHydrationWarning={true}>
+                                        {isMounted ? t('navigation.events', 'Events') : '\u00A0'}
                                     </Link>
                                 </li>
                             </ul>

@@ -6,9 +6,13 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const FCTestimonialHome = () => {
-    const { currentLanguage } = useLanguage();
+    const { currentLanguage, isHydrated } = useLanguage();
 
     const getTranslatedText = (zhText: string, enText: string, frText: string = enText, zhHantText: string = zhText) => {
+        if (!isHydrated) {
+            return enText;
+        }
+        
         switch (currentLanguage) {
             case 'zh-hans':
                 return zhText;

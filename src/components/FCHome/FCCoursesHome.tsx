@@ -72,6 +72,8 @@ const FCCoursesHome = () => {
                     <div className="course-details">
                         {course.subtitle && <p>{course.subtitle}</p>}
                         {course.hours && <p>{course.hours} {t('common.hours', 'hours')}</p>}
+                        {course.price && <p>${course.price}</p>}
+                        {course.price_text && !course.price && <p>{course.price_text}</p>}
                         {course.level_required && <p>{t('common.level_required', 'Level required')}: {course.level_required}</p>}
                     </div>
                     <div className="star">
@@ -159,61 +161,16 @@ const FCCoursesHome = () => {
                                  className={`tab-pane fade ${typeIndex === 0 ? 'show active' : ''}`}>
                                 <div className="row">
                                     {coursesByType[type.key]?.length > 0 ? (
-                                        coursesByType[type.key].slice(0, type.key === 'combo' ? 2 : 3).map((course: any, index: number) => (
-                                            type.key === 'combo' ? (
-                                                <div key={course.id} className="col-xl-6 col-lg-6 col-md-6">
-                                                    <div className="popular-courses-items"
-                                                         style={{backgroundColor: '#AD0119', color: 'white'}}>
-                                                        <div className="popular-thumb">
-                                                            <div className="post-box">
-                                                                <Link href={`/courses-details/${course.id}`} className="post-cat-white"
-                                                                      style={{color: 'white'}}>
-                                                                    {type.name}
-                                                                </Link>
-                                                            </div>
-                                                            <div className="thumb">
-                                                                <img src={course.image_homepage || `FCImage/Course-${index + 7}.png`}
-                                                                     alt="img"/>
-                                                            </div>
-                                                        </div>
-                                                        <div className="content">
-                                                            <h4>
-                                                                <Link href={`/courses-details/${course.id}`} style={{color: 'white'}}>
-                                                                    {course.name}
-                                                                </Link>
-                                                            </h4>
-                                                            <div className="course-details">
-                                                                {course.subtitle && <p>{course.subtitle}</p>}
-                                                                {course.hours && <p>{course.hours} {t('common.hours', 'hours')}</p>}
-                                                                {course.price && <p>${course.price}</p>}
-                                                                {course.price_text && !course.price && <p>{course.price_text}</p>}
-                                                            </div>
-                                                            <div className="star">
-                                                                <i className="fas fa-star"></i>
-                                                                <i className="fas fa-star"></i>
-                                                                <i className="fas fa-star"></i>
-                                                                <i className="fas fa-star"></i>
-                                                                <i className="fas fa-star"></i>
-                                                                <span style={{color: 'white'}}>({course.rating}/5 Reviews)</span>
-                                                            </div>
-                                                            <Link href={`/courses-details/${course.id}`} className="link-btn link-btn-white"
-                                                                  style={{color: 'white'}}>
-                                                                {t('common.view_details', 'View Details')} <i
-                                                                className="far fa-chevron-double-right"
-                                                                style={{color: 'white'}}></i>
-                                                            </Link>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            ) : renderCourseCard(course, index)
-                                        ))
+                                        coursesByType[type.key].slice(0, 3).map((course: any, index: number) => 
+                                            renderCourseCard(course, index)
+                                        )
                                     ) : (
                                         <div className="col-12 text-center text-muted">
                                             <p>{t('common.no_data', 'No data available')}</p>
                                         </div>
                                     )}
                                 </div>
-                                {type.key === 'combo' && (
+                                {type.key === 'combo' && coursesByType[type.key]?.length > 0 && (
                                     <div className="row mt-4">
                                         <div className="col-12 text-center">
                                             <p className="course-note">

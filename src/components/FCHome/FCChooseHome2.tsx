@@ -4,9 +4,13 @@ import React from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const FCPartnarsHome = () => {
-    const { currentLanguage } = useLanguage();
+    const { currentLanguage, isHydrated } = useLanguage();
 
     const getTranslatedText = (zhText: string, enText: string, frText: string = enText, zhHantText: string = zhText) => {
+        if (!isHydrated) {
+            return enText;
+        }
+        
         switch (currentLanguage) {
             case 'zh-hans':
                 return zhText;

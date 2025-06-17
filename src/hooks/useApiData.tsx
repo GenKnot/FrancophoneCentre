@@ -15,28 +15,31 @@ interface UseApiDataReturn {
     refetch: () => void;
 }
 
+const convertLanguageForBackend = (language: string): string => {
+    return language === 'zh-hans' ? 'zh-Hans' : language;
+};
+
 export const useHomepageData = (): UseApiDataReturn => {
     const [data, setData] = useState<ApiData | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
-    const {currentLanguage} = useLanguage();
+    const {currentLanguage, isHydrated} = useLanguage();
 
     const fetchData = async () => {
         try {
             setLoading(true);
             setError(null);
-            const response = await fetch(`${API_BASE_URL}/api/homepage/?lang=${currentLanguage}`);
+            const backendLanguage = convertLanguageForBackend(currentLanguage);
+            const response = await fetch(`${API_BASE_URL}/api/homepage/?lang=${backendLanguage}`);
             if (response.ok) {
                 const result = await response.json();
                 setData(result);
             } else {
                 setError('Failed to fetch homepage data');
-
                 setData(getDefaultHomepageData());
             }
         } catch (err) {
             setError('Network error occurred');
-
             setData(getDefaultHomepageData());
         } finally {
             setLoading(false);
@@ -116,13 +119,16 @@ export const useHomepageData = (): UseApiDataReturn => {
             teachers: [],
             events: [],
             testimonials: [],
-            news: []
+            news: [],
+            translations: {}
         };
     };
 
     useEffect(() => {
-        fetchData();
-    }, [currentLanguage]);
+        if (isHydrated && currentLanguage) {
+            fetchData();
+        }
+    }, [currentLanguage, isHydrated]);
 
     return {data, loading, error, refetch: fetchData};
 };
@@ -131,13 +137,14 @@ export const useCoursesData = (courseType?: string): UseApiDataReturn => {
     const [data, setData] = useState<ApiData | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
-    const {currentLanguage} = useLanguage();
+    const {currentLanguage, isHydrated} = useLanguage();
 
     const fetchData = async () => {
         try {
             setLoading(true);
             setError(null);
-            let url = `${API_BASE_URL}/api/courses-page/?lang=${currentLanguage}`;
+            const backendLanguage = convertLanguageForBackend(currentLanguage);
+            let url = `${API_BASE_URL}/api/courses-page/?lang=${backendLanguage}`;
             if (courseType) {
                 url += `&type=${courseType}`;
             }
@@ -158,8 +165,10 @@ export const useCoursesData = (courseType?: string): UseApiDataReturn => {
     };
 
     useEffect(() => {
-        fetchData();
-    }, [currentLanguage, courseType]);
+        if (isHydrated && currentLanguage) {
+            fetchData();
+        }
+    }, [currentLanguage, courseType, isHydrated]);
 
     return {data, loading, error, refetch: fetchData};
 };
@@ -168,13 +177,14 @@ export const useEventsData = (): UseApiDataReturn => {
     const [data, setData] = useState<ApiData | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
-    const {currentLanguage} = useLanguage();
+    const {currentLanguage, isHydrated} = useLanguage();
 
     const fetchData = async () => {
         try {
             setLoading(true);
             setError(null);
-            const response = await fetch(`${API_BASE_URL}/api/events-data/?lang=${currentLanguage}`);
+            const backendLanguage = convertLanguageForBackend(currentLanguage);
+            const response = await fetch(`${API_BASE_URL}/api/events-data/?lang=${backendLanguage}`);
             if (response.ok) {
                 const result = await response.json();
                 setData(result);
@@ -191,8 +201,10 @@ export const useEventsData = (): UseApiDataReturn => {
     };
 
     useEffect(() => {
-        fetchData();
-    }, [currentLanguage]);
+        if (isHydrated && currentLanguage) {
+            fetchData();
+        }
+    }, [currentLanguage, isHydrated]);
 
     return {data, loading, error, refetch: fetchData};
 };
@@ -201,13 +213,14 @@ export const useNewsData = (): UseApiDataReturn => {
     const [data, setData] = useState<ApiData | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
-    const {currentLanguage} = useLanguage();
+    const {currentLanguage, isHydrated} = useLanguage();
 
     const fetchData = async () => {
         try {
             setLoading(true);
             setError(null);
-            const response = await fetch(`${API_BASE_URL}/api/news-data/?lang=${currentLanguage}`);
+            const backendLanguage = convertLanguageForBackend(currentLanguage);
+            const response = await fetch(`${API_BASE_URL}/api/news-data/?lang=${backendLanguage}`);
             if (response.ok) {
                 const result = await response.json();
                 setData(result);
@@ -224,8 +237,10 @@ export const useNewsData = (): UseApiDataReturn => {
     };
 
     useEffect(() => {
-        fetchData();
-    }, [currentLanguage]);
+        if (isHydrated && currentLanguage) {
+            fetchData();
+        }
+    }, [currentLanguage, isHydrated]);
 
     return {data, loading, error, refetch: fetchData};
 };
@@ -234,31 +249,34 @@ export const useAboutData = (): UseApiDataReturn => {
     const [data, setData] = useState<ApiData | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
-    const {currentLanguage} = useLanguage();
+    const {currentLanguage, isHydrated} = useLanguage();
 
     const fetchData = async () => {
         try {
             setLoading(true);
             setError(null);
-            const response = await fetch(`${API_BASE_URL}/api/about-data/?lang=${currentLanguage}`);
+            const backendLanguage = convertLanguageForBackend(currentLanguage);
+            const response = await fetch(`${API_BASE_URL}/api/about-data/?lang=${backendLanguage}`);
             if (response.ok) {
                 const result = await response.json();
                 setData(result);
             } else {
                 setError('Failed to fetch about data');
-                setData({site_config: null, teachers: [], translations: {}});
+                setData({about_content: null, translations: {}});
             }
         } catch (err) {
             setError('Network error occurred');
-            setData({site_config: null, teachers: [], translations: {}});
+            setData({about_content: null, translations: {}});
         } finally {
             setLoading(false);
         }
     };
 
     useEffect(() => {
-        fetchData();
-    }, [currentLanguage]);
+        if (isHydrated && currentLanguage) {
+            fetchData();
+        }
+    }, [currentLanguage, isHydrated]);
 
     return {data, loading, error, refetch: fetchData};
 };
@@ -267,31 +285,34 @@ export const useContactData = (): UseApiDataReturn => {
     const [data, setData] = useState<ApiData | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
-    const {currentLanguage} = useLanguage();
+    const {currentLanguage, isHydrated} = useLanguage();
 
     const fetchData = async () => {
         try {
             setLoading(true);
             setError(null);
-            const response = await fetch(`${API_BASE_URL}/api/contact-data/?lang=${currentLanguage}`);
+            const backendLanguage = convertLanguageForBackend(currentLanguage);
+            const response = await fetch(`${API_BASE_URL}/api/contact-data/?lang=${backendLanguage}`);
             if (response.ok) {
                 const result = await response.json();
                 setData(result);
             } else {
                 setError('Failed to fetch contact data');
-                setData({site_config: null, translations: {}});
+                setData({contact_content: null, translations: {}});
             }
         } catch (err) {
             setError('Network error occurred');
-            setData({site_config: null, translations: {}});
+            setData({contact_content: null, translations: {}});
         } finally {
             setLoading(false);
         }
     };
 
     useEffect(() => {
-        fetchData();
-    }, [currentLanguage]);
+        if (isHydrated && currentLanguage) {
+            fetchData();
+        }
+    }, [currentLanguage, isHydrated]);
 
     return {data, loading, error, refetch: fetchData};
 };

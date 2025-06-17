@@ -5,10 +5,13 @@ import { useLanguage } from '@/contexts/LanguageContext';
 
 const FCChooseHome1 = () => {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
-  const { currentLanguage } = useLanguage();
+  const { currentLanguage, isHydrated } = useLanguage();
 
-  // 获取翻译文本的函数
   const getTranslatedText = (zhText: string, enText: string, frText: string = enText, zhHantText: string = zhText) => {
+    if (!isHydrated) {
+      return enText;
+    }
+    
     switch (currentLanguage) {
       case 'zh-hans':
       case 'zh-CN':

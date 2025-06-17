@@ -1,23 +1,43 @@
 "use client";
 import MobileMenu from '@/layouts/headers/MobileMenu';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const OffCanvas = ({setOpenCanvas, openCanvas} : any) => {
+  const { isHydrated, currentLanguage } = useLanguage();
+  const [isMounted, setIsMounted] = useState(false);
 
-  const getTranslatedText = (zhText: string, enText: string, frText: string = enText, zhHantText: string = zhText) => {
-    const { currentLanguage } = useLanguage();
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  const getDisplayText = (en: string, zhHans: string, zhHant: string, fr: string): string => {
+    if (!isMounted) return '\u00A0';
+    
+    if (!isHydrated) {
+      // Use current language even during SSR instead of defaulting to English
+      switch (currentLanguage) {
+        case 'zh-hans':
+          return zhHans;
+        case 'zh-hant':
+          return zhHant;
+        case 'fr':
+          return fr;
+        default:
+          return en;
+      }
+    }
+    
     switch (currentLanguage) {
       case 'zh-hans':
-        return zhText;
+        return zhHans;
       case 'zh-hant':
-        return zhHantText;
+        return zhHant;
       case 'fr':
-        return frText;
-      case 'en':
+        return fr;
       default:
-        return enText;
+        return en;
     }
   };
 
@@ -39,45 +59,83 @@ const OffCanvas = ({setOpenCanvas, openCanvas} : any) => {
                                 </button>
                             </div>
                         </div>
-                        <h3 className="offcanvas-title">{getTranslatedText('法语首选', 'French First Choice', 'Premier choix français', '法語首選')}</h3>
-                        <p className='pb-3'>{getTranslatedText('加拿大魁北克法语教育中心', 'Quebec French Education Centre of Canada', 'Centre d\'Éducation Français du Québec', '加拿大魁北克法語教育中心')} <br /> Centre d'Éducation Français du Québec</p>
+                        <h3 className="offcanvas-title" suppressHydrationWarning={true}>
+                          {getDisplayText('French First Choice', '法语首选', '法語首選', 'Premier choix français')}
+                        </h3>
+                        <p className='pb-3' suppressHydrationWarning={true}>
+                          {getDisplayText(
+                            'Quebec French Education Centre of Canada', 
+                            '加拿大魁北克法语教育中心', 
+                            '加拿大魁北克法語教育中心', 
+                            'Centre d\'Éducation Français du Québec'
+                          )}
+                          <br /> 
+                          Centre d'Éducation Français du Québec
+                        </p>
 
                         <div className="mobile-menu fix mb-3 mean-container">
                           <MobileMenu />
                         </div>
                         <div className="offcanvas__contact">
-                            <h3>{getTranslatedText('联系信息', 'Contact Information', 'Informations de contact', '聯繫信息')}</h3>
+                            <h3 suppressHydrationWarning={true}>
+                              {getDisplayText('Contact Information', '联系信息', '聯繫信息', 'Informations de contact')}
+                            </h3>
                             <ul className="contact-list">
                                 <li>
-                                    <span>
-                                        {getTranslatedText('Montreal Downtown 校区:', 'Montreal Downtown Campus:', 'Campus du centre-ville de Montréal:', 'Montreal Downtown 校區:')}
+                                    <span suppressHydrationWarning={true}>
+                                        {getDisplayText(
+                                          'Montreal Downtown Campus:',
+                                          'Montreal Downtown 校区:',
+                                          'Montreal Downtown 校區:',
+                                          'Campus du centre-ville de Montréal:'
+                                        )}
                                     </span>
                                     1440 Saint-Catherine St W Unit 501, 
                                     Montreal
                                 </li>
                                 <li>
-                                    <span>
-                                        {getTranslatedText('南岸校区:', 'South Shore Campus:', 'Campus de la Rive-Sud:', '南岸校區:')}
+                                    <span suppressHydrationWarning={true}>
+                                        {getDisplayText(
+                                          'South Shore Campus:',
+                                          '南岸校区:',
+                                          '南岸校區:',
+                                          'Campus de la Rive-Sud:'
+                                        )}
                                     </span>
                                     Room 201, 141 Bd Saint-Luc, 
                                     Saint-Jean-sur-Richelieu, QC J2W 2G7
                                 </li>
                                 <li>
-                                    <span>
-                                        {getTranslatedText('老港校区:', 'Old Port Campus:', 'Campus du Vieux-Port:', '老港校區:')}
+                                    <span suppressHydrationWarning={true}>
+                                        {getDisplayText(
+                                          'Old Port Campus:',
+                                          '老港校区:',
+                                          '老港校區:',
+                                          'Campus du Vieux-Port:'
+                                        )}
                                     </span>
                                     266 Notre-Dame St W Level 5, 
                                     Montreal, Quebec H2Y 1T6
                                 </li>
                                 <li>
-                                    <span>
-                                        {getTranslatedText('报名邮箱:', 'Registration Email:', 'Email d\'inscription:', '報名郵箱:')}
+                                    <span suppressHydrationWarning={true}>
+                                        {getDisplayText(
+                                          'Registration Email:',
+                                          '报名邮箱:',
+                                          '報名郵箱:',
+                                          'Email d\'inscription:'
+                                        )}
                                     </span>
                                     <a href="mailto:apply@qfec.ca">apply@qfec.ca</a>
                                 </li>
                                 <li>
-                                    <span>
-                                        {getTranslatedText('咨询邮箱:', 'Inquiry Email:', 'Email de consultation:', '諮詢郵箱:')}
+                                    <span suppressHydrationWarning={true}>
+                                        {getDisplayText(
+                                          'Inquiry Email:',
+                                          '咨询邮箱:',
+                                          '諮詢郵箱:',
+                                          'Email de consultation:'
+                                        )}
                                     </span>
                                     <a href="mailto:info@qfec.ca">info@qfec.ca</a>
                                 </li>

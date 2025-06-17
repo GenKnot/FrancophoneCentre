@@ -1,39 +1,44 @@
 "use client"
 import Link from "next/link";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useTranslation } from '@/hooks/useTranslation';
 
 const MobileMenu = () => {
-	const { t } = useTranslation();
+	const { t, isHydrated } = useTranslation();
+	const [isMounted, setIsMounted] = useState(false);
+
+	useEffect(() => {
+		setIsMounted(true);
+	}, []);
 
 	const menuItems = [
 		{
 			id: 1,
-			title: t('nav.home', 'Home'),
+			title: t('navigation.home', 'Home'),
 			link: "/",
 			icon: "fas fa-home-lg",
 		},
 		{
 			id: 2,
-			title: t('nav.about', 'About'),
+			title: t('navigation.about', 'About'),
 			link: "/about",
 			icon: "fas fa-user",
 		},
 		{
 			id: 3,
-			title: t('nav.courses', 'Courses'),
+			title: t('navigation.courses', 'Courses'),
 			link: "/courses",
 			icon: "fas fa-book",
 		},
 		{
 			id: 5,
-			title: t('nav.news', 'News'),
+			title: t('navigation.news', 'News'),
 			link: "/news",
 			icon: "fas fa-newspaper",
 		},
 		{
 			id: 6,
-			title: t('nav.contact', 'Contact'),
+			title: t('navigation.contact', 'Contact'),
 			link: "/contact",
 			icon: "fas fa-phone-rotary",
 		},
@@ -54,7 +59,9 @@ const MobileMenu = () => {
 						{menuItems.map((item) => (
 							<li key={item.id}>								
 								<Link href={item.link}>  
-									<span suppressHydrationWarning>{item.title}</span>
+									<span suppressHydrationWarning={true}>
+										{isMounted ? item.title : '\u00A0'}
+									</span>
 								</Link>
 							</li>
 						))}

@@ -1,13 +1,39 @@
-
 "use client";
 import Link from 'next/link';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const BreadcrumbCourses = ({title, subtitle} : any) => {
-  const { currentLanguage } = useLanguage();
+  const { currentLanguage, isHydrated, t } = useLanguage();
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  const displayTitle = title || (isMounted ? t('courses.title', 'All Courses') : 'All Courses');
+  const displaySubtitle = subtitle || (isMounted ? t('navigation.courses', 'Courses') : 'Courses');
 
   const getTranslatedText = (zhText: string, enText: string, frText: string = enText, zhHantText: string = zhText) => {
+    if (!isMounted) {
+      return '\u00A0'; 
+    }
+    
+    if (!isHydrated) {
+      // Use current language even during SSR instead of defaulting to English
+      switch (currentLanguage) {
+        case 'zh-hans':
+          return zhText;
+        case 'zh-hant':
+          return zhHantText;
+        case 'fr':
+          return frText;
+        case 'en':
+        default:
+          return enText;
+      }
+    }
+    
     switch (currentLanguage) {
       case 'zh-hans':
         return zhText;
@@ -42,10 +68,18 @@ const BreadcrumbCourses = ({title, subtitle} : any) => {
             <div className="container">
                 <div className="row">
                     <div className="page-heading">
-                        <h1>{title}</h1>
+                        <h1 suppressHydrationWarning={true}>{displayTitle}</h1>
                         <ul className="breadcrumb-items">
-                            <li><Link href="/">{getTranslatedText('主页', 'Home', 'Accueil', '主頁')}</Link></li>
-                            <li className="style-2">{subtitle}</li>
+                            <li>
+                                <Link href="/" suppressHydrationWarning>
+                                    <span suppressHydrationWarning>
+                                        {getTranslatedText('主页', 'Home', 'Accueil', '主頁')}
+                                    </span>
+                                </Link>
+                            </li>
+                            <li className="style-2" suppressHydrationWarning>
+                                {displaySubtitle}
+                            </li>
                         </ul>
                     </div>
                 </div>
