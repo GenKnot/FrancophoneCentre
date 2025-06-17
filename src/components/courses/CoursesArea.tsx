@@ -236,25 +236,21 @@ const CoursesArea = () => {
     const displayCourses = sortedCourses.slice(0, 30);
 
     const getCourseTypeLabel = (courseType: string) => {
-        if (!isMounted) {
-            return '\u00A0'; 
-        }
-        
         const courseTypeFromApi = data?.course_types?.find((type: any) => type.key === courseType);
         if (courseTypeFromApi) {
             return courseTypeFromApi.name;
         }
         
-        // Use translation function instead of hardcoded Chinese
+        // Use fixed translation for consistent SSR/client rendering
         switch(courseType) {
             case 'basic':
-                return t('courses.types.basic', 'Basic Courses');
+                return getFixedTranslation('courses.types.basic', '基础课程', 'Basic Courses', 'Cours de Base', '基礎課程');
             case 'exam_prep':
-                return t('courses.types.exam_prep', 'Exam Preparation');
+                return getFixedTranslation('courses.types.exam_prep', '考试准备', 'Exam Preparation', 'Préparation aux Examens', '考試準備');
             case 'combo':
-                return t('courses.types.combo', 'Combo Package');
+                return getFixedTranslation('courses.types.combo', '套餐课程', 'Combo Package', 'Forfait Combo', '套餐課程');
             case 'vip':
-                return t('courses.types.vip', 'VIP Course');
+                return getFixedTranslation('courses.types.vip', 'VIP课程', 'VIP Course', 'Cours VIP', 'VIP課程');
             default:
                 return courseType;
         }
@@ -313,9 +309,9 @@ const CoursesArea = () => {
                             <p>{course.short_description}</p>
                         </div>
                         <ul className="post-class">
-                            <li>
+                            <li suppressHydrationWarning={true}>
                                 <i className="far fa-books"></i>
-                                {course.hours ? `${course.hours}${data?.translations?.courses?.hours || ' hours'}` : data?.translations?.courses?.unlimited_hours || 'Unlimited hours'}
+                                {course.hours ? `${course.hours}${data?.translations?.courses?.hours || getFixedTranslation('courses.hours', ' 小时', ' hours', ' heures', ' 小時')}` : data?.translations?.courses?.unlimited_hours || getFixedTranslation('courses.unlimited_hours', '无限课时', 'Unlimited hours', 'Heures illimitées', '無限課時')}
                             </li>
                             <li>
                                 <i className="far fa-user"></i>

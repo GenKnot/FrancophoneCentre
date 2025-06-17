@@ -11,8 +11,26 @@ const BreadcrumbCourses = ({title, subtitle} : any) => {
     setIsMounted(true);
   }, []);
 
-  const displayTitle = title || (isMounted ? t('courses.title', 'All Courses') : 'All Courses');
-  const displaySubtitle = subtitle || (isMounted ? t('navigation.courses', 'Courses') : 'Courses');
+  // Fixed translations for SSR
+  const getFixedTranslation = (key: string, zhText: string, enText: string, frText: string = enText, zhHantText: string = zhText) => {
+    if (!isMounted) {
+      // During SSR, use current language from context
+      switch (currentLanguage) {
+        case 'zh-hans':
+          return zhText;
+        case 'zh-hant':
+          return zhHantText;
+        case 'fr':
+          return frText;
+        default:
+          return enText;
+      }
+    }
+    return t(key, enText);
+  };
+
+  const displayTitle = title || getFixedTranslation('courses.title', '所有课程', 'All Courses', 'Tous les Cours', '所有課程');
+  const displaySubtitle = subtitle || getFixedTranslation('navigation.courses', '课程', 'Courses', 'Cours', '課程');
 
   const getTranslatedText = (zhText: string, enText: string, frText: string = enText, zhHantText: string = zhText) => {
     if (!isMounted) {

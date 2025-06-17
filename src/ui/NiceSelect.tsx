@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useCallback, useRef, FC } from "react";
+import React, { useState, useCallback, useRef, FC, useEffect } from "react";
 import { useClickAway } from "react-use";
 
 interface Option {
@@ -26,6 +26,14 @@ const NiceSelect: FC<NiceSelectProps> = ({
 }) => {
   const [open, setOpen] = useState(false);
   const [current, setCurrent] = useState<Option>(options[defaultCurrent]);
+  const [isMounted, setIsMounted] = useState(false);
+  
+  useEffect(() => {
+    setIsMounted(true);
+    // Update current option when options change (e.g., during hydration)
+    setCurrent(options[defaultCurrent]);
+  }, [options, defaultCurrent]);
+  
   const onClose = useCallback(() => {
     setOpen(false);
   }, []);
@@ -48,7 +56,9 @@ const NiceSelect: FC<NiceSelectProps> = ({
       onKeyDown={(e) => e}
       ref={ref}
     >
-      <span className="current">{current?.text || placeholder}</span>
+      <span className="current" suppressHydrationWarning={true}>
+        {current?.text || placeholder}
+      </span>
       <ul
         className="list"
         role="menubar"
@@ -66,6 +76,7 @@ const NiceSelect: FC<NiceSelectProps> = ({
             role="menuitem"
             onClick={() => currentHandler(item)}
             onKeyDown={(e) => e}
+            suppressHydrationWarning={true}
           >
             {item.text}
           </li>
