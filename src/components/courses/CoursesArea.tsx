@@ -188,7 +188,21 @@ const fallbackCoursesData = [
 const CoursesArea = () => {
     const [sortOrder, setSortOrder] = useState<string>('01');
     const { data, loading, error } = useCoursesData();
-    const { t } = useLanguage();
+    const { currentLanguage } = useLanguage();
+
+    const getTranslatedText = (zhText: string, enText: string, frText: string = enText, zhHantText: string = zhText) => {
+        switch (currentLanguage) {
+            case 'zh-hans':
+                return zhText;
+            case 'zh-hant':
+                return zhHantText;
+            case 'fr':
+                return frText;
+            case 'en':
+            default:
+                return enText;
+        }
+    };
 
     const selectHandler = (e: any) => {
         setSortOrder(e.value);
@@ -218,16 +232,16 @@ const CoursesArea = () => {
             return courseTypeFromApi.name;
         }
         
-        // Use translation function
+        // Use hardcoded translation
         switch(courseType) {
             case 'basic':
-                return t('courses.types.basic', 'Basic Courses');
+                return getTranslatedText('基础课程', 'Basic Courses', 'Cours de Base', '基礎課程');
             case 'exam_prep':
-                return t('courses.types.exam_prep', 'Exam Preparation');
+                return getTranslatedText('考试准备', 'Exam Preparation', 'Préparation aux Examens', '考試準備');
             case 'combo':
-                return t('courses.types.combo', 'Combo Package');
+                return getTranslatedText('套餐课程', 'Combo Package', 'Forfait Combo', '套餐課程');
             case 'vip':
-                return t('courses.types.vip', 'VIP Course');
+                return getTranslatedText('VIP课程', 'VIP Course', 'Cours VIP', 'VIP課程');
             default:
                 return courseType;
         }
@@ -288,7 +302,7 @@ const CoursesArea = () => {
                         <ul className="post-class">
                             <li>
                                 <i className="far fa-books"></i>
-                                {course.hours ? `${course.hours}${data?.translations?.courses?.hours || t('courses.hours', ' hours')}` : data?.translations?.courses?.unlimited_hours || t('courses.unlimited_hours', 'Unlimited hours')}
+                                {course.hours ? `${course.hours}${data?.translations?.courses?.hours || getTranslatedText(' 小时', ' hours', ' heures', ' 小時')}` : data?.translations?.courses?.unlimited_hours || getTranslatedText('无限课时', 'Unlimited hours', 'Heures illimitées', '無限課時')}
                             </li>
                             <li>
                                 <i className="far fa-user"></i>
@@ -314,9 +328,9 @@ const CoursesArea = () => {
                     <div className="row justify-content-center">
                         <div className="col-12 text-center">
                             <div className="spinner-border text-primary" role="status">
-                                <span className="visually-hidden">{t('common.loading', 'Loading...')}</span>
+                                <span className="visually-hidden">{getTranslatedText('加载中...', 'Loading...', 'Chargement...', '載入中...')}</span>
                             </div>
-                            <p className="mt-3">{t('courses.loading_data', 'Loading course data...')}</p>
+                            <p className="mt-3">{getTranslatedText('加载课程数据中...', 'Loading course data...', 'Chargement des données de cours...', '載入課程資料中...')}</p>
                         </div>
                     </div>
                 </div>
@@ -335,17 +349,17 @@ const CoursesArea = () => {
                     <div className="coureses-notices-wrapper">
                         <div className="courses-showing">
                             <h5>
-                                {data?.translations?.common?.showing || t('common.showing', 'Showing')} 1-{totalCourses} {data?.translations?.common?.of || t('common.of', 'of')} {totalCourses} {data?.translations?.courses?.courses_count || t('courses.courses_count', 'courses')}
+                                {data?.translations?.common?.showing || getTranslatedText('显示', 'Showing', 'Affichage', '顯示')} 1-{totalCourses} {data?.translations?.common?.of || getTranslatedText('共', 'of', 'de', '共')} {totalCourses} {data?.translations?.courses?.courses_count || getTranslatedText('门课程', 'courses', 'cours', '門課程')}
                             </h5>
                         </div>
                         <div className="form-clt">
                             <NiceSelect
                                 className="category"
                                 options={[
-                                    { value: "01", text: data?.translations?.courses?.sort?.default || t('courses.sort.default', 'Sort by: Default') },
-                                    { value: "02", text: data?.translations?.courses?.sort?.by_hours || t('courses.sort.by_hours', 'Sort by Hours') },
-                                    { value: "03", text: data?.translations?.courses?.sort?.by_level || t('courses.sort.by_level', 'Sort by Level') },
-                                    { value: "04", text: data?.translations?.courses?.sort?.by_price || t('courses.sort.by_price', 'Sort by Price') },
+                                    { value: "01", text: data?.translations?.courses?.sort?.default || getTranslatedText('排序方式：默认', 'Sort by: Default', 'Trier par : Défaut', '排序方式：默認') },
+                                    { value: "02", text: data?.translations?.courses?.sort?.by_hours || getTranslatedText('按课时排序', 'Sort by Hours', 'Trier par heures', '按課時排序') },
+                                    { value: "03", text: data?.translations?.courses?.sort?.by_level || getTranslatedText('按难度排序', 'Sort by Level', 'Trier par niveau', '按難度排序') },
+                                    { value: "04", text: data?.translations?.courses?.sort?.by_price || getTranslatedText('按价格排序', 'Sort by Price', 'Trier par prix', '按價格排序') },
                                 ]}
                                 defaultCurrent={0}
                                 onChange={selectHandler}
@@ -360,7 +374,7 @@ const CoursesArea = () => {
                     {error && (
                         <div className="alert alert-warning mt-3" role="alert">
                             <i className="fas fa-exclamation-triangle me-2"></i>
-                            {data?.translations?.courses?.fallback_message || t('courses.fallback_message', 'Displaying fallback data. Please check your network connection and refresh the page for the latest course information.')}
+                            {data?.translations?.courses?.fallback_message || getTranslatedText('显示后备数据。请检查网络连接并刷新页面以获取最新课程信息。', 'Displaying fallback data. Please check your network connection and refresh the page for the latest course information.', 'Affichage des données de secours. Veuillez vérifier votre connexion réseau et actualiser la page pour les dernières informations sur les cours.', '顯示後備資料。請檢查網路連線並重新整理頁面以取得最新課程資訊。')}
                         </div>
                     )}
                 </div>
