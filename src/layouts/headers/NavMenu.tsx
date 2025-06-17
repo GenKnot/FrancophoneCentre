@@ -11,7 +11,8 @@ const NavMenu = () => {
         setIsMounted(true);
     }, []);
 
-    const menuItems = [
+    // Generate menu items with proper translations
+    const getMenuItems = () => [
         {
             id: 1,
             title: t('navigation.home', 'Home'),
@@ -30,7 +31,6 @@ const NavMenu = () => {
             link: "/courses",
             icon: "fas fa-book",
         },
-
         {
             id: 5,
             title: t('navigation.news', 'News'),
@@ -45,7 +45,9 @@ const NavMenu = () => {
         },
     ];
 
-    // Prevent hydration mismatch by showing placeholder during SSR
+    const menuItems = getMenuItems();
+
+    // Prevent hydration mismatch by showing proper titles during SSR
     if (!isMounted) {
         return (
             <ul>
@@ -55,7 +57,7 @@ const NavMenu = () => {
                             <span className="head-icon">
                                 <i className={item.icon}></i>
                             </span>
-                            <span suppressHydrationWarning={true}>&nbsp;</span>
+                            <span suppressHydrationWarning={true}>{item.title}</span>
                         </Link>
                     </li>
                 ))}
