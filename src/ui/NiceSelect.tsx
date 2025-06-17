@@ -56,7 +56,7 @@ const NiceSelect: FC<NiceSelectProps> = ({
       onKeyDown={(e) => e}
       ref={ref}
     >
-      <span className="current" suppressHydrationWarning={true}>
+      <span className="current">
         {current?.text || placeholder}
       </span>
       <ul
@@ -76,7 +76,7 @@ const NiceSelect: FC<NiceSelectProps> = ({
             role="menuitem"
             onClick={() => currentHandler(item)}
             onKeyDown={(e) => e}
-            suppressHydrationWarning={true}
+
           >
             {item.text}
           </li>

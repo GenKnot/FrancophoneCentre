@@ -30,9 +30,8 @@ interface LanguageProviderProps {
 
 const getClientLanguage = (): string => {
     if (typeof window === 'undefined') {
-        // For SSR, try to get language from URL if available
-        // This is a fallback, actual detection happens on client side
-        return 'en';
+        // For SSR, return the same default as our initial state
+        return 'zh-hans';
     }
     
     const urlParams = new URLSearchParams(window.location.search);
@@ -220,18 +219,9 @@ const getDefaultTranslations = (language: string): Translation => {
 };
 
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({children}) => {
-    // Initialize with client language detection for better SSR support
-    const getInitialLanguage = () => {
-        if (typeof window === 'undefined') {
-            // On server side, default to 'en' but will be corrected on client side
-            return 'en';
-        }
-        return getClientLanguage();
-    };
-
-    const initialLanguage = getInitialLanguage();
-    const [currentLanguage, setCurrentLanguage] = useState<string>(initialLanguage);
-    const [translations, setTranslations] = useState<Translation>(getDefaultTranslations(initialLanguage));
+    // Initialize with a safe default that works for both SSR and client
+    const [currentLanguage, setCurrentLanguage] = useState<string>('zh-hans'); // 默认简体中文
+    const [translations, setTranslations] = useState<Translation>(getDefaultTranslations('zh-hans'));
     
     const [availableLanguages, setAvailableLanguages] = useState<Language[]>([
         {code: 'en', name: 'English'},
@@ -304,28 +294,6 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({children}) =>
     };
 
     const t = (key: string, defaultValue?: string): string => {
-        if (!isHydrated) {
-            // During SSR, try to detect language from current URL
-            let ssrLanguage = currentLanguage;
-            if (typeof window !== 'undefined') {
-                ssrLanguage = getClientLanguage();
-            }
-            
-            const currentTranslations = getDefaultTranslations(ssrLanguage);
-            const keys = key.split('.');
-            let result: any = currentTranslations;
-            
-            for (const k of keys) {
-                if (result && typeof result === 'object' && k in result) {
-                    result = result[k];
-                } else {
-                    return defaultValue || key;
-                }
-            }
-            
-            return typeof result === 'string' ? result : defaultValue || key;
-        }
-        
         const keys = key.split('.');
         let result: any = translations;
         
@@ -346,8 +314,25 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({children}) =>
             
             const detectedLang = getClientLanguage();
             
-            setCurrentLanguage(detectedLang);
-            fetchTranslations(detectedLang);
+            // Only change language if it's different from our default and we have a specific reason
+            if (detectedLang !== currentLanguage) {
+                // Check if there's an explicit URL parameter or saved preference
+                const urlParams = new URLSearchParams(window.location.search);
+                const langParam = urlParams.get('lang');
+                const savedLang = localStorage.getItem('preferred-language');
+                
+                // Only change if there's an explicit preference
+                if (langParam || savedLang) {
+                    setCurrentLanguage(detectedLang);
+                    fetchTranslations(detectedLang);
+                } else {
+                    // No explicit preference, keep our default and fetch translations for it
+                    fetchTranslations(currentLanguage);
+                }
+            } else {
+                // Same language, just fetch translations
+                fetchTranslations(currentLanguage);
+            }
         }
     }, [isHydrated]);
     
