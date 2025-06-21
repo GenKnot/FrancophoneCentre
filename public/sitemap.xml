@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://www.qfec.ca/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.qfec.ca/?lang=zh" />
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.qfec.ca/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.qfec.ca/?lang=fr" />
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+    
+  <url>
+    <loc>https://www.tef-test.ca/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.tef-test.ca/?lang=zh" />
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.tef-test.ca/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.tef-test.ca/?lang=fr" />
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://www.qfec.ca/about</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.qfec.ca/about?lang=zh" />
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.qfec.ca/about?lang=en" />
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.qfec.ca/about?lang=fr" />
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.qfec.ca/courses</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.qfec.ca/courses?lang=zh" />
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.qfec.ca/courses?lang=en" />
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.qfec.ca/courses?lang=fr" />
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.qfec.ca/courses-details/tef-exam-preparation</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.qfec.ca/courses-details/tcf-exam-preparation</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.qfec.ca/courses-details/french-immigration-course</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.qfec.ca/news</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.qfec.ca/news?lang=zh" />
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.qfec.ca/news?lang=en" />
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.qfec.ca/news?lang=fr" />
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.qfec.ca/event</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.qfec.ca/event?lang=zh" />
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.qfec.ca/event?lang=en" />
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.qfec.ca/event?lang=fr" />
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.qfec.ca/faq</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.qfec.ca/faq?lang=zh" />
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.qfec.ca/faq?lang=en" />
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.qfec.ca/faq?lang=fr" />
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.qfec.ca/contact</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.qfec.ca/contact?lang=zh" />
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.qfec.ca/contact?lang=en" />
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://www.qfec.ca/contact?lang=fr" />
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.qfec.ca/register</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://www.qfec.ca/sign-in</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://www.qfec.ca/gallery</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+</urlset> 

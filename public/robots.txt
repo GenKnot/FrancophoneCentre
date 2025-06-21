@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.qfec.ca/sitemap.xml
+Sitemap: https://www.tef-test.ca/sitemap.xml
+
+Crawl-delay: 1
+
+Allow: *.css
+Allow: *.js
+Allow: *.png
+Allow: *.jpg
+Allow: *.jpeg
+Allow: *.gif
+Allow: *.svg
+Allow: *.pdf
+
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.log$
+Disallow: /tmp/ 
