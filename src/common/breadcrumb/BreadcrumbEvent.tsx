@@ -4,7 +4,21 @@ import React from "react";
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const BreadcrumbEvent = ({title, subtitle} : any) => {
-	const { t } = useLanguage();
+	const { currentLanguage } = useLanguage();
+
+	const getHomeText = () => {
+		switch (currentLanguage) {
+			case 'zh-hans':
+				return '主页';
+			case 'zh-hant':
+				return '主頁';
+			case 'fr':
+				return 'Accueil';
+			case 'en':
+			default:
+				return 'Home';
+		}
+	};
 
 	return (
 		<>
@@ -30,7 +44,7 @@ const BreadcrumbEvent = ({title, subtitle} : any) => {
 							<h1>{title}</h1>
 							<ul className="breadcrumb-items">
 								<li>
-									<Link href="/">{t('navigation.home', '主页')}</Link>
+									<Link href="/">{getHomeText()}</Link>
 								</li>
 								<li className="style-2">{subtitle}</li>
 							</ul>

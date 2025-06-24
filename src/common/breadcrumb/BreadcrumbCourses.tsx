@@ -20,6 +20,20 @@ const BreadcrumbCourses = ({title, subtitle} : any) => {
     }
   };
 
+  const getHomeText = () => {
+    switch (currentLanguage) {
+      case 'zh-hans':
+        return '主页';
+      case 'zh-hant':
+        return '主頁';
+      case 'fr':
+        return 'Accueil';
+      case 'en':
+      default:
+        return 'Home';
+    }
+  };
+
   const displayTitle = title || getTranslatedText('所有课程', 'All Courses', 'Tous les Cours', '所有課程');
   const displaySubtitle = subtitle || getTranslatedText('课程', 'Courses', 'Cours', '課程');
   
@@ -49,7 +63,7 @@ const BreadcrumbCourses = ({title, subtitle} : any) => {
                             <li>
                                 <Link href="/">
                                     <span>
-                                        {getTranslatedText('主页', 'Home', 'Accueil', '主頁')}
+                                        {getHomeText()}
                                     </span>
                                 </Link>
                             </li>

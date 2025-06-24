@@ -27,6 +27,20 @@ const BreadcrumbNewsDetails = ({ newsId }: BreadcrumbNewsDetailsProps) => {
         }
     };
 
+    const getHomeText = () => {
+        switch (currentLanguage) {
+            case 'zh-hans':
+                return '主页';
+            case 'zh-hant':
+                return '主頁';
+            case 'fr':
+                return 'Accueil';
+            case 'en':
+            default:
+                return 'Home';
+        }
+    };
+
     const newsTitle = newsArticle ? getNewsTranslation(newsArticle, 'title', currentLanguage) : '';
     const displayTitle = newsTitle || getTranslatedText('新闻详情', 'News Details', 'Détails des Nouvelles', '新聞詳情');
 
@@ -56,7 +70,7 @@ const BreadcrumbNewsDetails = ({ newsId }: BreadcrumbNewsDetailsProps) => {
                                 <li>
                                     <Link href="/">
                                         <span>
-                                            {getTranslatedText('主页', 'Home', 'Accueil', '主頁')}
+                                            {getHomeText()}
                                         </span>
                                     </Link>
                                 </li>

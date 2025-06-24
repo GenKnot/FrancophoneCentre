@@ -27,6 +27,20 @@ const BreacrumbEventDetails = ({ eventId }: BreadcrumbEventDetailsProps) => {
         }
     };
 
+    const getHomeText = () => {
+        switch (currentLanguage) {
+            case 'zh-hans':
+                return '主页';
+            case 'zh-hant':
+                return '主頁';
+            case 'fr':
+                return 'Accueil';
+            case 'en':
+            default:
+                return 'Home';
+        }
+    };
+
     const eventTitle = event ? getEventTranslation(event, 'title', currentLanguage) : '';
 
     return (
@@ -47,7 +61,7 @@ const BreacrumbEventDetails = ({ eventId }: BreadcrumbEventDetailsProps) => {
                 <div className="container">
                     <div className="page-heading">
                         <ul className="breadcrumb-items">
-                            <li><Link href="/">{getTranslatedText('主页', 'Home', 'Accueil', '主頁')}</Link></li>
+                            <li><Link href="/">{getHomeText()}</Link></li>
                             <li><Link href="/event">{getTranslatedText('活动', 'Events', 'Événements', '活動')}</Link></li>
                             <li className="style-2">{getTranslatedText('活动详情', 'Event Details', 'Détails de l\'Événement', '活動詳情')}</li>
                         </ul>
