@@ -3,6 +3,9 @@
 
 export const API_BASE_URL = 'https://api.qfec.ca';
 
+// Media URL - same as API_BASE_URL for now, but can be different in production
+export const MEDIA_BASE_URL = API_BASE_URL;
+
 export const ENDPOINTS = {
     SITE_CONFIG: {
         LIST: `${API_BASE_URL}/api/site-config/`,

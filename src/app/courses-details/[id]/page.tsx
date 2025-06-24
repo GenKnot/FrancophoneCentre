@@ -116,7 +116,6 @@ const CourseDetailsPage = () => {
                 const backendLanguage = language === 'zh-hans' ? 'zh-Hans' : language;
                 
                 const url = `${ENDPOINTS.COURSES.COURSE_DETAIL(courseId)}?lang=${backendLanguage}`;
-                console.log('Fetching course data from:', url);
                 
                 const response = await fetch(url);
                 
@@ -128,7 +127,6 @@ const CourseDetailsPage = () => {
                 }
                 
                 const data = await response.json();
-                console.log('Course data received:', data);
                 
                 if (data.course) {
                     setCourseData(data.course);
@@ -136,8 +134,8 @@ const CourseDetailsPage = () => {
                     throw new Error('Course data not found in response');
                 }
             } catch (err) {
-                console.error('Error fetching course data:', err);
-                setError(err instanceof Error ? err.message : 'Failed to load course');
+                setError(err instanceof Error ? err.message : 'Failed to fetch course data');
+                setCourseData(null);
             } finally {
                 setLoading(false);
             }

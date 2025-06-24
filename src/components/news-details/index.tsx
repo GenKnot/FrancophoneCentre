@@ -1,16 +1,19 @@
 import React from "react";
 import MarqueeOne from "@/common/MarqueeOne";
 import NewsDetailsArea from "./NewsDetailsArea";
-import BreadcrumbEvent from "@/common/breadcrumb/BreadcrumbEvent";
+import BreadcrumbNewsDetails from "@/common/breadcrumb/BreadcrumbNewsDetails";
 import HeaderMain from "@/layouts/headers/HeaderMain";
 import FooterMain from "@/layouts/footers/FooterMain";
 
-const NewsDetails = () => {
+interface NewsDetailsProps {
+    newsId: number | null;
+}
+
+const NewsDetails = ({ newsId }: NewsDetailsProps) => {
     return (
         <>
             <HeaderMain/>
-            <BreadcrumbEvent title="实时资讯" subtitle="2025年法语EE"/>
-            <NewsDetailsArea/>
+            <NewsDetailsArea newsId={newsId} />
             <MarqueeOne style_2={true}/>
             <FooterMain/>
         </>

@@ -2,8 +2,74 @@
 
 import Link from 'next/link';
 import React from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useNewsArticle, useNews } from '@/hooks/useNews';
+import { 
+    getNewsTranslation, 
+    formatNewsDate,
+    getNewsViewCountDisplay,
+    getCategoryDisplay,
+    getRelativeTimeString
+} from '@/utils/newsUtils';
+import { MEDIA_BASE_URL } from '../../../constants/api';
 
-const NewsDetailsArea = () => {
+interface NewsDetailsAreaProps {
+    newsId: number | null;
+}
+
+const NewsDetailsArea = ({ newsId }: NewsDetailsAreaProps) => {
+    const { currentLanguage } = useLanguage();
+    const { newsArticle, loading, error } = useNewsArticle(newsId || 0);
+    const { news } = useNews();
+
+    const getTranslatedText = (zhText: string, enText: string, frText: string = enText, zhHantText: string = zhText) => {
+        switch (currentLanguage) {
+            case 'zh-hans':
+                return zhText;
+            case 'zh-hant':
+                return zhHantText;
+            case 'fr':
+                return frText;
+            case 'en':
+            default:
+                return enText;
+        }
+    };
+
+    if (loading) {
+        return (
+            <section className="blog-wrapper news-wrapper section-padding pt-0">
+                <div className="container">
+                    <div className="text-center py-5">
+                        <div className="spinner-border" role="status">
+                            <span className="sr-only">{getTranslatedText('加载中...', 'Loading...', 'Chargement...', '載入中...')}</span>
+                        </div>
+                        <p className="mt-3">{getTranslatedText('正在加载新闻...', 'Loading news...', 'Chargement des nouvelles...', '正在載入新聞...')}</p>
+                    </div>
+                </div>
+            </section>
+        );
+    }
+
+    if (error || !newsArticle) {
+        return (
+            <section className="blog-wrapper news-wrapper section-padding pt-0">
+                <div className="container">
+                    <div className="alert alert-danger text-center">
+                        {error || getTranslatedText('未找到新闻文章', 'News article not found', 'Article de nouvelles introuvable', '未找到新聞文章')}
+                    </div>
+                    <div className="text-center">
+                        <Link href="/news" className="theme-btn">
+                            {getTranslatedText('返回新闻列表', 'Back to News', 'Retour aux Nouvelles', '返回新聞列表')}
+                        </Link>
+                    </div>
+                </div>
+            </section>
+        );
+    }
+
+    const otherNews = news.filter(article => article.id !== newsId).slice(0, 3);
+
     return (
         <>
             <section className="blog-wrapper news-wrapper section-padding pt-0">
@@ -13,69 +79,62 @@ const NewsDetailsArea = () => {
                             <div className="col-12 col-lg-8">
                                 <div className="blog-post-details border-wrap mt-0">
                                     <div className="single-blog-post post-details mt-0">
+                                        {newsArticle.featured_image && (
+                                            <div className="post-featured-thumb bg-cover mb-4">
+                                                <img 
+                                                    src={newsArticle.featured_image.startsWith('http') 
+                                                        ? newsArticle.featured_image 
+                                                        : `${MEDIA_BASE_URL}/media/${newsArticle.featured_image}`
+                                                    } 
+                                                    alt={getNewsTranslation(newsArticle, 'title', currentLanguage)}
+                                                    className="img-fluid"
+                                                />
+                                            </div>
+                                        )}
                                         <div className="post-content pt-0">
-                                            <h2 className="mt-0">2025年法语EE最新捞取分数415分！快速移民加拿大的黄金机会</h2>
+                                            <h2 className="mt-0">{getNewsTranslation(newsArticle, 'title', currentLanguage)}</h2>
                                             <div className="post-meta mt-3">
-                                                <span><i className="fal fa-user"></i>QFEC移民顾问</span>
-                                                <span><i className="fal fa-calendar-alt"></i>2025年5月15日</span>
+                                                <span>
+                                                    <i className="fal fa-user"></i>
+                                                    {getNewsTranslation(newsArticle, 'author', currentLanguage)}
+                                                </span>
+                                                <span>
+                                                    <i className="fal fa-calendar-alt"></i>
+                                                    {formatNewsDate(newsArticle.published_date, currentLanguage)}
+                                                </span>
+                                                <span>
+                                                    <i className="fal fa-folder"></i>
+                                                    {getCategoryDisplay(getNewsTranslation(newsArticle, 'category', currentLanguage), currentLanguage)}
+                                                </span>
+                                                {newsArticle.view_count && newsArticle.view_count > 0 && (
+                                                    <span>
+                                                        <i className="fal fa-eye"></i>
+                                                        {getNewsViewCountDisplay(newsArticle.view_count, currentLanguage)}
+                                                    </span>
+                                                )}
                                             </div>
-                                            <p>
-                                                随着加拿大政府对法语移民政策的大力推进，2025年法语移民目标提升至8.5%，为广大法语学习者带来了前所未有的移民机会。
-                                                最新数据显示，法语Express Entry项目平均捞取分数仅为415分，相比英语EE项目的520+分，优势明显。
-                                            </p>
-                                            <p>
-                                                对于有移民加拿大计划的朋友来说，现在开始学习法语绝对是最明智的选择。只要达到CLB7法语水平，
-                                                再加上一年工作经验，基本就能满足法语EE的申请要求。这比英语EE项目要求的雅思8777分数加上名校硕博学历要简单得多。
-                                            </p>
-                                            <img src="FCImage/newsdetail-1.png" alt="blog__img"
-                                                 className="single-post-image"/>
-                                            <h2>QFEC助您快速达到移民要求</h2>
-                                            <p>
-                                                加拿大魁北克法语教育中心（QFEC）拥有现任TEF考官直接授课的独特优势。我们的教学团队包括6位现任考官和4位前任考官，
-                                                累计2000小时教研成果，确保学员能够接受最权威、最专业的法语培训。
-                                            </p>
-                                            <blockquote>
-                                                不走弯路，不浪费时间。跟着真正的TEF考官学最有用的内容，
-                                                用最短的时间拿到最高的分数，开启你的加拿大新生活
-                                            </blockquote>
-                                            <p>
-                                                我们的课程采用100%原题训练模式，学员在考试中能遇到80%以上的原题。这不是运气，而是我们考官团队深厚教研功底的体现。
-                                                98%的超高通过率远超行业平均水平，充分证明了我们教学方法的有效性。
-                                            </p>
-                                            <ul className="checked-list mb-4">
-                                                <li>现任考官直接授课，100%还原考试环境</li>
-                                                <li>98%超高通过率，远超行业平均水平</li>
-                                                <li>6个月达到CLB7，4个月达到CLB5</li>
-                                                <li>2000小时考官教研成果，每月更新课程内容</li>
-                                            </ul>
-                                            <h4>把握法语移民黄金机会</h4>
-                                            <p>
-                                                在当前全球移民政策日趋紧缩的大环境下，加拿大的法语移民通道无疑是最快速且安全的选择。
-                                                无论是联邦EE项目、魁北克各类移民项目，还是其他省份推出的法语移民通道，都对掌握法语的申请人大开绿灯。
-                                            </p>
-                                            <img className="alignleft" src="FCImage/newsdetail-2.png"
-                                                 alt="blog__img"/>
-                                            <p>
-                                                QFEC的学员张同学就是成功案例之一。他从零基础开始学习，仅用67天就通过了CLB5考试，
-                                                成功获得法语EE邀请，现已在加拿大开始新生活。"考官直授真的太棒了，每道题都能遇到原题，
-                                                现在已经成功登陆多伦多！"张同学的话代表了众多QFEC学员的心声。
-                                            </p>
-                                            <p>
-                                                如果你也有移民加拿大的计划，不要再犹豫了。选择QFEC，选择专业的法语教育，
-                                                让我们助您早日实现加拿大移民梦想。现在咨询还可免费领取考官直播试听课1节！
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div className="row tag-share-wrap">
-                                        <div className="col-lg-8 col-12">
-                                            <h4>相关标签</h4>
-                                            <div className="tagcloud">
-                                                <Link href="/news-details">法语移民</Link>
-                                                <Link href="/news-details">EE项目</Link>
-                                                <Link href="/news-details">CLB7</Link>
-                                            </div>
-                                        </div>
+                                            
+                                            <div 
+                                                className="mt-4"
+                                                dangerouslySetInnerHTML={{ 
+                                                    __html: getNewsTranslation(newsArticle, 'content', currentLanguage) 
+                                                }}
+                                            />
 
+                                            {newsArticle.tags && (
+                                                <div className="tagcloud mt-4">
+                                                    <h4 className="mb-3">{getTranslatedText('相关标签', 'Related Tags', 'Tags Associés', '相關標籤')}</h4>
+                                                    {getNewsTranslation(newsArticle, 'tags', currentLanguage)
+                                                        .split(',')
+                                                        .map((tag, index) => (
+                                                            <Link key={index} href="/news" className="tag-link me-2">
+                                                                {tag.trim()}
+                                                            </Link>
+                                                        ))
+                                                    }
+                                                </div>
+                                            )}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -83,69 +142,54 @@ const NewsDetailsArea = () => {
                                 <div className="main-sidebar sticky-style">
                                     <div className="single-sidebar-widget">
                                         <div className="wid-title">
-                                            <h3>最新资讯</h3>
+                                            <h3>{getTranslatedText('相关新闻', 'Related News', 'Nouvelles associées', '相關新聞')}</h3>
                                         </div>
                                         <div className="popular-posts">
-                                            <div className="single-post-item">
-                                                <div className="thumb bg-cover"
-                                                     style={{background: `url(FCImage/newsdetail-1.png)`}}></div>
-                                                <div className="post-content">
-                                                    <h5><Link href="/news-details">
-                                                        法语EE最新捞取分数创历史新低</Link></h5>
-                                                    <div className="post-date">
-                                                        <i className="far fa-calendar-alt"></i>2025年5月15日
+                                            {otherNews.length > 0 ? (
+                                                otherNews.map((article) => (
+                                                    <div key={article.id} className="single-post-item">
+                                                        <div className="thumb bg-cover"
+                                                             style={{
+                                                                 background: article.featured_image 
+                                                                     ? `url(${article.featured_image.startsWith('http') 
+                                                                         ? article.featured_image 
+                                                                         : `${MEDIA_BASE_URL}/media/${article.featured_image}`})` 
+                                                                     : `url(/FCImage/News-2.png)`,
+                                                                 backgroundSize: 'cover',
+                                                                 backgroundPosition: 'center',
+                                                                 width: '80px',
+                                                                 height: '80px',
+                                                                 borderRadius: '8px'
+                                                             }}></div>
+                                                        <div className="post-content">
+                                                            <h5>
+                                                                <Link href={`/news-details?id=${article.id}`}>
+                                                                    {getNewsTranslation(article, 'title', currentLanguage).length > 40 
+                                                                        ? getNewsTranslation(article, 'title', currentLanguage).substring(0, 40) + '...'
+                                                                        : getNewsTranslation(article, 'title', currentLanguage)}
+                                                                </Link>
+                                                            </h5>
+                                                            <div className="post-date">
+                                                                <i className="far fa-calendar-alt"></i>
+                                                                {formatNewsDate(article.published_date, currentLanguage)}
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div className="single-post-item">
-                                                <div className="thumb bg-cover"
-                                                     style={{background: `url(FCImage/newsdetail-2.png)`}}></div>
-                                                <div className="post-content">
-                                                    <h5><Link href="/news-details">QFEC学员67天通过CLB5成功案例</Link>
-                                                    </h5>
-                                                    <div className="post-date">
-                                                        <i className="far fa-calendar-alt"></i>2025年5月10日
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="single-post-item">
-                                                <div className="thumb bg-cover"
-                                                     style={{background: `url(FCImage/newsdetail-2.png)`}}></div>
-                                                <div className="post-content">
-                                                    <h5><Link href="/news-details">魁北克10项政府补助详解</Link></h5>
-                                                    <div className="post-date">
-                                                        <i className="far fa-calendar-alt"></i>2025年5月5日
-                                                    </div>
-                                                </div>
-                                            </div>
+                                                ))
+                                            ) : (
+                                                <p className="text-muted">{getTranslatedText('暂无相关新闻', 'No related news available', 'Aucune nouvelle associée disponible', '暫無相關新聞')}</p>
+                                            )}
                                         </div>
                                     </div>
+                                    
                                     <div className="single-sidebar-widget">
                                         <div className="wid-title">
-                                            <h3>热门分类</h3>
+                                            <h3>{getTranslatedText('返回新闻', 'Back to News', 'Retour aux nouvelles', '返回新聞')}</h3>
                                         </div>
-                                        <div className="widget_categories">
-                                            <ul>
-                                                <li><Link href="/news">移民政策 <span>23</span></Link></li>
-                                                <li><Link href="/news">法语学习 <span>18</span></Link></li>
-                                                <li><Link href="/news">成功案例 <span>15</span></Link></li>
-                                                <li><Link href="/news">生活指南 <span>12</span></Link></li>
-                                                <li><Link href="/news">考试资讯 <span>9</span></Link></li>
-                                                <li><Link href="/news">教学动态 <span>6</span></Link></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div className="single-sidebar-widget">
-                                        <div className="wid-title">
-                                            <h3>热门标签</h3>
-                                        </div>
-                                        <div className="tagcloud">
-                                            <Link href="/news">法语移民</Link>
-                                            <Link href="/news-details">TEF考试</Link>
-                                            <Link href="/news-details">CLB7</Link>
-                                            <Link href="/news-details">魁北克</Link>
-                                            <Link href="/news-details">考官直授</Link>
-                                            <Link href="/news-details">98%通过率</Link>
+                                        <div className="text-center">
+                                            <Link href="/news" className="theme-btn">
+                                                {getTranslatedText('查看全部新闻', 'View All News', 'Voir toutes les nouvelles', '查看全部新聞')}
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>

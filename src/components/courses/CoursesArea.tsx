@@ -339,7 +339,7 @@ const CoursesArea = () => {
     }
 
     if (error) {
-        console.warn('API error:', error);
+        // API error occurred, but we'll continue with fallback data
     }
 
     return (
