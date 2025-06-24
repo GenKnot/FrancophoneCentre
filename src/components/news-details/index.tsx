@@ -13,6 +13,7 @@ const NewsDetails = ({ newsId }: NewsDetailsProps) => {
     return (
         <>
             <HeaderMain/>
+            <BreadcrumbNewsDetails newsId={newsId} />
             <NewsDetailsArea newsId={newsId} />
             <MarqueeOne style_2={true}/>
             <FooterMain/>
