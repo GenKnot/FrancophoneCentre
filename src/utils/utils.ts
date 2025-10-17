@@ -82,10 +82,10 @@ export const getPageMetadata = (pageName: string, currentLanguage: string = 'zh-
                 currentLanguage
             ),
             description: getTranslatedText(
-                '联系QFEC加拿大魁北克法语教育中心，获取专业法语培训咨询。三个校区为您服务：蒙特利尔市中心、圣让、老港区。免费咨询TEF/TCF考试、法语移民课程。',
-                'Contact QFEC Quebec French Education Center Canada for professional French training consultation. Three campuses serving you: Montreal Downtown, Saint-Jean, Old Port. Free consultation for TEF/TCF exams and French immigration courses.',
-                'Contactez le Centre d\'Éducation Française du Québec QFEC pour une consultation professionnelle en formation française. Trois campus à votre service : Centre-ville de Montréal, Saint-Jean, Vieux-Port. Consultation gratuite pour les examens TEF/TCF et les cours de français pour l\'immigration.',
-                '聯繫QFEC加拿大魁北克法語教育中心，獲取專業法語培訓咨詢。三個校區為您服務：蒙特利爾市中心、聖讓、老港區。免費咨詢TEF/TCF考試、法語移民課程。',
+                '联系QFEC加拿大魁北克法语教育中心，获取专业法语培训咨询。两个校区为您服务：圣让、老港区。免费咨询TEF/TCF考试、法语移民课程。',
+                'Contact QFEC Quebec French Education Center Canada for professional French training consultation. Two campuses serving you: Saint-Jean, Old Port. Free consultation for TEF/TCF exams and French immigration courses.',
+                'Contactez le Centre d\'Éducation Française du Québec QFEC pour une consultation professionnelle en formation française. Deux campus à votre service : Saint-Jean, Vieux-Port. Consultation gratuite pour les examens TEF/TCF et les cours de français pour l\'immigration.',
+                '聯繫QFEC加拿大魁北克法語教育中心，獲取專業法語培訓咨詢。兩個校區為您服務：聖讓、老港區。免費咨詢TEF/TCF考試、法語移民課程。',
                 currentLanguage
             )
         },

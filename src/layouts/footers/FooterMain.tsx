@@ -87,10 +87,6 @@ const FooterMain = () => {
                                         </p>
                                         <div className="footer-content pt-2">
                                             <ul className="contact-info">
-                                                <li>
-                                                    Montreal Downtown Campus:<br/>
-                                                    1440 Saint-Catherine St W Unit 501, Montreal
-                                                </li>
                                             </ul>
                                         </div>
                                     </div>

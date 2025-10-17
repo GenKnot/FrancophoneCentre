@@ -84,18 +84,6 @@ const OffCanvas = ({setOpenCanvas, openCanvas} : any) => {
                                 <li>
                                     <span suppressHydrationWarning={true}>
                                         {getDisplayText(
-                                          'Montreal Downtown Campus:',
-                                          'Montreal Downtown 校区:',
-                                          'Montreal Downtown 校區:',
-                                          'Campus du centre-ville de Montréal:'
-                                        )}
-                                    </span>
-                                    1440 Saint-Catherine St W Unit 501, 
-                                    Montreal
-                                </li>
-                                <li>
-                                    <span suppressHydrationWarning={true}>
-                                        {getDisplayText(
                                           'South Shore Campus:',
                                           '南岸校区:',
                                           '南岸校區:',

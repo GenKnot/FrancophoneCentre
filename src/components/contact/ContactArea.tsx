@@ -30,22 +30,6 @@ const ContactArea = () => {
                         </h2>
                     </div>
                     <div className="row">
-                        <div className="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".3s">
-                            <div className="contact-box-items">
-                                <div className="icon">
-                                    <i className="flaticon-map"></i>
-                                </div>
-                                <h5>
-                                    {getText('Montreal Downtown 校区', 'Montreal Downtown Campus', 'Campus du Centre-ville de Montréal', 'Montreal Downtown 校區')}
-                                </h5>
-                                <div className="image">
-                                    <img src="assets/img/small-line.png" alt="img"/>
-                                </div>
-                                <h4>
-                                    1440 Saint-Catherine St W Unit 501, Montreal
-                                </h4>
-                            </div>
-                        </div>
                         <div className="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".5s">
                             <div className="contact-box-items">
                                 <div className="icon">
