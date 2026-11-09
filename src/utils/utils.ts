@@ -29,31 +29,31 @@ export const getPageMetadata = (pageName: string, currentLanguage: string = 'zh-
             title: getTranslatedText(
                 '加拿大法语教育中心 CFEC | TEF/TCF考试专家 | 法语移民快速通道',
                 'Canadian Francophone Education Centre CFEC | TEF/TCF Test Expert | French Immigration Fast Track',
-                'Centre d\'Éducation Française du Québec CFEC | Expert TEF/TCF | Voie Rapide Immigration Française',
-                '加拿大法语教育中心 CFEC | TEF/TCF考試專家 | 法語移民快速通道',
+                'Centre d\'éducation francophone du Canada CFEC | Expert TEF/TCF | Voie Rapide Immigration Française',
+                '加拿大法語教育中心 CFEC | TEF/TCF考試專家 | 法語移民快速通道',
                 currentLanguage
             ),
             description: getTranslatedText(
-                '加拿大法语教育中心（CFEC）- 现任TEF/TCF考官直授，98%通过率，6个月达CLB7。专业法语培训、TEF/TCF考试、法语移民咨询。Montreal法语学校，魁北克法语课程，快速移民加拿大。',
-                'Canadian Francophone Education Centre (CFEC) - Taught by current TEF/TCF examiners, 98% pass rate, achieve CLB7 in 6 months. Professional French training, TEF/TCF exams, French immigration consulting. Montreal French school, Quebec French courses, fast immigration to Canada.',
-                'Centre d\'Éducation Française du Québec (CFEC) - Enseigné par les examinateurs TEF/TCF actuels, taux de réussite de 98%, atteindre CLB7 en 6 mois. Formation française professionnelle, examens TEF/TCF, consultation d\'immigration française. École française de Montréal, cours de français du Québec, immigration rapide au Canada.',
-                '加拿大法语教育中心（CFEC）- 現任TEF/TCF考官直授，98%通過率，6個月達CLB7。專業法語培訓、TEF/TCF考試、法語移民咨詢。Montreal法語學校，魁北克法語課程，快速移民加拿大。',
+                '加拿大法语教育中心（CFEC）- 现任TEF/TCF考官直授，CLB7最快167天达标。专业法语培训、TEF/TCF考试、法语移民咨询。Montreal法语学校，魁北克法语课程，快速移民加拿大。',
+                'Canadian Francophone Education Centre (CFEC) - Taught by current TEF/TCF examiners, fastest CLB 7 in 167 days. Professional French training, TEF/TCF exams, French immigration consulting. Montreal French school, Quebec French courses, fast immigration to Canada.',
+                'Centre d\'éducation francophone du Canada (CFEC) - Enseigné par les examinateurs TEF/TCF actuels, NCLC 7 en 167 jours au plus vite. Formation française professionnelle, examens TEF/TCF, consultation d\'immigration française. École française de Montréal, cours de français du Québec, immigration rapide au Canada.',
+                '加拿大法語教育中心（CFEC）- 現任TEF/TCF考官直授，CLB7最快167天達標。專業法語培訓、TEF/TCF考試、法語移民咨詢。Montreal法語學校，魁北克法語課程，快速移民加拿大。',
                 currentLanguage
             )
         },
         about: {
             title: getTranslatedText(
-                '关于我们 | CFEC加拿大法语教育中心 | 34年专业法语教育经验',
+                '关于我们 | CFEC加拿大法语教育中心 | 始于1991年',
                 'About Us | CFEC Canadian Francophone Education Centre | 34 Years Professional French Education',
-                'À Propos | CFEC Centre d\'Éducation Française du Québec | 34 Ans d\'Éducation Française Professionnelle',
-                '關於我們 | CFEC加拿大法语教育中心 | 34年專業法語教育經驗',
+                'À Propos | CFEC Centre d\'éducation francophone du Canada | Depuis 1991',
+                '關於我們 | CFEC加拿大法語教育中心 | 始於1991年',
                 currentLanguage
             ),
             description: getTranslatedText(
-                '了解加拿大法语教育中心(CFEC)的历史、使命和核心优势。自1991年成立以来，34年专业法语教育经验，现任TEF/TCF考官直授，98%超高通过率。',
-                'Learn about Canadian Francophone Education Centre (CFEC) history, mission and core advantages. Since 1991, 34 years of professional French education experience, taught by current TEF/TCF examiners, 98% pass rate.',
-                'Découvrez l\'histoire, la mission et les avantages du Centre d\'Éducation Française du Québec (CFEC). Depuis 1991, 34 ans d\'expérience en éducation française professionnelle, enseigné par les examinateurs TEF/TCF actuels, taux de réussite de 98%.',
-                '了解加拿大法语教育中心(CFEC)的歷史、使命和核心優勢。自1991年成立以來，34年專業法語教育經驗，現任TEF/TCF考官直授，98%超高通過率。',
+                '了解加拿大法语教育中心(CFEC)的历史、使命和核心优势。始于1991年，专注法语教育与考试培训，现任TEF/TCF考官直授，530+学员达到CLB5。',
+                'Learn about Canadian Francophone Education Centre (CFEC) history, mission and core advantages. Since 1991, focused on French education and exam training, taught by current TEF/TCF examiners, 530+ students reached CLB 5.',
+                'Découvrez l\'histoire, la mission et les avantages du Centre d\'éducation francophone du Canada (CFEC). Depuis 1991, spécialisé dans l\'enseignement du français et la préparation aux examens, enseigné par les examinateurs TEF/TCF actuels, 530+ élèves au NCLC 5.',
+                '了解加拿大法語教育中心(CFEC)的歷史、使命和核心優勢。始於1991年，專注法語教育與考試培訓，現任TEF/TCF考官直授，530+學員達到CLB5。',
                 currentLanguage
             )
         },
@@ -61,15 +61,15 @@ export const getPageMetadata = (pageName: string, currentLanguage: string = 'zh-
             title: getTranslatedText(
                 '法语课程 TEF/TCF考试培训 | CFEC加拿大法语教育中心 | French Courses Montreal',
                 'French Courses TEF/TCF Exam Training | CFEC Canadian Francophone Education Centre | Montreal French School',
-                'Cours de Français Formation TEF/TCF | CFEC Centre d\'Éducation Française du Québec | École Française Montréal',
+                'Cours de Français Formation TEF/TCF | CFEC Centre d\'éducation francophone du Canada | École Française Montréal',
                 '法語課程 TEF/TCF考試培訓 | CFEC加拿大法語教育中心 | French Courses Montreal',
                 currentLanguage
             ),
             description: getTranslatedText(
-                'CFEC专业法语课程：TEF/TCF考试培训、法语移民课程、CLB7强化班、法语零基础班。现任TEF/TCF考官直授，98%通过率，助您快速通过法语考试，实现加拿大移民梦想。',
-                'CFEC professional French courses: TEF/TCF exam preparation, French immigration courses, CLB7 intensive classes, French beginner classes. Taught by current TEF/TCF examiners, 98% pass rate, helping you quickly pass French exams and achieve your Canadian immigration dream.',
-                'Cours de français professionnels CFEC : préparation aux examens TEF/TCF, cours de français pour l\'immigration, classes intensives CLB7, classes de français pour débutants. Enseigné par les examinateurs TEF/TCF actuels, taux de réussite de 98%, vous aidant à réussir rapidement les examens de français et à réaliser votre rêve d\'immigration canadienne.',
-                'CFEC專業法語課程：TEF/TCF考試培訓、法語移民課程、CLB7強化班、法語零基礎班。現任TEF/TCF考官直授，98%通過率，助您快速通過法語考試，實現加拿大移民夢想。',
+                'CFEC专业法语课程：TEF/TCF考试培训、法语移民课程、CLB7强化班、法语零基础班。现任TEF/TCF考官直授，530+学员达到CLB5，助您快速通过法语考试，实现加拿大移民梦想。',
+                'CFEC professional French courses: TEF/TCF exam preparation, French immigration courses, CLB7 intensive classes, French beginner classes. Taught by current TEF/TCF examiners, 530+ students reached CLB 5, helping you quickly pass French exams and achieve your Canadian immigration dream.',
+                'Cours de français professionnels CFEC : préparation aux examens TEF/TCF, cours de français pour l\'immigration, classes intensives CLB7, classes de français pour débutants. Enseigné par les examinateurs TEF/TCF actuels, 530+ élèves au NCLC 5, vous aidant à réussir rapidement les examens de français et à réaliser votre rêve d\'immigration canadienne.',
+                'CFEC專業法語課程：TEF/TCF考試培訓、法語移民課程、CLB7強化班、法語零基礎班。現任TEF/TCF考官直授，530+學員達到CLB5，助您快速通過法語考試，實現加拿大移民夢想。',
                 currentLanguage
             )
         },
@@ -77,15 +77,15 @@ export const getPageMetadata = (pageName: string, currentLanguage: string = 'zh-
             title: getTranslatedText(
                 '联系我们 | CFEC加拿大法语教育中心 | 法语培训咨询',
                 'Contact Us | CFEC Canadian Francophone Education Centre | French Training Consultation',
-                'Contactez-Nous | CFEC Centre d\'Éducation Française du Québec | Consultation Formation Française',
-                '聯繫我們 | CFEC加拿大法语教育中心 | 法語培訓咨詢',
+                'Contactez-Nous | CFEC Centre d\'éducation francophone du Canada | Consultation Formation Française',
+                '聯繫我們 | CFEC加拿大法語教育中心 | 法語培訓咨詢',
                 currentLanguage
             ),
             description: getTranslatedText(
                 '联系CFEC加拿大法语教育中心，获取专业法语培训咨询。两个校区为您服务：圣让、老港区。免费咨询TEF/TCF考试、法语移民课程。',
                 'Contact CFEC Canadian Francophone Education Centre for professional French training consultation. Two campuses serving you: Saint-Jean, Old Port. Free consultation for TEF/TCF exams and French immigration courses.',
-                'Contactez le Centre d\'Éducation Française du Québec CFEC pour une consultation professionnelle en formation française. Deux campus à votre service : Saint-Jean, Vieux-Port. Consultation gratuite pour les examens TEF/TCF et les cours de français pour l\'immigration.',
-                '聯繫CFEC加拿大法语教育中心，獲取專業法語培訓咨詢。兩個校區為您服務：聖讓、老港區。免費咨詢TEF/TCF考試、法語移民課程。',
+                'Contactez le Centre d\'éducation francophone du Canada CFEC pour une consultation professionnelle en formation française. Deux campus à votre service : Saint-Jean, Vieux-Port. Consultation gratuite pour les examens TEF/TCF et les cours de français pour l\'immigration.',
+                '聯繫CFEC加拿大法語教育中心，獲取專業法語培訓咨詢。兩個校區為您服務：聖讓、老港區。免費咨詢TEF/TCF考試、法語移民課程。',
                 currentLanguage
             )
         },

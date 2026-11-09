@@ -14,8 +14,8 @@ const SEOStructuredData = () => {
         "logo": "https://www.qfec.ca/cfec-logo.png",
         "image": "https://www.qfec.ca/cfec-logo.png",
         "description": currentLanguage === 'zh' 
-            ? "专业法语教育机构，现任TEF/TCF考官直授，98%通过率，助您快速移民加拿大" 
-            : "Professional French education institution with current TEF/TCF examiners, 98% pass rate, helping you immigrate to Canada quickly",
+            ? "专业法语教育机构，现任TEF/TCF考官直授，530+学员达到CLB5，助您快速移民加拿大" 
+            : "Professional French education institution with current TEF/TCF examiners, 530+ students reached CLB 5, helping you immigrate to Canada quickly",
         "address": [
             {
                 "@type": "PostalAddress",
@@ -62,8 +62,8 @@ const SEOStructuredData = () => {
         "foundingLocation": "Montreal, Quebec, Canada",
         "legalName": "Canadian Francophone Education Centre",
         "slogan": currentLanguage === 'zh' 
-            ? "现任TEF/TCF考官直授，98%通过率，快速移民加拿大" 
-            : "Taught by current TEF/TCF examiners, 98% pass rate, fast immigration to Canada",
+            ? "现任TEF/TCF考官直授，530+学员达到CLB5，快速移民加拿大" 
+            : "Taught by current TEF/TCF examiners, 530+ students reached CLB 5, fast immigration to Canada",
         "brand": "CFEC",
         "hasOfferCatalog": {
             "@type": "OfferCatalog",
@@ -75,8 +75,8 @@ const SEOStructuredData = () => {
                         "@type": "Course",
                         "name": currentLanguage === 'zh' ? "TEF/TCF考试培训" : "TEF/TCF Exam Preparation",
                         "description": currentLanguage === 'zh' 
-                            ? "现任TEF/TCF考官直授，100%原题训练，98%通过率" 
-                            : "Taught by current TEF/TCF examiners, 100% original questions, 98% pass rate",
+                            ? "现任TEF/TCF考官直授，精选题库训练，530+学员达到CLB5" 
+                            : "Taught by current TEF/TCF examiners, curated question bank, 530+ students reached CLB 5",
                         "provider": {
                             "@type": "Organization",
                             "name": "CFEC"
@@ -99,8 +99,8 @@ const SEOStructuredData = () => {
                         "@type": "Course",
                         "name": currentLanguage === 'zh' ? "法语移民课程" : "French Immigration Course",
                         "description": currentLanguage === 'zh' 
-                            ? "6个月达CLB7，法语EE快速移民通道" 
-                            : "Achieve CLB7 in 6 months, French Express Entry fast track"
+                            ? "CLB7最快167天达标，法语EE移民通道" 
+                            : "Fastest CLB 7 in 167 days, French Express Entry pathway"
                     }
                 }
             ]

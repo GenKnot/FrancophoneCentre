@@ -75,13 +75,13 @@ const FCPartnarsHome = () => {
                                                     <i className="fas fa-bullseye" style={{color: '#AD0119'}}></i>
                                                 </div>
                                                 <div className="content">
-                                                    <h5>{getTranslatedText('100%原题训练', '100% Original Question Training', '100% Entraînement Questions Originales', '100%原題訓練')}</h5>
+                                                    <h5>{getTranslatedText('精选题库训练', 'Curated Question-Bank Practice', 'Banque de Questions Sélectionnées', '精選題庫訓練')}</h5>
                                                     <p>
                                                         {getTranslatedText(
-                                                            '下次考试遇到80%原题不是运气，是实力',
-                                                            'Encountering 80% original questions in the next exam is not luck, it\'s strength',
-                                                            'Rencontrer 80% de questions originales au prochain examen n\'est pas de la chance, c\'est de la force',
-                                                            '下次考試遇到80%原題不是運氣，是實力'
+                                                            '围绕重点题型集中训练，结合解析与错题复盘',
+                                                            'Focused practice on key question types, with explanations and review of mistakes',
+                                                            'Entraînement ciblé sur les questions clés, avec explications et analyse des erreurs',
+                                                            '圍繞重點題型集中訓練，結合解析與錯題複盤'
                                                         )}
                                                     </p>
                                                 </div>
@@ -113,13 +113,13 @@ const FCPartnarsHome = () => {
                                                     <i className="fas fa-medal" style={{color: '#AD0119'}}></i>
                                                 </div>
                                                 <div className="content">
-                                                    <h5>{getTranslatedText('三个100%保证', 'Three 100% Guarantees', 'Trois Garanties 100%', '三個100%保證')}</h5>
+                                                    <h5>{getTranslatedText('考官模拟真实口语考试', 'Examiner-Led Mock Speaking Exams', 'Simulations d\'Oral par des Examinateurs', '考官模擬真實口語考試')}</h5>
                                                     <p>
                                                         {getTranslatedText(
-                                                            '评测系统 + 考试环境 + 核心词汇全覆盖无死角',
-                                                            'Assessment System + Exam Environment + Core Vocabulary - Complete Coverage with No Blind Spots',
-                                                            'Système d\'Évaluation + Environnement d\'Examen + Vocabulaire de Base - Couverture Complète sans Angles Morts',
-                                                            '評測系統 + 考試環境 + 核心詞彙全覆蓋無死角'
+                                                            '模拟正式考试任务、互动方式及追问节奏，并针对表现提供反馈',
+                                                            'Realistic exam tasks, interaction and follow-up questions, with feedback on your performance',
+                                                            'Tâches, interaction et relances comme à l\'examen, avec un retour sur votre prestation',
+                                                            '模擬正式考試任務、互動方式及追問節奏，並針對表現提供回饋'
                                                         )}
                                                     </p>
                                                 </div>

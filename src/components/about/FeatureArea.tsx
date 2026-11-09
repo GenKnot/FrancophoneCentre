@@ -49,13 +49,13 @@ const FeatureArea = () => {
                                         <i className="flaticon-instructor"></i>
                                     </div>
                                     <div className="content">
-                                        <h5>{getTranslatedText('98%超高通过率', '98% High Pass Rate', 'Taux de Réussite Élevé 98%', '98%超高通過率')}</h5>
+                                        <h5>{getTranslatedText('530+学员达到CLB5', '530+ Students Reached CLB 5', '530+ Élèves au NCLC 5', '530+學員達到CLB5')}</h5>
                                         <p>
                                             {getTranslatedText(
-                                                '远超过行业平均水平6个月CLB7保证出分',
-                                                'Far exceeds industry average, CLB7 guaranteed in 6 months',
-                                                'Dépasse largement la moyenne de l\'industrie, CLB7 garanti en 6 mois',
-                                                '遠超過行業平均水平6個月CLB7保證出分'
+                                                '最快67天达标，个案不代表普遍结果',
+                                                'Fastest in 67 days; individual results vary',
+                                                'Le plus rapide en 67 jours ; résultats individuels variables',
+                                                '最快67天達標，個案不代表普遍結果'
                                             )}
                                         </p>
                                     </div>

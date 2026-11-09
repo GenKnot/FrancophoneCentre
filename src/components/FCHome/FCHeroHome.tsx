@@ -34,7 +34,7 @@ const FCHeroHome = () => {
             id: 1,
             title: '开启您的法语学习之旅',
             subtitle: '快速移民首选',
-            description: '加拿大法语教育中心，由现任TEF/TCF考官直授，6个月达到CLB7，4个月达到CLB5。98%通过率，远超行业平均水平。法语EE最低330分，助您轻松移民加拿大。',
+            description: '加拿大法语教育中心（CFEC），现任TEF/TCF考官参与教学。CLB5最快67天、CLB7最快167天达标（个案不代表普遍结果）。法语EE最低330分，助您轻松移民加拿大。',
             button_text: '立即开始学习法语',
             button_link: '/courses-details',
             background_image: '/assets/img/FCHero/FCHero-1.jpg',
@@ -45,7 +45,7 @@ const FCHeroHome = () => {
             id: 2,
             title: '现任TEF/TCF考官直授',
             subtitle: '权威法语教育',
-            description: '10位考官2000小时教研成果，100%考试原题训练。6位现任考官+4位前任考官联合授课，三个100%保证您的学习效果。',
+            description: '现任考官讲解口语与写作评分标准，分析高分答案特点，模拟真实口语考试，结合精选题库与错题复盘，提高备考针对性。',
             button_text: '免费试听考官直播课',
             button_link: '/courses-details',
             background_image: '/assets/img/FCHero/FCHero-2.jpg',
@@ -71,15 +71,15 @@ const FCHeroHome = () => {
         {
             id: 1,
             title: '现任考官直授',
-            description: '6位现任TEF/TCF考官亲自授课\n100%还原真实考试环境',
+            description: '6位现任TEF/TCF考官亲自授课\n考官模拟真实口语考试',
             icon_class: 'flaticon-graduation',
             is_active: true,
             order: 1
         },
         {
             id: 2,
-            title: '98%超高通过率',
-            description: '远超过行业平均水平\n6个月CLB7保证出分',
+            title: '530+学员达到CLB5',
+            description: '最快67天达标\n个案不代表普遍结果',
             icon_class: 'flaticon-instructor',
             is_active: true,
             order: 2

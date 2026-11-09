@@ -96,7 +96,7 @@ const FCCoursesHome = () => {
     // Use course content from API if available, otherwise fallback to translations
     const sectionTitle = courseContent?.section_title || t('courses.section_title', 'Popular Courses');
     const mainTitle = courseContent?.main_title || t('courses.title', 'CFEC Course System');
-    const subtitle = courseContent?.subtitle || t('courses.subtitle', 'Current examiner direct teaching 98% pass rate help you quickly reach immigration requirements');
+    const subtitle = courseContent?.subtitle || t('courses.subtitle', 'Current examiners involved in teaching, 530+ students reached CLB 5, helping you meet immigration requirements');
 
     return (
         <>

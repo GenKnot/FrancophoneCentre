@@ -222,7 +222,7 @@ const CoursesDetailsArea: React.FC<CoursesDetailsAreaProps> = ({ courseData }) =
                                                     ) : (
                                                         <>
                                                             <p className="mb-3">
-                                                                {getTranslatedField('description', 'CLB7刷题冲刺班是CFEC为已具备B2水平学员精心设计的考试专项训练课程。本课程由现任TEF/TCF考官直接授课，采用100%真题训练模式，确保学员在考试中能够遇到80%以上的原题，从而大幅提升通过率。')}
+                                                                {getTranslatedField('description', 'CLB7刷题冲刺班是CFEC为已具备B2水平学员精心设计的考试专项训练课程。本课程由现任TEF/TCF考官直接授课，采用精选题库训练模式，确保学员在考试中能够遇到80%以上的原题，从而大幅提升通过率。')}
                                                             </p>
                                                         </>
                                                     )}
@@ -236,7 +236,7 @@ const CoursesDetailsArea: React.FC<CoursesDetailsAreaProps> = ({ courseData }) =
                                                         <>
                                                             <h3 className="mt-5">{getFixedText('course_benefits', '课程学习收获', 'Course Benefits', 'Avantages du cours')}</h3>
                                                             <p className="mb-4">
-                                                                完成本课程后，学员将具备强大的TEF/TCF应试能力，通过率高达98%，远超行业平均水平。
+                                                                完成本课程后，学员将具备扎实的TEF/TCF应试能力。
                                                                 同时掌握约1500个TEF/TCF常考词汇，能够熟练运用高分语法结构。
                                                             </p>
                                                             <div className="row g-4 mb-5">
@@ -678,7 +678,7 @@ const CoursesDetailsArea: React.FC<CoursesDetailsAreaProps> = ({ courseData }) =
                                                 <>
                                                     <h3>{getFixedText('consultation_price', '咨询价格', 'Contact for Price', 'Prix sur demande')}</h3>
                                                     <p className="mb-3">
-                                                        {getTranslatedField('consultation_text', '现任考官直授的专业法语课程，98%通过率保障，助您快速达到移民要求分数。')}
+                                                        {getTranslatedField('consultation_text', '现任考官参与教学的专业法语课程，助您达到移民要求分数。')}
                                                     </p>
                                                 </>
                                             )}
@@ -712,7 +712,7 @@ const CoursesDetailsArea: React.FC<CoursesDetailsAreaProps> = ({ courseData }) =
                                                 <i className="far fa-clock"></i>
                                                 {getFixedText('duration', '课程时长', 'Duration', 'Durée')}
                                             </span>
-                                                <span className="text">{courseData?.hours ? `${courseData.hours}${getFixedText('hours', '课时', ' hours', ' heures')}` : getFixedText('unlimited_hours', '120课时', '120 hours', '120 heures')}</span>
+                                                <span className="text">{courseData?.hours ? `${courseData.hours}${getFixedText('hours', '课时', ' hours', ' heures')}` : getFixedText('flexible_hours', '灵活安排', 'Flexible', 'Flexible', '靈活安排')}</span>
                                             </li>
                                             <li>
                                             <span>
@@ -742,19 +742,21 @@ const CoursesDetailsArea: React.FC<CoursesDetailsAreaProps> = ({ courseData }) =
                                             </span>
                                                 <span className="text">{getTranslatedField('target_level', 'CLB7 (移民达标)')}</span>
                                             </li>
+                                            {courseData?.pass_rate && (
                                             <li>
                                             <span>
                                                 <i className="far fa-signal-alt"></i>
                                                 {getFixedText('pass_rate', '通过率', 'Pass Rate', 'Taux de réussite')}
                                             </span>
-                                                <span className="text">{courseData?.pass_rate || '98%'}</span>
+                                                <span className="text">{courseData.pass_rate}</span>
                                             </li>
+                                            )}
                                             <li>
                                             <span>
                                                 <i className="fal fa-medal"></i>
                                                 {getFixedText('features', '课程特色', 'Features', 'Caractéristiques')}
                                             </span>
-                                                <span className="text">{getTranslatedField('special_features', '100%真题训练')}</span>
+                                                <span className="text">{getTranslatedField('special_features', '精选题库训练')}</span>
                                             </li>
                                         </ul>
                                         <a className="share-btn" href="#" onClick={(e) => { e.preventDefault(); copyToClipboard(); }}>

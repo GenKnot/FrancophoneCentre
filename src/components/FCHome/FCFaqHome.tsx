@@ -49,10 +49,10 @@ const FCFaqHome = () => {
                                                             data-bs-target="#collapseOne" aria-expanded="true"
                                                             aria-controls="collapseOne">
                                                         {getTranslatedText(
-                                                            '零基础真的能6个月达到CLB7吗？',
-                                                            'Can beginners really reach CLB7 in 6 months?',
-                                                            'Débutants peuvent atteindre CLB7 en 6 mois?',
-                                                            '零基礎真的能6個月達到CLB7嗎？'
+                                                            '零基础需要多久能达到CLB7？',
+                                                            'How long does it take a beginner to reach CLB 7?',
+                                                            'Combien de temps faut-il à un débutant pour atteindre le NCLC 7 ?',
+                                                            '零基礎需要多久能達到CLB7？'
                                                         )}
                                                     </button>
                                                 </h2>
@@ -61,10 +61,10 @@ const FCFaqHome = () => {
                                                     <div className="accordion-body">
                                                         <p>
                                                             {getTranslatedText(
-                                                                '完全可以！我们的平均数据显示：0基础学员平均275天达到CLB7，最快的学员仅用167天。关键在于现任考官直授+100%原题训练，让您学到的就是考试要考的。',
-                                                                'Absolutely! Our data shows beginners average 275 days to CLB7, fastest in 167 days. Key: direct examiner teaching + 100% original questions.',
-                                                                'Absolument! Nos données: débutants atteignent CLB7 en 275 jours en moyenne, le plus rapide en 167 jours. Clé: enseignement direct des examinateurs.',
-                                                                '完全可以！我們的平均數據顯示：0基礎學員平均275天達到CLB7，最快的學員僅用167天。關鍵在於現任考官直授+100%原題訓練，讓您學到的就是考試要考的。'
+                                                                '因人而异。历史数据中，CLB7最快167天达标，CLB5最快67天达标；个案不代表普遍结果。我们会根据你的基础和目标安排课程，基础课与刷题班衔接，减少重复学习。',
+                                                                'It depends on the learner. In our historical data, the fastest students reached CLB 7 in 167 days and CLB 5 in 67 days; individual results vary. We plan your courses around your level and goals, linking foundation classes with exam practice to avoid repetition.',
+                                                                'Cela dépend de chacun. Dans nos données historiques, les plus rapides ont atteint le NCLC 7 en 167 jours et le NCLC 5 en 67 jours ; les résultats individuels varient. Nous adaptons le parcours à votre niveau et à vos objectifs.',
+                                                                '因人而異。歷史數據中，CLB7最快167天達標，CLB5最快67天達標；個案不代表普遍結果。我們會根據你的基礎和目標安排課程，基礎課與刷題班銜接，減少重複學習。'
                                                             )}
                                                         </p>
                                                     </div>
@@ -77,10 +77,10 @@ const FCFaqHome = () => {
                                                             data-bs-target="#collapseTwo" aria-expanded="false"
                                                             aria-controls="collapseTwo">
                                                         {getTranslatedText(
-                                                            '98%通过率是真实数据吗？',
-                                                            'Is the 98% pass rate real?',
-                                                            'Le taux de réussite de 98% est-il réel?',
-                                                            '98%通過率是真實數據嗎？'
+                                                            '你们的教学成果数据是怎么来的？',
+                                                            'Where do your results figures come from?',
+                                                            'D\'où viennent vos chiffres de résultats ?',
+                                                            '你們的教學成果數據是怎麼來的？'
                                                         )}
                                                     </button>
                                                 </h2>
@@ -90,10 +90,10 @@ const FCFaqHome = () => {
                                                     <div className="accordion-body">
                                                         <p>
                                                             {getTranslatedText(
-                                                                '这是我们2024年6月-12月的真实统计：217名0基础学员中，154人成功通过CLB5考试，通过率远超行业平均55%水平。原因很简单：考官知道怎么考，自然知道怎么教。',
-                                                                'Real stats from June-Dec 2024: 154 out of 217 beginners passed CLB5, far exceeding industry average of 55%. Simple reason: examiners know how to test, so they know how to teach.',
-                                                                'Statistiques réelles juin-déc 2024: 154 sur 217 débutants ont réussi CLB5, dépassant largement la moyenne de 55%. Raison simple: les examinateurs savent comment tester.',
-                                                                '這是我們2024年6月-12月的真實統計：217名0基礎學員中，154人成功通過CLB5考試，通過率遠超行業平均55%水平。原因很簡單：考官知道怎麼考，自然知道怎麼教。'
+                                                                '来自原魁北克法语教育中心（QFEC）截至2026年5月30日的历史统计：以CLB5为目标累计740+名学员，530+人达标；以CLB7为目标累计210+名学员，70+人达标。个案不代表普遍结果。',
+                                                                'Historical records of the former Quebec Francophone Education Centre (QFEC) as of May 30, 2026: 740+ students aimed for CLB 5 and 530+ reached it; 210+ aimed for CLB 7 and 70+ reached it. Individual results vary.',
+                                                                'Statistiques historiques de l\'ancien Centre d\'éducation francophone du Québec (QFEC) au 30 mai 2026 : 740+ élèves visaient le NCLC 5 et 530+ l\'ont atteint ; 210+ visaient le NCLC 7 et 70+ l\'ont atteint. Les résultats individuels varient.',
+                                                                '來自原魁北克法語教育中心（QFEC）截至2026年5月30日的歷史統計：以CLB5為目標累計740+名學員，530+人達標；以CLB7為目標累計210+名學員，70+人達標。個案不代表普遍結果。'
                                                             )}
                                                         </p>
                                                     </div>
@@ -146,10 +146,10 @@ const FCFaqHome = () => {
                                                     <div className="accordion-body">
                                                         <p>
                                                             {getTranslatedText(
-                                                                '我们的现任考官每周结合监考经验进行教研，每月更新课程内容。确保您学到的永远是最新、最准确的考试重点，这就是98%通过率的秘密。',
-                                                                'Our current examiners conduct weekly research based on exam experience, updating courses monthly. This ensures you learn the latest, most accurate exam points - the secret to our 98% pass rate.',
-                                                                'Nos examinateurs actuels mènent des recherches hebdomadaires basées sur l\'expérience d\'examen, mettant à jour les cours mensuellement. Le secret de notre taux de réussite de 98%.',
-                                                                '我們的現任考官每週結合監考經驗進行教研，每月更新課程內容。確保您學到的永遠是最新、最準確的考試重點，這就是98%通過率的秘密。'
+                                                                '我们的现任考官每周结合监考经验进行教研，每月更新课程内容。确保您学到的永远是最新、最准确的考试重点。',
+                                                                'Our current examiners conduct weekly research based on exam experience, updating courses monthly, so you always learn the latest, most accurate exam points.',
+                                                                'Nos examinateurs actuels mènent des recherches hebdomadaires basées sur l\'expérience d\'examen et mettent à jour les cours chaque mois, pour que vous appreniez toujours les points d\'examen les plus récents.',
+                                                                '我們的現任考官每週結合監考經驗進行教研，每月更新課程內容。確保您學到的永遠是最新、最準確的考試重點。'
                                                             )}
                                                         </p>
                                                     </div>

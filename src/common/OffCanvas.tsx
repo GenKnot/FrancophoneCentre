@@ -64,13 +64,13 @@ const OffCanvas = ({setOpenCanvas, openCanvas} : any) => {
                         </h3>
                         <p className='pb-3' suppressHydrationWarning={true}>
                           {getDisplayText(
-                            'Canadian Francophone Education Centre of Canada', 
+                            'Canadian Francophone Education Centre', 
                             '加拿大法语教育中心', 
-                            '加拿大法语教育中心', 
-                            'Centre d\'Éducation Français du Québec'
+                            '加拿大法語教育中心', 
+                            'Centre d\'éducation francophone du Canada'
                           )}
                           <br /> 
-                          Centre d'Éducation Français du Québec
+                          Centre d'éducation francophone du Canada
                         </p>
 
                         <div className="mobile-menu fix mb-3 mean-container">

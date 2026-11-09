@@ -28,7 +28,7 @@ const FCMarquee = () => {
     // Default fallback items if no API data
     const defaultItems = [
         { id: 1, text: '快速移民加拿大', icon: 'flaticon-medal', is_active: true, order: 1 },
-        { id: 2, text: '98%超高通过率', icon: 'flaticon-certificate', is_active: true, order: 2 },
+        { id: 2, text: '530+学员达到CLB5', icon: 'flaticon-certificate', is_active: true, order: 2 },
         { id: 3, text: '法语教育首选', icon: 'flaticon-instructor', is_active: true, order: 3 }
     ];
 

@@ -32,3 +32,62 @@
 .feature-wrapper-3 > .row > [class*="col-"]:last-child .feature-card-items {
   border-right: none;
 }
+
+// Historical teaching results (brochure data)
+.teaching-results-section {
+  .teaching-results-date {
+    margin-top: 10px;
+    color: var(--text);
+  }
+  .teaching-results-table {
+    max-width: 860px;
+    margin: 40px auto 0;
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--white);
+      box-shadow: var(---box-shadow);
+      border-radius: 7px;
+      overflow: hidden;
+    }
+    th,
+    td {
+      padding: 18px 20px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    th {
+      background: var(--header);
+      color: var(--white);
+      font-weight: 600;
+    }
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+    td.level {
+      font-weight: 700;
+      color: var(--header);
+    }
+    td.reached {
+      font-weight: 700;
+      color: var(--theme-red);
+      font-size: 20px;
+    }
+    .teaching-results-note {
+      margin-top: 16px;
+      font-size: 14px;
+      text-align: center;
+      color: var(--text);
+    }
+    @media (max-width: 575px) {
+      th,
+      td {
+        padding: 12px 8px;
+        font-size: 14px;
+      }
+      td.reached {
+        font-size: 16px;
+      }
+    }
+  }
+}

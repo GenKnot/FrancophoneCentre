@@ -13,6 +13,7 @@ import HeaderMain from "@/layouts/headers/HeaderMain";
 import FooterMain from "@/layouts/footers/FooterMain";
 import FCMarquee from "@/common/FCMarquee";
 import FCChooseHome2 from "@/components/FCHome/FCChooseHome2";
+import TeachingResults from "@/components/common/TeachingResults";
 
 const FCHome = () => {
   return (
@@ -20,6 +21,7 @@ const FCHome = () => {
       <HeaderMain />
       <FCHeroHome />
       <FCAboutHome />
+      <TeachingResults />
       <FCMarquee />
       <FCCoursesHome />
       <FCChooseHome1 />

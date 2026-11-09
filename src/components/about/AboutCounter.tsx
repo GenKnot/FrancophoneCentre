@@ -31,9 +31,9 @@ const AboutCounter = () => {
                                 <i className="flaticon-success"></i>
                             </div>
                             <div className="content">
-                                <h2 style={{color: '#ffffff'}}><span className="odometer" data-count="217"> <Count
-                                    number={217} text=''/> </span></h2>
-                                <p>{getTranslatedText('在校学员', 'Current Students', 'Étudiants Actuels', '在校學員')}</p>
+                                <h2 style={{color: '#ffffff'}}><span className="odometer" data-count="740"> <Count
+                                    number={740} text='+'/> </span></h2>
+                                <p>{getTranslatedText('CLB5方向累计学员', 'Students Aiming for CLB 5', 'Élèves visant le NCLC 5', 'CLB5方向累計學員')}</p>
                             </div>
                         </div>
                         <div className="counter-items">
@@ -41,9 +41,9 @@ const AboutCounter = () => {
                                 <i className="flaticon-medal"></i>
                             </div>
                             <div className="content">
-                                <h2 style={{color: '#ffffff'}}><span className="odometer" data-count="98"> <Count
-                                    number={98} text='%'/> </span></h2>
-                                <p>{getTranslatedText('TEF/TCF通过率', 'TEF/TCF Pass Rate', 'Taux de Réussite TEF/TCF', 'TEF/TCF通過率')}</p>
+                                <h2 style={{color: '#ffffff'}}><span className="odometer" data-count="530"> <Count
+                                    number={530} text='+'/> </span></h2>
+                                <p>{getTranslatedText('CLB5达标学员', 'Reached CLB 5', 'Ont atteint le NCLC 5', 'CLB5達標學員')}</p>
                             </div>
                         </div>
                         <div className="counter-items">
@@ -51,9 +51,9 @@ const AboutCounter = () => {
                                 <i className="flaticon-satisfaction"></i>
                             </div>
                             <div className="content">
-                                <h2 style={{color: '#ffffff'}}><span className="odometer" data-count="154"> <Count
-                                    number={154} text=''/> </span></h2>
-                                <p>{getTranslatedText('成功拿到CLB5', 'Achieved CLB5', 'Obtenu CLB5', '成功拿到CLB5')}</p>
+                                <h2 style={{color: '#ffffff'}}><span className="odometer" data-count="70"> <Count
+                                    number={70} text='+'/> </span></h2>
+                                <p>{getTranslatedText('CLB7达标学员', 'Reached CLB 7', 'Ont atteint le NCLC 7', 'CLB7達標學員')}</p>
                             </div>
                         </div>
                         <div className="counter-items">

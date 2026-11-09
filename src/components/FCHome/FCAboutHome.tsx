@@ -36,10 +36,10 @@ const FCAboutHome = () => {
     const buttonText = aboutContent?.button_text || t('about.button_text', 'Learn More Details');
     
     // Counter data from about content or fallback to defaults
-    const counter1Number = aboutContent?.counter1_number || 13;
+    const counter1Number = aboutContent?.counter1_number || 35;
     const counter1Text = aboutContent?.counter1_text || t('about.counter1_text', 'Years of Teaching Experience');
-    const counter2Number = aboutContent?.counter2_number || 99;
-    const counter2Text = aboutContent?.counter2_text || t('about.counter2_text', 'TEF/TCF Exam Pass Rate');
+    const counter2Number = aboutContent?.counter2_number || 530;
+    const counter2Text = aboutContent?.counter2_text || t('about.counter2_text', 'Students Reached CLB 5');
     const counter3Number = aboutContent?.counter3_number || 2000;
     const counter3Text = aboutContent?.counter3_text || t('about.counter3_text', 'Hours of Examiner Research Results');
 
@@ -74,7 +74,7 @@ const FCAboutHome = () => {
                                         </div>
                                         <div className="counter-content wow fadeInUp" data-wow-delay=".5s">
                                             <h3><span className="odometer" data-count={counter2Number}>
-                                                <Count number={counter2Number} text='%'/>
+                                                <Count number={counter2Number} text='+'/>
                                             </span></h3>
                                             <p>{counter2Text}</p>
                                         </div>
