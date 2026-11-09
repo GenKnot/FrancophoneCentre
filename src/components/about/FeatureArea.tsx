@@ -34,10 +34,10 @@ const FeatureArea = () => {
                                         <h5>{getTranslatedText('现任考官直授', 'Current Examiner Teaching', 'Enseignement par Examinateurs Actuels', '現任考官直授')}</h5>
                                         <p>
                                             {getTranslatedText(
-                                                '6位现任TEF考官亲自授课100%还原真实考试环境',
-                                                '6 current TEF examiners teach personally, 100% authentic exam environment',
-                                                '6 examinateurs TEF actuels enseignent personnellement, environnement d\'examen 100% authentique',
-                                                '6位現任TEF考官親自授課100%還原真實考試環境'
+                                                '6位现任TEF/TCF考官亲自授课100%还原真实考试环境',
+                                                '6 current TEF/TCF examiners teach personally, 100% authentic exam environment',
+                                                '6 examinateurs TEF/TCF actuels enseignent personnellement, environnement d\'examen 100% authentique',
+                                                '6位現任TEF/TCF考官親自授課100%還原真實考試環境'
                                             )}
                                         </p>
                                     </div>

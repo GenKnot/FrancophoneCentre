@@ -22,3 +22,13 @@
 
 // Custom styles
 @import "./courses.css";
+
+// Home hero feature cards: keep the card visible on very wide screens and
+// give all four cards the same height so the red dividers line up.
+.feature-wrapper-3 {
+  box-shadow: var(---box-shadow);
+  overflow: hidden;
+}
+.feature-wrapper-3 > .row > [class*="col-"]:last-child .feature-card-items {
+  border-right: none;
+}

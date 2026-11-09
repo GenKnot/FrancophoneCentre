@@ -34,7 +34,7 @@ const FCPartnarsHome = () => {
                                 <div className="choose-content">
                                     <div className="section-title color-red">
                                         <h6 className="wow fadeInUp">
-                                            {getTranslatedText('QFEC独家优势', 'QFEC Exclusive Advantages', 'Avantages Exclusifs QFEC', 'QFEC獨家優勢')}
+                                            {getTranslatedText('CFEC独家优势', 'CFEC Exclusive Advantages', 'Avantages Exclusifs CFEC', 'CFEC獨家優勢')}
                                         </h6>
                                         <h2 className="wow fadeInUp" data-wow-delay=".3s">
                                             {getTranslatedText(

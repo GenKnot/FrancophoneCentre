@@ -50,7 +50,7 @@ const OffCanvas = ({setOpenCanvas, openCanvas} : any) => {
                         <div className="offcanvas__top mb-5 d-flex justify-content-between align-items-center">
                             <div className="offcanvas__logo">
                                 <Link href="/">
-                                    <img src="/assets/img/logo/black-logo.svg" alt="logo-img" />
+                                    <img src="/cfec-logo.png" alt="logo-img" style={{height: 56, width: "auto"}} />
                                 </Link>
                             </div>
                             <div className="offcanvas__close" onClick={() => setOpenCanvas(false)}>
@@ -64,9 +64,9 @@ const OffCanvas = ({setOpenCanvas, openCanvas} : any) => {
                         </h3>
                         <p className='pb-3' suppressHydrationWarning={true}>
                           {getDisplayText(
-                            'Quebec French Education Centre of Canada', 
-                            '加拿大魁北克法语教育中心', 
-                            '加拿大魁北克法語教育中心', 
+                            'Canadian Francophone Education Centre of Canada', 
+                            '加拿大法语教育中心', 
+                            '加拿大法语教育中心', 
                             'Centre d\'Éducation Français du Québec'
                           )}
                           <br /> 
@@ -114,7 +114,7 @@ const OffCanvas = ({setOpenCanvas, openCanvas} : any) => {
                                           'Email d\'inscription:'
                                         )}
                                     </span>
-                                    <a href="mailto:apply@qfec.ca">apply@qfec.ca</a>
+                                    <a href="mailto:apply@cfecedu.ca">apply@cfecedu.ca</a>
                                 </li>
                                 <li>
                                     <span suppressHydrationWarning={true}>
@@ -125,7 +125,7 @@ const OffCanvas = ({setOpenCanvas, openCanvas} : any) => {
                                           'Email de consultation:'
                                         )}
                                     </span>
-                                    <a href="mailto:info@qfec.ca">info@qfec.ca</a>
+                                    <a href="mailto:info@cfecedu.ca">info@cfecedu.ca</a>
                                 </li>
                             </ul>
                         </div>

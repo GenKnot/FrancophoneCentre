@@ -8,14 +8,14 @@ const SEOStructuredData = () => {
     const organizationSchema = {
         "@context": "https://schema.org",
         "@type": "EducationalOrganization",
-        "name": currentLanguage === 'zh' ? "加拿大魁北克法语教育中心" : "Quebec Francophone Education Centre",
-        "alternateName": ["QFEC", "Quebec French Education Centre"],
+        "name": currentLanguage === 'zh' ? "加拿大法语教育中心" : "Canadian Francophone Education Centre",
+        "alternateName": ["CFEC", "Canadian Francophone Education Centre"],
         "url": "https://www.qfec.ca",
-        "logo": "https://www.qfec.ca/Logo Black Long.png",
-        "image": "https://www.qfec.ca/Logo Black Long.png",
+        "logo": "https://www.qfec.ca/cfec-logo.png",
+        "image": "https://www.qfec.ca/cfec-logo.png",
         "description": currentLanguage === 'zh' 
-            ? "专业法语教育机构，现任TEF考官直授，98%通过率，助您快速移民加拿大" 
-            : "Professional French education institution with current TEF examiners, 98% pass rate, helping you immigrate to Canada quickly",
+            ? "专业法语教育机构，现任TEF/TCF考官直授，98%通过率，助您快速移民加拿大" 
+            : "Professional French education institution with current TEF/TCF examiners, 98% pass rate, helping you immigrate to Canada quickly",
         "address": [
             {
                 "@type": "PostalAddress",
@@ -46,12 +46,12 @@ const SEOStructuredData = () => {
             {
                 "@type": "ContactPoint",
                 "contactType": "customer service",
-                "email": "info@qfec.ca",
+                "email": "info@cfecedu.ca",
                 "availableLanguage": ["zh", "en", "fr"]
             },
             {
                 "@type": "ContactPoint",
-                "email": "apply@qfec.ca",
+                "email": "apply@cfecedu.ca",
                 "contactType": "admissions"
             }
         ],
@@ -60,11 +60,11 @@ const SEOStructuredData = () => {
         ],
         "foundingDate": "1991",
         "foundingLocation": "Montreal, Quebec, Canada",
-        "legalName": "Quebec Francophone Education Centre",
+        "legalName": "Canadian Francophone Education Centre",
         "slogan": currentLanguage === 'zh' 
-            ? "现任TEF考官直授，98%通过率，快速移民加拿大" 
-            : "Taught by current TEF examiners, 98% pass rate, fast immigration to Canada",
-        "brand": "QFEC",
+            ? "现任TEF/TCF考官直授，98%通过率，快速移民加拿大" 
+            : "Taught by current TEF/TCF examiners, 98% pass rate, fast immigration to Canada",
+        "brand": "CFEC",
         "hasOfferCatalog": {
             "@type": "OfferCatalog",
             "name": currentLanguage === 'zh' ? "法语课程目录" : "French Course Catalog",
@@ -73,13 +73,13 @@ const SEOStructuredData = () => {
                     "@type": "Offer",
                     "itemOffered": {
                         "@type": "Course",
-                        "name": currentLanguage === 'zh' ? "TEF考试培训" : "TEF Exam Preparation",
+                        "name": currentLanguage === 'zh' ? "TEF/TCF考试培训" : "TEF/TCF Exam Preparation",
                         "description": currentLanguage === 'zh' 
-                            ? "现任TEF考官直授，100%原题训练，98%通过率" 
-                            : "Taught by current TEF examiners, 100% original questions, 98% pass rate",
+                            ? "现任TEF/TCF考官直授，100%原题训练，98%通过率" 
+                            : "Taught by current TEF/TCF examiners, 100% original questions, 98% pass rate",
                         "provider": {
                             "@type": "Organization",
-                            "name": "QFEC"
+                            "name": "CFEC"
                         }
                     }
                 },
@@ -140,8 +140,8 @@ const SEOStructuredData = () => {
                     "bestRating": "5"
                 },
                 "reviewBody": currentLanguage === 'zh' 
-                    ? "法语EE只要415分，比英语EE容易太多！感谢QFEC，4个月就拿到CLB5，成功收到邀请。" 
-                    : "French EE only requires 415 points, much easier than English EE! Thanks to QFEC, I got CLB5 in 4 months and successfully received an invitation."
+                    ? "法语EE只要415分，比英语EE容易太多！感谢CFEC，4个月就拿到CLB5，成功收到邀请。" 
+                    : "French EE only requires 415 points, much easier than English EE! Thanks to CFEC, I got CLB5 in 4 months and successfully received an invitation."
             }
         ]
     };
@@ -150,7 +150,7 @@ const SEOStructuredData = () => {
         {
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
-            "name": "QFEC Montreal Downtown Campus",
+            "name": "CFEC Montreal Downtown Campus",
             "address": {
                 "@type": "PostalAddress",
                 "streetAddress": "1440 Saint-Catherine St W Unit 501",
@@ -165,13 +165,13 @@ const SEOStructuredData = () => {
                 "longitude": -73.5673
             },
             "openingHours": "Mo-Fr 09:00-18:00",
-            "email": "info@qfec.ca",
+            "email": "info@cfecedu.ca",
             "url": "https://www.qfec.ca"
         },
         {
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
-            "name": "QFEC South Shore Campus",
+            "name": "CFEC South Shore Campus",
             "address": {
                 "@type": "PostalAddress",
                 "streetAddress": "Room 201, 141 Bd Saint-Luc",
@@ -181,13 +181,13 @@ const SEOStructuredData = () => {
                 "addressCountry": "CA"
             },
             "openingHours": "Mo-Fr 09:00-18:00",
-            "email": "info@qfec.ca",
+            "email": "info@cfecedu.ca",
             "url": "https://www.qfec.ca"
         },
         {
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
-            "name": "QFEC Old Port Campus",
+            "name": "CFEC Old Port Campus",
             "address": {
                 "@type": "PostalAddress",
                 "streetAddress": "266 Notre-Dame St W Level 5",
@@ -197,7 +197,7 @@ const SEOStructuredData = () => {
                 "addressCountry": "CA"
             },
             "openingHours": "Mo-Fr 09:00-18:00",
-            "email": "info@qfec.ca",
+            "email": "info@cfecedu.ca",
             "url": "https://www.qfec.ca"
         }
     ];
@@ -205,7 +205,7 @@ const SEOStructuredData = () => {
     const websiteSchema = {
         "@context": "https://schema.org",
         "@type": "WebSite",
-        "name": currentLanguage === 'zh' ? "QFEC 魁北克法语教育中心" : "QFEC Quebec Francophone Education Centre",
+        "name": currentLanguage === 'zh' ? "CFEC 加拿大法语教育中心" : "CFEC Canadian Francophone Education Centre",
         "url": "https://www.qfec.ca",
         "potentialAction": {
             "@type": "SearchAction",
@@ -236,7 +236,7 @@ const SEOStructuredData = () => {
             {
                 "@type": "ListItem",
                 "position": 3,
-                "name": "TEF",
+                "name": "TEF/TCF",
                 "item": "https://www.qfec.ca/courses/tef"
             }
         ]

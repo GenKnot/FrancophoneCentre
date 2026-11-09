@@ -5,8 +5,8 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
 	title: "活动详情 - Francophone Centre",
-	description: "了解QFEC举办的法语文化活动详情、时间、地点和参与方式",
-	keywords: "法语活动详情, 文化交流活动, QFEC活动安排, 法语文化活动",
+	description: "了解CFEC举办的法语文化活动详情、时间、地点和参与方式",
+	keywords: "法语活动详情, 文化交流活动, CFEC活动安排, 法语文化活动",
 };
 
 interface PageProps {

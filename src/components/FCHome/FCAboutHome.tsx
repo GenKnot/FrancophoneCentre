@@ -30,16 +30,16 @@ const FCAboutHome = () => {
     const aboutContent = data?.about_content;
 
     // Use about content data if available, otherwise fallback to translations
-    const sectionTitle = aboutContent?.section_title || t('about.section_title', 'About QFEC');
-    const mainTitle = aboutContent?.main_title || t('about.title', 'Quebec Francophone Education Centre Canada');
-    const description = aboutContent?.description || siteConfig?.site_description || t('about.description', 'Quebec Francophone Education Centre (QFEC) was established in 1991, is a professional French teaching institution under the guidance of the Canadian government. Headquartered in Montreal, taught directly by current TEF examiners, committed to providing students with the highest quality French education to help realize immigration dreams.');
+    const sectionTitle = aboutContent?.section_title || t('about.section_title', 'About CFEC');
+    const mainTitle = aboutContent?.main_title || t('about.title', 'Canadian Francophone Education Centre');
+    const description = aboutContent?.description || siteConfig?.site_description || t('about.description', 'Canadian Francophone Education Centre (CFEC), formerly Quebec Francophone Education Centre (QFEC), was established in 1991, is a professional French teaching institution under the guidance of the Canadian government. Headquartered in Montreal, taught directly by current TEF/TCF examiners, committed to providing students with the highest quality French education to help realize immigration dreams.');
     const buttonText = aboutContent?.button_text || t('about.button_text', 'Learn More Details');
     
     // Counter data from about content or fallback to defaults
     const counter1Number = aboutContent?.counter1_number || 13;
     const counter1Text = aboutContent?.counter1_text || t('about.counter1_text', 'Years of Teaching Experience');
     const counter2Number = aboutContent?.counter2_number || 99;
-    const counter2Text = aboutContent?.counter2_text || t('about.counter2_text', 'TEF Exam Pass Rate');
+    const counter2Text = aboutContent?.counter2_text || t('about.counter2_text', 'TEF/TCF Exam Pass Rate');
     const counter3Number = aboutContent?.counter3_number || 2000;
     const counter3Text = aboutContent?.counter3_text || t('about.counter3_text', 'Hours of Examiner Research Results');
 

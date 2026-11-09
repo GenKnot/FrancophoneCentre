@@ -34,7 +34,7 @@ const FCHeroHome = () => {
             id: 1,
             title: '开启您的法语学习之旅',
             subtitle: '快速移民首选',
-            description: '加拿大魁北克法语教育中心，由现任TEF考官直授，6个月达到CLB7，4个月达到CLB5。98%通过率，远超行业平均水平。法语EE最低330分，助您轻松移民加拿大。',
+            description: '加拿大法语教育中心，由现任TEF/TCF考官直授，6个月达到CLB7，4个月达到CLB5。98%通过率，远超行业平均水平。法语EE最低330分，助您轻松移民加拿大。',
             button_text: '立即开始学习法语',
             button_link: '/courses-details',
             background_image: '/assets/img/FCHero/FCHero-1.jpg',
@@ -43,7 +43,7 @@ const FCHeroHome = () => {
         },
         {
             id: 2,
-            title: '现任TEF考官直授',
+            title: '现任TEF/TCF考官直授',
             subtitle: '权威法语教育',
             description: '10位考官2000小时教研成果，100%考试原题训练。6位现任考官+4位前任考官联合授课，三个100%保证您的学习效果。',
             button_text: '免费试听考官直播课',
@@ -71,7 +71,7 @@ const FCHeroHome = () => {
         {
             id: 1,
             title: '现任考官直授',
-            description: '6位现任TEF考官亲自授课\n100%还原真实考试环境',
+            description: '6位现任TEF/TCF考官亲自授课\n100%还原真实考试环境',
             icon_class: 'flaticon-graduation',
             is_active: true,
             order: 1
@@ -133,10 +133,10 @@ const FCHeroHome = () => {
                             <div 
                                 className="slider-bg bg-cover" 
                                 style={{
-                                    background: `url(${slide.background_image || '/assets/img/FCHero/FCHero-1.jpg'})`
+                                    backgroundImage: `url(${slide.background_image || '/assets/img/FCHero/FCHero-1.jpg'})`
                                 }}
                             >
-                                <div className="overlay-bg bg-cover" style={{background: `url(/assets/img/hero/ovelay-bg.png)`}}></div>
+                                <div className="overlay-bg bg-cover" style={{backgroundImage: `url(/assets/img/hero/ovelay-bg.png)`}}></div>
                             </div>
                             <div className="container">
                                 <div className="row g-4 align-items-center justify-content-center">
@@ -186,7 +186,7 @@ const FCHeroHome = () => {
                                         className="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" 
                                         data-wow-delay={`.${(index + 1) * 2}s`}
                                     >
-                                        <div className="feature-card-items">
+                                        <div className="feature-card-items h-100">
                                             <div className="icon">
                                                 <i className={feature.icon_class || 'flaticon-graduation'}></i>
                                             </div>

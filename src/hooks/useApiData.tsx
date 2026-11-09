@@ -49,7 +49,7 @@ export const useHomepageData = (): UseApiDataReturn => {
     const getDefaultHomepageData = (): ApiData => {
         return {
             site_config: {
-                site_name: 'Quebec Francophone Education Centre',
+                site_name: 'Canadian Francophone Education Centre',
                 site_description: 'Professional French education institution committed to providing students with the highest quality French education.',
                 primary_color: '#AD0119',
                 secondary_color: '#000000'
@@ -59,7 +59,7 @@ export const useHomepageData = (): UseApiDataReturn => {
                     id: 1,
                     title: 'Start Your French Learning Journey',
                     subtitle: 'Fast Immigration Choice',
-                    description: 'Quebec Francophone Education Centre, taught directly by current TEF examiners, achieve CLB7 in 6 months, CLB5 in 4 months.',
+                    description: 'Canadian Francophone Education Centre, taught directly by current TEF/TCF examiners, achieve CLB7 in 6 months, CLB5 in 4 months.',
                     button_text: 'Start Learning French Now',
                     button_link: '/courses',
                     background_image: '/assets/img/FCHero/FCHero-1.jpg',
@@ -71,7 +71,7 @@ export const useHomepageData = (): UseApiDataReturn => {
                 {
                     id: 1,
                     title: 'Current Examiners Direct Teaching',
-                    description: '6 current TEF examiners personally teach, 100% restore real exam environment',
+                    description: '6 current TEF/TCF examiners personally teach, 100% restore real exam environment',
                     icon_class: 'flaticon-graduation',
                     is_active: true,
                     order: 1

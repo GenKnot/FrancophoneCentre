@@ -43,7 +43,7 @@ const AboutCounter = () => {
                             <div className="content">
                                 <h2 style={{color: '#ffffff'}}><span className="odometer" data-count="98"> <Count
                                     number={98} text='%'/> </span></h2>
-                                <p>{getTranslatedText('TEF通过率', 'TEF Pass Rate', 'Taux de Réussite TEF', 'TEF通過率')}</p>
+                                <p>{getTranslatedText('TEF/TCF通过率', 'TEF/TCF Pass Rate', 'Taux de Réussite TEF/TCF', 'TEF/TCF通過率')}</p>
                             </div>
                         </div>
                         <div className="counter-items">

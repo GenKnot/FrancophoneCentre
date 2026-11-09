@@ -49,7 +49,7 @@ const FCBlogHome = () => {
                                     <ul className="post-cat">
                                         <li>
                                             <i className="fal fa-user"></i>
-                                            {getTranslatedText('QFEC移民顾问', 'QFEC Immigration Consultant', 'Consultant en Immigration QFEC', 'QFEC移民顧問')}
+                                            {getTranslatedText('CFEC移民顾问', 'CFEC Immigration Consultant', 'Consultant en Immigration CFEC', 'CFEC移民顧問')}
                                         </li>
                                         <li>
                                             <i className="fal fa-calendar-alt"></i>
@@ -191,10 +191,10 @@ const FCBlogHome = () => {
                                         </h5>
                                         <p>
                                             {getTranslatedText(
-                                                'QFEC学员张同学仅用67天从零基础达到CLB5水平，成功通过法语EE获得移民邀请，现已登陆多伦多开始新生活...',
-                                                'QFEC student Zhang achieved CLB5 level from zero foundation in just 67 days, successfully obtained immigration invitation through French EE, and has now landed in Toronto to start a new life...',
-                                                'L\'étudiant Zhang de QFEC a atteint le niveau CLB5 à partir de zéro en seulement 67 jours, a obtenu avec succès une invitation d\'immigration via l\'EE français, et a maintenant atterri à Toronto pour commencer une nouvelle vie...',
-                                                'QFEC學員張同學僅用67天從零基礎達到CLB5水平，成功通過法語EE獲得移民邀請，現已登陸多倫多開始新生活...'
+                                                'CFEC学员张同学仅用67天从零基础达到CLB5水平，成功通过法语EE获得移民邀请，现已登陆多伦多开始新生活...',
+                                                'CFEC student Zhang achieved CLB5 level from zero foundation in just 67 days, successfully obtained immigration invitation through French EE, and has now landed in Toronto to start a new life...',
+                                                'L\'étudiant Zhang de CFEC a atteint le niveau CLB5 à partir de zéro en seulement 67 jours, a obtenu avec succès une invitation d\'immigration via l\'EE français, et a maintenant atterri à Toronto pour commencer une nouvelle vie...',
+                                                'CFEC學員張同學僅用67天從零基礎達到CLB5水平，成功通過法語EE獲得移民邀請，現已登陸多倫多開始新生活...'
                                             )}
                                         </p>
                                         <Link href="/news-details" className="link-btn">{getTranslatedText('学习经验', 'Learning Experience', 'Expérience d\'Apprentissage', '學習經驗')} <i

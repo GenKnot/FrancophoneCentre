@@ -47,7 +47,7 @@ const FCTestimonialHome = () => {
                                 </div>
                                 <div className="content">
                                     <h2><span className="odometer" data-count="98"> <Count number={98} text='%'  /> </span></h2>
-                                    <p>{getTranslatedText('TEF通过率', 'TEF Pass Rate', 'Taux de Réussite TEF', 'TEF通過率')}</p>
+                                    <p>{getTranslatedText('TEF/TCF通过率', 'TEF/TCF Pass Rate', 'Taux de Réussite TEF/TCF', 'TEF/TCF通過率')}</p>
                                 </div>
                             </div>
                             <div className="counter-items wow fadeInUp" data-wow-delay=".6s">
@@ -141,10 +141,10 @@ const FCTestimonialHome = () => {
                                 <div className="client-img bg-cover" style={{background: `url(/FCImage/Testimonial-1.png)`}}></div>
                                 <p>
                                     {getTranslatedText(
-                                        '"法语EE只需要415分，比英语EE简单太多了！感谢QFEC让我4个月就拿到CLB5，顺利获得邀请。"',
-                                        '"French EE only requires 415 points, much easier than English EE! Thanks to QFEC, I got CLB5 in 4 months and successfully received an invitation."',
-                                        '"L\'EE français ne nécessite que 415 points, beaucoup plus facile que l\'EE anglais ! Grâce à QFEC, j\'ai obtenu CLB5 en 4 mois et j\'ai reçu une invitation avec succès."',
-                                        '"法語EE只需要415分，比英語EE簡單太多了！感謝QFEC讓我4個月就拿到CLB5，順利獲得邀請。"'
+                                        '"法语EE只需要415分，比英语EE简单太多了！感谢CFEC让我4个月就拿到CLB5，顺利获得邀请。"',
+                                        '"French EE only requires 415 points, much easier than English EE! Thanks to CFEC, I got CLB5 in 4 months and successfully received an invitation."',
+                                        '"L\'EE français ne nécessite que 415 points, beaucoup plus facile que l\'EE anglais ! Grâce à CFEC, j\'ai obtenu CLB5 en 4 mois et j\'ai reçu une invitation avec succès."',
+                                        '"法語EE只需要415分，比英語EE簡單太多了！感謝CFEC讓我4個月就拿到CLB5，順利獲得邀請。"'
                                     )}
                                 </p>
                                 <div className="icon">

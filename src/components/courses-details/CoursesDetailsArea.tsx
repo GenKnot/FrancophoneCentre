@@ -222,7 +222,7 @@ const CoursesDetailsArea: React.FC<CoursesDetailsAreaProps> = ({ courseData }) =
                                                     ) : (
                                                         <>
                                                             <p className="mb-3">
-                                                                {getTranslatedField('description', 'CLB7刷题冲刺班是QFEC为已具备B2水平学员精心设计的考试专项训练课程。本课程由现任TEF考官直接授课，采用100%真题训练模式，确保学员在考试中能够遇到80%以上的原题，从而大幅提升通过率。')}
+                                                                {getTranslatedField('description', 'CLB7刷题冲刺班是CFEC为已具备B2水平学员精心设计的考试专项训练课程。本课程由现任TEF/TCF考官直接授课，采用100%真题训练模式，确保学员在考试中能够遇到80%以上的原题，从而大幅提升通过率。')}
                                                             </p>
                                                         </>
                                                     )}
@@ -236,8 +236,8 @@ const CoursesDetailsArea: React.FC<CoursesDetailsAreaProps> = ({ courseData }) =
                                                         <>
                                                             <h3 className="mt-5">{getFixedText('course_benefits', '课程学习收获', 'Course Benefits', 'Avantages du cours')}</h3>
                                                             <p className="mb-4">
-                                                                完成本课程后，学员将具备强大的TEF应试能力，通过率高达98%，远超行业平均水平。
-                                                                同时掌握约1500个TEF常考词汇，能够熟练运用高分语法结构。
+                                                                完成本课程后，学员将具备强大的TEF/TCF应试能力，通过率高达98%，远超行业平均水平。
+                                                                同时掌握约1500个TEF/TCF常考词汇，能够熟练运用高分语法结构。
                                                             </p>
                                                             <div className="row g-4 mb-5">
                                                                 <div className="col-lg-6">
@@ -301,7 +301,7 @@ const CoursesDetailsArea: React.FC<CoursesDetailsAreaProps> = ({ courseData }) =
                                                         <>
                                                             <h3>{getFixedText('course_advantages', '课程优势', 'Course Advantages', 'Avantages du cours')}</h3>
                                                             <p>
-                                                                现任考官直授是本课程最大优势，考官深知TEF评分标准和出题规律，能够精准指导学员避开失分陷阱，
+                                                                现任考官直授是本课程最大优势，考官深知TEF/TCF评分标准和出题规律，能够精准指导学员避开失分陷阱，
                                                                 掌握得分要点。结合2000小时教研成果，确保每位学员都能在短时间内实现分数突破。
                                                             </p>
                                                         </>
@@ -377,7 +377,7 @@ const CoursesDetailsArea: React.FC<CoursesDetailsAreaProps> = ({ courseData }) =
                                                                                 <li>
                                                                                 <span>
                                                                                     <i className="fas fa-file-alt"></i>
-                                                                                    第1课：TEF听力题型全解析
+                                                                                    第1课：TEF/TCF听力题型全解析
                                                                                 </span>
                                                                                     <span>
                                                                                     <i className="far fa-clock"></i>  (90分钟)

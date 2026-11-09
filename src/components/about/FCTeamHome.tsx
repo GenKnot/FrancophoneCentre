@@ -33,10 +33,10 @@ const FCTeamHome = ({style_2} : any) => {
                         </h2>
                         <p className="wow fadeInUp" data-wow-delay=".5s">
                             {getTranslatedText(
-                                '6位现任TEF考官 + 4位前任考官，2000小时教研成果精华',
-                                '6 current TEF examiners + 4 former examiners, 2000 hours of research excellence',
-                                '6 examinateurs TEF actuels + 4 anciens examinateurs, 2000 heures d\'excellence de recherche',
-                                '6位現任TEF考官 + 4位前任考官，2000小時教研成果精華'
+                                '6位现任TEF/TCF考官 + 4位前任考官，2000小时教研成果精华',
+                                '6 current TEF/TCF examiners + 4 former examiners, 2000 hours of research excellence',
+                                '6 examinateurs TEF/TCF actuels + 4 anciens examinateurs, 2000 heures d\'excellence de recherche',
+                                '6位現任TEF/TCF考官 + 4位前任考官，2000小時教研成果精華'
                             )}
                         </p>
                     </div>
@@ -48,7 +48,7 @@ const FCTeamHome = ({style_2} : any) => {
                                 </div>
                                 <div className="content">
                                     <h4>{getTranslatedText('考官 AYMÉRIC', 'Examiner AYMÉRIC', 'Examinateur AYMÉRIC', '考官 AYMÉRIC')}</h4>
-                                    <p>{getTranslatedText('现任TEF考官 - 法国', 'Current TEF Examiner - France', 'Examinateur TEF Actuel - France', '現任TEF考官 - 法國')}</p>
+                                    <p>{getTranslatedText('现任TEF/TCF考官 - 法国', 'Current TEF/TCF Examiner - France', 'Examinateur TEF/TCF Actuel - France', '現任TEF/TCF考官 - 法國')}</p>
                                 </div>
                             </div>
                         </div>

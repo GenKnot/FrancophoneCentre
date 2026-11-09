@@ -64,6 +64,23 @@ const ContactArea = () => {
                                 </h4>
                             </div>
                         </div>
+                        <div className="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".9s">
+                            <div className="contact-box-items">
+                                <div className="icon">
+                                    <i className="flaticon-map"></i>
+                                </div>
+                                <h5>
+                                    {getText('多伦多校区', 'Toronto Campus', 'Campus de Toronto', '多倫多校區')}
+                                </h5>
+                                <div className="image">
+                                    <img src="assets/img/small-line.png" alt="img"/>
+                                </div>
+                                <h4>
+                                    5180 Yonge St, M2N 0K5, <br/>
+                                    Toronto, Canada
+                                </h4>
+                            </div>
+                        </div>
                         <div className="col-xl-6 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".3s">
                             <div className="contact-box-items">
                                 <div className="icon">
@@ -76,7 +93,7 @@ const ContactArea = () => {
                                     <img src="assets/img/small-line.png" alt="img"/>
                                 </div>
                                 <h4>
-                                    <a href="mailto:apply@qfec.ca">apply@qfec.ca</a>
+                                    <a href="mailto:apply@cfecedu.ca">apply@cfecedu.ca</a>
                                 </h4>
                             </div>
                         </div>
@@ -92,7 +109,7 @@ const ContactArea = () => {
                                     <img src="assets/img/small-line.png" alt="img"/>
                                 </div>
                                 <h4>
-                                    <a href="mailto:info@qfec.ca">info@qfec.ca</a>
+                                    <a href="mailto:info@cfecedu.ca">info@cfecedu.ca</a>
                                 </h4>
                             </div>
                         </div>

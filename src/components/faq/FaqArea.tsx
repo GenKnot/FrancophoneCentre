@@ -142,7 +142,7 @@ const FaqArea = () => {
                                                             data-bs-toggle="collapse"
                                                             data-bs-target="#collapsefive" aria-expanded="true"
                                                             aria-controls="collapsefive">
-                                                        {getTranslatedText('QFEC的考官团队有哪些优势？', 'What are the advantages of QFEC examiner team?', 'Quels sont les avantages de l\'équipe d\'examinateurs QFEC?', 'QFEC的考官團隊有哪些優勢？')}
+                                                        {getTranslatedText('CFEC的考官团队有哪些优势？', 'What are the advantages of CFEC examiner team?', 'Quels sont les avantages de l\'équipe d\'examinateurs CFEC?', 'CFEC的考官團隊有哪些優勢？')}
                                                     </button>
                                                 </h2>
                                                 <div id="collapsefive" className="accordion-collapse collapse"
@@ -150,10 +150,10 @@ const FaqArea = () => {
                                                     <div className="accordion-body">
                                                         <p>
                                                             {getTranslatedText(
-                                                                '我们拥有6位现任考官+4位前任考官，累计2000小时教研成果。现任考官深知TEF评分标准，能精准指导避开失分陷阱，掌握得分要点。',
-                                                                'We have 6 current + 4 former examiners with 2000+ hours of research. Current examiners know TEF scoring standards precisely, guiding you to avoid pitfalls and master key points.',
-                                                                'Nous avons 6 examinateurs actuels + 4 anciens avec 2000+ heures de recherche. Les examinateurs actuels connaissent précisément les standards de notation TEF.',
-                                                                '我們擁有6位現任考官+4位前任考官，累計2000小時教研成果。現任考官深知TEF評分標準，能精準指導避開失分陷阱，掌握得分要點。'
+                                                                '我们拥有6位现任考官+4位前任考官，累计2000小时教研成果。现任考官深知TEF/TCF评分标准，能精准指导避开失分陷阱，掌握得分要点。',
+                                                                'We have 6 current + 4 former examiners with 2000+ hours of research. Current examiners know TEF/TCF scoring standards precisely, guiding you to avoid pitfalls and master key points.',
+                                                                'Nous avons 6 examinateurs actuels + 4 anciens avec 2000+ heures de recherche. Les examinateurs actuels connaissent précisément les standards de notation TEF/TCF.',
+                                                                '我們擁有6位現任考官+4位前任考官，累計2000小時教研成果。現任考官深知TEF/TCF評分標準，能精準指導避開失分陷阱，掌握得分要點。'
                                                             )}
                                                         </p>
                                                     </div>
@@ -174,10 +174,10 @@ const FaqArea = () => {
                                                     <div className="accordion-body">
                                                         <p>
                                                             {getTranslatedText(
-                                                                '我们使用过去5年TEF考试真题，重点选择最近6个月考试原题进行训练。学员在下次考试中能遇到80%以上原题，这不是运气，是我们教研实力的体现。',
-                                                                'We use past 5 years TEF real questions, focusing on recent 6 months for training. Students encounter 80%+ original questions in next exam - not luck, but our research strength.',
-                                                                'Nous utilisons les vraies questions TEF des 5 dernières années, en nous concentrant sur les 6 derniers mois pour l\'entraînement. Les étudiants rencontrent 80%+ de questions originales.',
-                                                                '我們使用過去5年TEF考試真題，重點選擇最近6個月考試原題進行訓練。學員在下次考試中能遇到80%以上原題，這不是運氣，是我們教研實力的體現。'
+                                                                '我们使用过去5年TEF/TCF考试真题，重点选择最近6个月考试原题进行训练。学员在下次考试中能遇到80%以上原题，这不是运气，是我们教研实力的体现。',
+                                                                'We use past 5 years TEF/TCF real questions, focusing on recent 6 months for training. Students encounter 80%+ original questions in next exam - not luck, but our research strength.',
+                                                                'Nous utilisons les vraies questions TEF/TCF des 5 dernières années, en nous concentrant sur les 6 derniers mois pour l\'entraînement. Les étudiants rencontrent 80%+ de questions originales.',
+                                                                '我們使用過去5年TEF/TCF考試真題，重點選擇最近6個月考試原題進行訓練。學員在下次考試中能遇到80%以上原題，這不是運氣，是我們教研實力的體現。'
                                                             )}
                                                         </p>
                                                     </div>

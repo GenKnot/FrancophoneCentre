@@ -73,10 +73,10 @@ const FCChooseHome1 = () => {
                             </div>
                             <p className="mt-3 mt-md-0 text-white wow fadeInUp" data-wow-delay=".5s">
                                 {getTranslatedText(
-                                    '不走弯路，不浪费时间。跟着真正的TEF考官学最有用的内容，用最短的时间拿到最高的分数，开启你的加拿大新生活。',
-                                    'No detours, no wasted time. Learn the most useful content from real TEF examiners, get the highest scores in the shortest time, and start your new life in Canada.',
-                                    'Pas de détours, pas de temps perdu. Apprenez le contenu le plus utile avec de vrais examinateurs TEF, obtenez les meilleurs scores en un minimum de temps et commencez votre nouvelle vie au Canada.',
-                                    '不走彎路，不浪費時間。跟著真正的TEF考官學最有用的內容，用最短的時間拿到最高的分數，開啟你的加拿大新生活。'
+                                    '不走弯路，不浪费时间。跟着真正的TEF/TCF考官学最有用的内容，用最短的时间拿到最高的分数，开启你的加拿大新生活。',
+                                    'No detours, no wasted time. Learn the most useful content from real TEF/TCF examiners, get the highest scores in the shortest time, and start your new life in Canada.',
+                                    'Pas de détours, pas de temps perdu. Apprenez le contenu le plus utile avec de vrais examinateurs TEF/TCF, obtenez les meilleurs scores en un minimum de temps et commencez votre nouvelle vie au Canada.',
+                                    '不走彎路，不浪費時間。跟著真正的TEF/TCF考官學最有用的內容，用最短的時間拿到最高的分數，開啟你的加拿大新生活。'
                                 )}
                             </p>
                             <div className="row">

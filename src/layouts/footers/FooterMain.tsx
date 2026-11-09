@@ -78,12 +78,12 @@ const FooterMain = () => {
                                 <div className="single-footer-widget">
                                     <div className="widget-head">
                                         <Link href="/">
-                                            <img src="/assets/img/logo/black-logo-3.svg" alt="img"/>
+                                            <img src="/cfec-logo.png" alt="img" style={{height: 76, width: "auto"}}/>
                                         </Link>
                                     </div>
                                     <div className="footer-content">
                                         <p suppressHydrationWarning={true}>
-                                            {isMounted ? t('footer.description', 'Quebec Francophone Education Centre is committed to providing students with quality French education services to help students master French skills.') : '\u00A0'}
+                                            {isMounted ? t('footer.description', 'Canadian Francophone Education Centre is committed to providing students with quality French education services to help students master French skills.') : '\u00A0'}
                                         </p>
                                         <div className="footer-content pt-2">
                                             <ul className="contact-info">
@@ -138,12 +138,12 @@ const FooterMain = () => {
                                     <div className="footer-content">
                                         <ul className="contact-info">
                                             <li>
-                                                Registration Email: <a href="mailto:apply@qfec.ca"
-                                                                       className="link">apply@qfec.ca</a>
+                                                Registration Email: <a href="mailto:apply@cfecedu.ca"
+                                                                       className="link">apply@cfecedu.ca</a>
                                             </li>
                                             <li>
-                                                Inquiry Email: <a href="mailto:info@qfec.ca"
-                                                                  className="link">info@qfec.ca</a>
+                                                Inquiry Email: <a href="mailto:info@cfecedu.ca"
+                                                                  className="link">info@cfecedu.ca</a>
                                             </li>
                                             <li>
                                                 South Shore Campus:<br/>
@@ -154,6 +154,11 @@ const FooterMain = () => {
                                                 Old Port Campus:<br/>
                                                 266 Notre-Dame St W Level 5,
                                                 Montreal, Quebec H2Y 1T6
+                                            </li>
+                                            <li>
+                                                Toronto Campus:<br/>
+                                                5180 Yonge St, M2N 0K5,
+                                                Toronto, Canada
                                             </li>
                                         </ul>
                                     </div>
