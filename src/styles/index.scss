@@ -89,5 +89,71 @@
         font-size: 16px;
       }
     }
+  }  .teaching-results-gallery {
+    max-width: 1080px;
+    margin: 48px auto 0;
+    h4 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 40px;
+      @media (max-width: 767px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+      box-shadow: var(---box-shadow);
+    }
+    .feedback-image {
+      max-width: 900px;
+      margin: 0 auto;
+    }
   }
+}
+
+.footer-slogan {
+  font-weight: 700;
+  margin-top: 12px;
+}
+
+.news-section .news-content h3,
+.news-section .news-right-box h5 {
+  text-transform: none;
+}
+
+.news-wrapper h2,
+.news-wrapper h3,
+.news-wrapper h5,
+.blog-post-details h2,
+.blog-post-details h3,
+.blog-post-details h5 {
+  text-transform: none;
+}
+
+.blog-post-details .news-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0 24px;
+  font-size: 15px;
+  th,
+  td {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 10px 12px;
+    text-align: left;
+  }
+  th {
+    background: #f5f7fb;
+    font-weight: 700;
+  }
+}
+.blog-post-details .post-details {
+  overflow-x: auto;
 }

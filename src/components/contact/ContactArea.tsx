@@ -81,7 +81,7 @@ const ContactArea = () => {
                                 </h4>
                             </div>
                         </div>
-                        <div className="col-xl-6 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".3s">
+                        <div className="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".3s">
                             <div className="contact-box-items">
                                 <div className="icon">
                                     <i className="flaticon-send-data"></i>
@@ -97,7 +97,7 @@ const ContactArea = () => {
                                 </h4>
                             </div>
                         </div>
-                        <div className="col-xl-6 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".5s">
+                        <div className="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".5s">
                             <div className="contact-box-items">
                                 <div className="icon">
                                     <i className="flaticon-send-data"></i>
@@ -111,6 +111,20 @@ const ContactArea = () => {
                                 <h4>
                                     <a href="mailto:info@cfecedu.ca">info@cfecedu.ca</a>
                                 </h4>
+                            </div>
+                        </div>
+                        <div className="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".7s">
+                            <div className="contact-box-items">
+                                <div className="icon">
+                                    <i className="fab fa-weixin"></i>
+                                </div>
+                                <h5>
+                                    {getText('微信咨询', 'WeChat', 'WeChat', '微信諮詢')}
+                                </h5>
+                                <div className="image">
+                                    <img src="assets/img/small-line.png" alt="img"/>
+                                </div>
+                                <h4>cfecvivi</h4>
                             </div>
                         </div>
                     </div>

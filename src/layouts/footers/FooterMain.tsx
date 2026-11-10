@@ -3,10 +3,21 @@
 import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from '@/hooks/useTranslation';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { ENDPOINTS } from '../../../constants/api';
+
+const SLOGAN: Record<string, string> = {
+    'zh-hans': '让专业的人，带你走向目标成绩。',
+    'zh-hant': '讓專業的人，帶你走向目標成績。',
+    'fr': 'Laissez des professionnels vous mener à votre score cible.',
+    'en': 'Let professionals guide you to your target score.',
+};
 
 const FooterMain = () => {
     const { t } = useTranslation();
+    const { currentLanguage } = useLanguage();
+    const L = (zh: string, en: string, fr: string, zhHant: string) =>
+        ({ 'zh-hans': zh, 'zh-hant': zhHant, fr }[currentLanguage as string] ?? en);
     const [email, setEmail] = useState('');
     const [isSubscribing, setIsSubscribing] = useState(false);
     const [message, setMessage] = useState('');
@@ -85,6 +96,9 @@ const FooterMain = () => {
                                         <p suppressHydrationWarning={true}>
                                             {isMounted ? t('footer.description', 'Canadian Francophone Education Centre is committed to providing students with quality French education services to help students master French skills.') : '\u00A0'}
                                         </p>
+                                        <p className="footer-slogan" suppressHydrationWarning={true}>
+                                            {isMounted ? (SLOGAN[currentLanguage] || SLOGAN.en) : '\u00A0'}
+                                        </p>
                                         <div className="footer-content pt-2">
                                             <ul className="contact-info">
                                             </ul>
@@ -138,25 +152,28 @@ const FooterMain = () => {
                                     <div className="footer-content">
                                         <ul className="contact-info">
                                             <li>
-                                                Registration Email: <a href="mailto:apply@cfecedu.ca"
+                                                {L('报名邮箱：', 'Registration Email: ', 'Email d\'inscription : ', '報名郵箱：')}<a href="mailto:apply@cfecedu.ca"
                                                                        className="link">apply@cfecedu.ca</a>
                                             </li>
                                             <li>
-                                                Inquiry Email: <a href="mailto:info@cfecedu.ca"
+                                                {L('咨询邮箱：', 'Inquiry Email: ', 'Email de consultation : ', '諮詢郵箱：')}<a href="mailto:info@cfecedu.ca"
                                                                   className="link">info@cfecedu.ca</a>
                                             </li>
                                             <li>
-                                                South Shore Campus:<br/>
+                                                {L('微信咨询：', 'WeChat: ', 'WeChat : ', '微信諮詢：')}<span className="link">cfecvivi</span>
+                                            </li>
+                                            <li>
+                                                {L('南岸校区：', 'South Shore Campus:', 'Campus de la Rive-Sud :', '南岸校區：')}<br/>
                                                 Room 201, 141 Bd Saint-Luc,
                                                 Saint-Jean-sur-Richelieu, QC J2W 2G7
                                             </li>
                                             <li>
-                                                Old Port Campus:<br/>
+                                                {L('老港校区：', 'Old Port Campus:', 'Campus du Vieux-Port :', '老港校區：')}<br/>
                                                 266 Notre-Dame St W Level 5,
                                                 Montreal, Quebec H2Y 1T6
                                             </li>
                                             <li>
-                                                Toronto Campus:<br/>
+                                                {L('多伦多校区：', 'Toronto Campus:', 'Campus de Toronto :', '多倫多校區：')}<br/>
                                                 5180 Yonge St, M2N 0K5,
                                                 Toronto, Canada
                                             </li>

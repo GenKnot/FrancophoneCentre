@@ -67,6 +67,18 @@ const TeachingResults = ({ className = '' }: { className?: string }) => {
                         )}
                     </p>
                 </div>
+                <div className="teaching-results-gallery">
+                    <h4 className="wow fadeInUp">{t('真实学员成绩展示', 'Real Student Results', 'Résultats réels d\'élèves', '真實學員成績展示')}</h4>
+                    <div className="gallery-grid">
+                        {[1, 2, 3, 4].map((n) => (
+                            <img key={n} src={`/assets/img/results/result-${n}.jpg`} alt={t('学员TEF四项CLB7成绩', 'Student TEF results: CLB 7 in all four skills', 'Résultats TEF : NCLC 7 dans les quatre compétences', '學員TEF四項CLB7成績')} loading="lazy"/>
+                        ))}
+                    </div>
+                    <h4 className="wow fadeInUp">{t('学员真实反馈', 'Student Feedback', 'Témoignages d\'élèves', '學員真實反饋')}</h4>
+                    <div className="feedback-image">
+                        <img src="/assets/img/results/student-feedback.jpg" alt={t('学员反馈截图', 'Student feedback screenshots', 'Captures de témoignages', '學員反饋截圖')} loading="lazy"/>
+                    </div>
+                </div>
             </div>
         </section>
     );

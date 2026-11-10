@@ -1,6 +1,6 @@
 "use client"
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useNews } from '@/hooks/useNews';
 import { 
@@ -16,6 +16,14 @@ const NewsArea = () => {
     const { currentLanguage } = useLanguage();
     const { news, loading, error, featuredNews } = useNews();
     const [selectedCategory, setSelectedCategory] = useState('');
+    const [page, setPage] = useState(1);
+    const PAGE_SIZE = 6;
+
+    // Category names are per language, so reset the filter when the language changes.
+    useEffect(() => {
+        setSelectedCategory('');
+        setPage(1);
+    }, [currentLanguage]);
 
     const getTranslatedText = (zhText: string, enText: string, frText: string = enText, zhHantText: string = zhText) => {
         switch (currentLanguage) {
@@ -31,12 +39,20 @@ const NewsArea = () => {
         }
     };
 
-    const filteredNews = news.filter(article => {
-        const categoryMatch = !selectedCategory || 
-            getNewsTranslation(article, 'category', currentLanguage).includes(selectedCategory);
-        
-        return categoryMatch;
-    });
+    const categoryOf = (article: (typeof news)[number]) => getNewsTranslation(article, 'category', currentLanguage);
+    const categories = Array.from(new Set(news.map(categoryOf).filter(Boolean)));
+    const filteredNews = news.filter(article => !selectedCategory || categoryOf(article) === selectedCategory);
+    const pageCount = Math.max(1, Math.ceil(filteredNews.length / PAGE_SIZE));
+    const currentPage = Math.min(page, pageCount);
+    const pagedNews = filteredNews.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
+    const selectCategory = (category: string) => {
+        setSelectedCategory(category);
+        setPage(1);
+    };
+    const goToPage = (n: number) => {
+        setPage(n);
+        if (typeof window !== 'undefined') window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
 
     if (loading) {
         return (
@@ -79,7 +95,7 @@ const NewsArea = () => {
                                             <p>{getTranslatedText('请稍后再试', 'Please check back later', 'Veuillez revenir plus tard', '請稍後再試')}</p>
                                         </div>
                                     ) : (
-                                        filteredNews.map((article, index) => (
+                                        pagedNews.map((article, index) => (
                                             <div key={article.id} className="single-blog-post">
                                                 <div className="post-featured-thumb bg-cover"
                                                      style={{
@@ -161,13 +177,23 @@ const NewsArea = () => {
                                         ))
                                     )}
                                 </div>
-                                {filteredNews.length > 6 && (
+                                {pageCount > 1 && (
                                     <div className="page-nav-wrap pt-5">
                                         <ul>
-                                            <li><a className="page-numbers active" href="#">1</a></li>
-                                            <li><a className="page-numbers" href="#">2</a></li>
-                                            <li><a className="page-numbers" href="#">3</a></li>
-                                            <li><a className="page-numbers" href="#"><i className="far fa-arrow-right"></i></a></li>
+                                            {Array.from({ length: pageCount }, (_, k) => k + 1).map(n => (
+                                                <li key={n}>
+                                                    <a className={`page-numbers ${n === currentPage ? 'active' : ''}`} href="#"
+                                                       onClick={(e) => { e.preventDefault(); goToPage(n); }}>{n}</a>
+                                                </li>
+                                            ))}
+                                            {currentPage < pageCount && (
+                                                <li>
+                                                    <a className="page-numbers" href="#"
+                                                       onClick={(e) => { e.preventDefault(); goToPage(currentPage + 1); }}>
+                                                        <i className="far fa-arrow-right"></i>
+                                                    </a>
+                                                </li>
+                                            )}
                                         </ul>
                                     </div>
                                 )}
@@ -221,43 +247,25 @@ const NewsArea = () => {
                                                 <li>
                                                     <Link 
                                                         href="#" 
-                                                        onClick={(e) => { e.preventDefault(); setSelectedCategory(''); }}
+                                                        onClick={(e) => { e.preventDefault(); selectCategory(''); }}
                                                         className={!selectedCategory ? 'active' : ''}
                                                     >
                                                         {getTranslatedText('全部分类', 'All Categories', 'Toutes les Catégories', '全部分類')} 
                                                         <span>{news.length}</span>
                                                     </Link>
                                                 </li>
-                                                <li>
-                                                    <Link 
-                                                        href="#" 
-                                                        onClick={(e) => { e.preventDefault(); setSelectedCategory('移民政策'); }}
-                                                        className={selectedCategory === '移民政策' ? 'active' : ''}
-                                                    >
-                                                        {getTranslatedText('移民政策', 'Immigration Policy', 'Politique d\'immigration', '移民政策')} 
-                                                        <span>{news.filter(n => getNewsTranslation(n, 'category', currentLanguage).includes('移民政策')).length}</span>
-                                                    </Link>
-                                                </li>
-                                                <li>
-                                                    <Link 
-                                                        href="#" 
-                                                        onClick={(e) => { e.preventDefault(); setSelectedCategory('法语学习'); }}
-                                                        className={selectedCategory === '法语学习' ? 'active' : ''}
-                                                    >
-                                                        {getTranslatedText('法语学习', 'French Learning', 'Apprentissage français', '法語學習')} 
-                                                        <span>{news.filter(n => getNewsTranslation(n, 'category', currentLanguage).includes('法语学习')).length}</span>
-                                                    </Link>
-                                                </li>
-                                                <li>
-                                                    <Link 
-                                                        href="#" 
-                                                        onClick={(e) => { e.preventDefault(); setSelectedCategory('成功案例'); }}
-                                                        className={selectedCategory === '成功案例' ? 'active' : ''}
-                                                    >
-                                                        {getTranslatedText('成功案例', 'Success Stories', 'Histoires de succès', '成功案例')} 
-                                                        <span>{news.filter(n => getNewsTranslation(n, 'category', currentLanguage).includes('成功案例')).length}</span>
-                                                    </Link>
-                                                </li>
+                                                {categories.map(category => (
+                                                    <li key={category}>
+                                                        <Link 
+                                                            href="#" 
+                                                            onClick={(e) => { e.preventDefault(); selectCategory(category); }}
+                                                            className={selectedCategory === category ? 'active' : ''}
+                                                        >
+                                                            {category} 
+                                                            <span>{news.filter(n => categoryOf(n) === category).length}</span>
+                                                        </Link>
+                                                    </li>
+                                                ))}
                                             </ul>
                                         </div>
                                     </div>

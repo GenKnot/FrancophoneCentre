@@ -62,6 +62,7 @@ export const useNews = (): UseNewsReturn => {
     const { currentLanguage } = useLanguage();
 
     useEffect(() => {
+        let stale = false;
         const fetchNews = async () => {
             try {
                 setLoading(true);
@@ -97,17 +98,20 @@ export const useNews = (): UseNewsReturn => {
                     order: article.order ?? 0,
                 }));
                 
+                if (stale) return;
                 setNews(processedNews);
                 setError(null);
             } catch (err) {
+                if (stale) return;
                 setError(err instanceof Error ? err.message : 'Failed to fetch news');
                 setNews([]);
             } finally {
-                setLoading(false);
+                if (!stale) setLoading(false);
             }
         };
 
         fetchNews();
+        return () => { stale = true; };
     }, [currentLanguage]);
 
     const featuredNews = news.filter(article => article.is_featured && (article.is_published !== false));
@@ -128,6 +132,7 @@ export const useNewsArticle = (id: number): UseNewsArticleReturn => {
             return;
         }
 
+        let stale = false;
         const fetchNewsArticle = async () => {
             try {
                 setLoading(true);
@@ -156,17 +161,20 @@ export const useNewsArticle = (id: number): UseNewsArticleReturn => {
                     order: data.order ?? 0,
                 };
                 
+                if (stale) return;
                 setNewsArticle(processedArticle);
                 setError(null);
             } catch (err) {
+                if (stale) return;
                 setError(err instanceof Error ? err.message : 'Failed to fetch news article');
                 setNewsArticle(null);
             } finally {
-                setLoading(false);
+                if (!stale) setLoading(false);
             }
         };
 
         fetchNewsArticle();
+        return () => { stale = true; };
     }, [id, currentLanguage]);
 
     return { newsArticle, loading, error };

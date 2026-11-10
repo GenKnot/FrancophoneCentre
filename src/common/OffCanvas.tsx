@@ -127,6 +127,12 @@ const OffCanvas = ({setOpenCanvas, openCanvas} : any) => {
                                     </span>
                                     <a href="mailto:info@cfecedu.ca">info@cfecedu.ca</a>
                                 </li>
+                                <li>
+                                    <span suppressHydrationWarning={true}>
+                                        {getDisplayText('WeChat:', '微信咨询:', '微信諮詢:', 'WeChat :')}
+                                    </span>
+                                    <span>cfecvivi</span>
+                                </li>
                             </ul>
                         </div>
                     </div>
